@@ -1,4 +1,2570 @@
-```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مختبر الكرخ التعاوني - نموذج التحاليل الطبية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Scheherazade:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --header-color: #2c7da0;
+            --background-color: #f5f7fa;
+            --button-color: #4CAF50;
+            --title-font-size: 28px;
+            --test-name-font-size: 16px;
+            --result-font-size: 16px;
+            --range-font-size: 16px;
+            --footer-font-size: 14px;
+            --title-font-color: #2c7da0;
+            --test-name-font-color: #333333;
+            --result-font-color: #333333;
+            --range-font-color: #b90f0f;
+            --footer-font-color: #ffffff;
+            --patient-info-bg: #c11717;
+            --header-bg: #ffffff;
+            --table-border-width: 1px;
+            --table-border-color: #ddd;
+            --main-font: 'Cairo', sans-serif;
+            --title-font: 'Amiri', serif;
+            --subtitle-font: 'Cairo', sans-serif;
+            --test-font: 'Cairo', sans-serif;
+            --result-font: 'Cairo', sans-serif;
+            --range-font: 'Cairo', sans-serif;
+            --footer-font: 'Cairo', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--main-font);
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--background-color);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            padding-bottom: 120px;
+            display: table;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--button-color);
+            display: table-header-group;
+            background-color: var(--header-bg);
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .logo {
+            width: 90px;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--button-color) 0%, #2E7D32 100%);
+            border-radius: 50%;
+            color: white;
+            font-size: 40px;
+        }
+
+        .header-text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header h1 {
+            color: var(--title-font-color);
+            font-size: var(--title-font-size);
+            font-weight: bolder;
+            margin-bottom: 5px;
+            font-family: var(--title-font);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            letter-spacing: 2px;
+            /* Removed background-color to use header-bg */
+        }
+
+        .doctors-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            gap: 10px;
+        }
+
+        .header .doctor-name {
+            flex: 1;
+            text-align: center;
+            color: #11be65;
+            font-size: medium;
+            font-weight: bolder;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            letter-spacing: 2px;
+            border: 1px solid #ddd;
+            padding: 5px;
+            border-radius: 4px;
+            font-family: var(--subtitle-font);
+            /* Removed background-color to use header-bg */
+        }
+
+        .patient-info {
+            font-size: small;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: var(--patient-info-bg);
+        }
+
+        .info-item {
+            font-size: small;
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: var(--header-color);
+            font-family: var(--main-font);
+        }
+
+        .editable-field {
+            font-weight: bold;
+            font-size: small;
+            border: 1px dashed var(--button-color);
+            padding: 4px 8px;
+            border-radius: 4px;
+            min-width: 120px;
+            text-align: right;
+            background-color: white;
+            font-family: var(--main-font);
+        }
+
+        .editable-field:focus {
+            outline: none;
+            border: 1px solid #2E7D32;
+            background-color: #f0fff0;
+        }
+
+        .results-container {
+            font-size: larger;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            display: table-row-group;
+        }
+
+        .section {
+            margin-bottom: 15px;
+            border: var(--table-border-width) solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #fff;
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section-title {
+            background: linear-gradient(135deg, var(--button-color) 0%, #2E7D32 100%);
+            color: white;
+            padding: 10px 15px;
+            font-size: 23px;
+            font-weight: bold;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: var(--subtitle-font);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            direction: ltr;
+        }
+
+        th, td {
+            border: var(--table-border-width) solid var(--table-border-color);
+            padding: 8px 6px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            color: var(--header-color);
+            font-family: var(--subtitle-font);
+        }
+
+        .test-name {
+            font-size: var(--test-name-font-size);
+            font-weight: bold;
+            background-color: #e8f4e8;
+            text-align: left;
+            padding-left: 10px;
+            color: var(--test-name-font-color);
+            font-family: var(--test-font);
+        }
+
+        .normal-range {
+            font-size: var(--range-font-size);
+            font-weight: bold;
+            color: var(--range-font-color);
+            direction: ltr;
+            font-family: var(--range-font);
+        }
+
+        .result-input {
+            width: 100%;
+            border: 1px dashed var(--button-color);
+            padding: 5px;
+            border-radius: 4px;
+            text-align: center;
+            font-family: var(--result-font);
+            background-color: #f9f9f9;
+            font-size: var(--result-font-size);
+            font-weight: bolder;
+            direction: ltr;
+            color: var(--result-font-color);
+        }
+
+        .result-input:focus {
+            outline: none;
+            border: 1px solid #2E7D32;
+            background-color: #f0fff0;
+        }
+
+        .result-select {
+            width: 100%;
+            border: 1px dashed var(--button-color);
+            padding: 5px;
+            border-radius: 4px;
+            text-align: center;
+            font-family: var(--result-font);
+            background-color: #f9f9f9;
+            font-size: 13px;
+            cursor: pointer;
+            direction: ltr;
+            color: var(--result-font-color);
+        }
+
+        .result-select:focus {
+            outline: none;
+            border: 1px solid #2E7D32;
+            background-color: #f0fff0;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 250px;
+            padding-top: 150px;
+            border-top: 2px solid var(--button-color);
+            color: #666;
+            font-size: 14px;
+            font-family: var(--footer-font);
+        }
+
+        .signature-area {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .signature-box {
+            width: 200px;
+            border-top: 1px solid #333;
+            padding-top: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-family: var(--main-font);
+        }
+
+        .signature-input {
+            border: none;
+            border-bottom: 1px dashed #333;
+            padding: 3px;
+            text-align: center;
+            font-family: var(--main-font);
+            width: 100%;
+            margin-top: 3px;
+            font-size: 13px;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-family: var(--main-font);
+        }
+
+        .btn-print {
+            background: linear-gradient(135deg, var(--button-color) 0%, #2E7D32 100%);
+            color: white;
+        }
+
+        .btn-clear {
+            background: linear-gradient(135deg, #f44336 0%, #b71c1c 100%);
+            color: white;
+        }
+
+        .btn-save {
+            background: linear-gradient(135deg, var(--header-color) 0%, #1a5e78 100%);
+            color: white;
+        }
+
+        .btn-load {
+            background: linear-gradient(135deg, #FFC107 0%, #FF9800 100%);
+            color: white;
+        }
+
+        .btn-manage {
+            background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .lab-footer {
+            display: table-footer-group;
+            background: linear-gradient(135deg, var(--header-color) 0%, #1a5e78 100%);
+            padding: 15px;
+            text-align: center;
+            border-top: 2px solid var(--button-color);
+            font-family: var(--footer-font);
+            color: var(--footer-font-color);
+            font-size: var(--footer-font-size);
+            position: running(footer);
+        }
+
+        .lab-footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        .lab-footer-item {
+            padding: 5px;
+        }
+
+        .lab-footer-title {
+            font-weight: bold;
+            color: var(--footer-font-color);
+            margin-bottom: 5px;
+            font-family: var(--title-font);
+        }
+
+        .test-selection {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: var(--header-color);
+            flex-wrap: wrap;
+            font-family: var(--main-font);
+        }
+
+        .test-selection label {
+            white-space: nowrap;
+        }
+
+        .test-selection select {
+            padding: 8px 12px;
+            border: 1px solid var(--button-color);
+            border-radius: 8px;
+            font-family: var(--main-font);
+            font-size: 14px;
+            cursor: pointer;
+            background-color: #f9f9f9;
+        }
+
+        .test-selection select:focus {
+            outline: none;
+            border-color: #2E7D32;
+            box-shadow: 0 0 5px rgba(46, 125, 50, 0.5);
+        }
+
+        .watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 60px;
+            color: rgba(0, 0, 0, 0.03);
+            pointer-events: none;
+            z-index: -1;
+            font-weight: bold;
+            white-space: nowrap;
+            font-family: var(--title-font);
+        }
+
+        .examiner-name {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            background-color: #e8f4e8;
+            border-top: 1px solid #ddd;
+            font-weight: bold;
+            direction: ltr;
+            font-family: var(--main-font);
+        }
+
+        .examiner-input {
+            border: 1px dashed var(--button-color);
+            padding: 5px 10px;
+            border-radius: 4px;
+            text-align: left;
+            font-family: var(--main-font);
+            width: 200px;
+            background-color: white;
+        }
+
+        .sub-section-title {
+            background-color: #e8f4e8;
+            padding: 8px;
+            text-align: center;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            direction: ltr;
+            font-family: var(--subtitle-font);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 10px;
+            direction: rtl;
+        }
+
+        .close {
+            color: #aaa;
+            float: left;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+        }
+
+        .normal-range-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: var(--main-font);
+        }
+
+        .range-management {
+            margin: 15px 0;
+        }
+
+        .range-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        .range-table th, .range-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+            font-family: var(--main-font);
+        }
+
+        .range-table th {
+            background-color: #f2f2f2;
+        }
+
+        .add-test-btn {
+            background: linear-gradient(135deg, #2196F3 0%, #0D47A1 100%);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-family: var(--main-font);
+        }
+
+        .add-section-btn {
+            background: linear-gradient(135deg, #9C27B0 0%, #6A1B9A 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--main-font);
+            font-weight: bold;
+        }
+
+        .test-controls {
+            display: flex;
+            justify-content: flex-end;
+            padding: 5px 10px;
+            background-color: #f5f5f5;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .remove-test {
+            color: #f44336;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 5px;
+        }
+
+        .remove-test:hover {
+            background-color: #ffebee;
+            border-radius: 50%;
+            padding: 2px 6px;
+        }
+
+        .modal-tabs {
+            display: flex;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .modal-tab {
+            padding: 10px 15px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            flex: 1;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-family: var(--main-font);
+        }
+
+        .modal-tab.active {
+            border-bottom: 3px solid var(--button-color);
+            color: var(--button-color);
+            font-weight: bold;
+        }
+
+        [data-tab] {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        [data-tab]:hover {
+            background-color: #f5f5f5;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .new-test-form, .new-section-form {
+            display: grid;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .form-group {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-input {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: var(--main-font);
+        }
+
+        .test-list {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .test-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+            background: #f9f9f9;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .test-item:last-child {
+            border-bottom: none;
+        }
+
+        .test-name-input, .test-range-input {
+            margin-bottom: 5px;
+        }
+
+        .settings-panel {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 10000;
+            width: 300px;
+            max-height: 80vh;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .settings-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--button-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10001;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .settings-group {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .settings-group h3 {
+            margin-bottom: 10px;
+            color: var(--header-color);
+            font-family: var(--title-font);
+        }
+
+        .color-picker {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .color-picker label {
+            min-width: 100px;
+        }
+
+        .color-input {
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .settings-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 8px;
+            font-family: var(--main-font);
+        }
+
+        .settings-select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 8px;
+            font-family: var(--main-font);
+        }
+
+        .settings-btn {
+            background: var(--button-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            font-family: var(--main-font);
+        }
+
+        .font-size-picker {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        
+        .font-size-picker label {
+            min-width: 120px;
+        }
+        
+        .font-size-input {
+            width: 60px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .border-picker {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .border-picker label {
+            min-width: 120px;
+        }
+
+        .border-width-input {
+            width: 60px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .logo-preview {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 10px auto;
+            display: block;
+            border: 2px dashed var(--button-color);
+        }
+        
+        .logo-upload-btn {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 5px;
+            font-family: var(--main-font);
+        }
+
+        .filled-tests {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 10px;
+            text-align: center;
+            display: none;
+            padding: 10px;
+            background-color: #e8f5e8;
+            border-radius: 5px;
+            border-left: 4px solid var(--button-color);
+            font-family: var(--main-font);
+        }
+
+        .no-print-row, .no-print-item, .no-print-section {
+            display: none !important;
+        }
+
+        .range-table .btn {
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 4px;
+        }
+
+        @media print {
+            @page {
+                size: portrait;
+                margin: 0.5cm 0.5cm 2cm 0.5cm;
+            }
+
+            body, html {
+                width: 100%;
+                height: auto;
+                margin: 0;
+                padding: 0;
+                background: white;
+                font-size: 12px;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+
+            body * {
+                visibility: visible;
+            }
+
+            .container {
+                width: 100%;
+                max-width: 100%;
+                margin: 0;
+                padding: 10px;
+                box-shadow: none;
+                border-radius: 0;
+                flex-grow: 1;
+                display: table;
+                border-collapse: collapse;
+            }
+
+            .no-print, .action-buttons, .test-selection, .settings-toggle, .filled-tests {
+                display: none !important;
+            }
+
+            .section {
+                display: block;
+                page-break-inside: avoid;
+                border: var(--table-border-width) solid #ddd;
+                margin-bottom: 10px;
+            }
+
+            .header {
+                border-bottom: 2px solid #000;
+                margin-bottom: 10px;
+                padding-bottom: 10px;
+                display: table-header-group;
+                background-color: var(--header-bg);
+            }
+
+            .patient-info {
+                border: 1px solid #ddd;
+                margin-bottom: 10px;
+                padding: 10px;
+                background-color: var(--patient-info-bg);
+            }
+
+            .logo {
+                background: white;
+                color: var(--button-color);
+                border: 2px solid var(--button-color);
+            }
+
+            .section-title {
+                background: #f2f2f2;
+                color: #000;
+                border-bottom: 1px solid #ddd;
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+
+            .editable-field, .signature-input {
+                border: none;
+                background-color: transparent;
+                padding: 0;
+                min-width: unset;
+                text-align: right !important;
+            }
+
+            .result-input, .result-select {
+                border: none;
+                background-color: transparent;
+                padding: 0;
+                min-width: unset;
+                text-align: center !important;
+                width: 100%;
+            }
+
+            .results-container {
+                gap: 10px;
+                display: table-row-group;
+            }
+
+            table {
+                font-size: 12px;
+                direction: ltr;
+            }
+
+            th, td {
+                padding: 5px 4px;
+                border: var(--table-border-width) solid var(--table-border-color);
+            }
+
+            .test-name {
+                text-align: left;
+            }
+
+            .normal-range {
+                text-align: center;
+            }
+
+            .footer {
+                margin-top: 15px;
+                padding-top: 10px;
+                font-size: 12px;
+            }
+
+            .signature-area {
+                margin-top: 20px;
+                gap: 15px;
+            }
+
+            .signature-box {
+                width: 180px;
+                font-size: 12px;
+            }
+
+            .lab-footer {
+                display: table-footer-group;
+                border-top: 2px solid #000;
+                padding: 10px;
+                font-size: 12px;
+                color: #37f740;
+                background-color: #f9f9f9;
+            }
+
+            .lab-footer-content {
+                max-width: 100%;
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .lab-footer-item {
+                text-align: center;
+            }
+
+            .lab-footer-title {
+                color: #37f740;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .results-container {
+                grid-template-columns: 1fr;
+            }
+
+            .patient-info {
+                grid-template-columns: 1fr;
+            }
+
+            .lab-footer-content {
+                grid-template-columns: 1fr;
+                gap: 5px;
+            }
+
+            .settings-panel {
+                width: 90%;
+                left: 5%;
+            }
+
+            .modal-tabs {
+                flex-direction: column;
+            }
+
+            .modal-tab {
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="settings-toggle no-print" onclick="toggleSettings()">
+        <i class="fas fa-cog"></i>
+    </div>
+
+    <div class="settings-panel no-print" id="settingsPanel">
+        <h2 style="text-align: center; margin-bottom: 15px;">إعدادات المختبر</h2>
+        
+        <div class="settings-group">
+            <h3>بيانات المختبر</h3>
+            <input type="text" id="labNameInput" class="settings-input" placeholder="اسم المختبر">
+            <input type="text" id="labAddressInput" class="settings-input" placeholder="العنوان">
+            <input type="text" id="labPhoneInput" class="settings-input" placeholder="رقم الهاتف">
+            <input type="text" id="biologistNameInput" class="settings-input" placeholder="اسم البايلوجي">
+            <input type="text" id="doctor1Name" class="settings-input" placeholder="اسم الدكتور الأول">
+            <input type="text" id="doctor2Name" class="settings-input" placeholder="اسم الدكتور الثاني">
+        </div>
+        
+        <div class="settings-group">
+            <h3>تغيير اللوغو</h3>
+            <img id="logoPreview" class="logo-preview" src="" alt="معاينة اللوغو" style="display: none;">
+            <input type="file" id="logoUpload" accept="image/*" style="display: none;" onchange="handleLogoUpload(event)">
+            <button class="logo-upload-btn" onclick="document.getElementById('logoUpload').click()">
+                <i class="fas fa-upload"></i> تحميل صورة للوغو
+            </button>
+            <button class="logo-upload-btn" onclick="resetLogo()" style="background: #f44336;">
+                <i class="fas fa-trash"></i> إعادة اللوغو الافتراضي
+            </button>
+        </div>
+        
+        <div class="settings-group">
+            <h3>تغيير الألوان</h3>
+            <div class="color-picker">
+                <label>لون الهيدر:</label>
+                <input type="color" id="headerColor" class="color-input" value="#2c7da0">
+            </div>
+            <div class="color-picker">
+                <label>لون الخلفية:</label>
+                <input type="color" id="backgroundColor" class="color-input" value="#f5f7fa">
+            </div>
+            <div class="color-picker">
+                <label>لون الأزرار:</label>
+                <input type="color" id="buttonColor" class="color-input" value="#4CAF50">
+            </div>
+            <div class="color-picker">
+                <label>لون خلفية معلومات المريض:</label>
+                <input type="color" id="patientInfoBg" class="color-input" value="#c11717">
+            </div>
+            <div class="color-picker">
+                <label>لون خلفية الرأس:</label>
+                <input type="color" id="headerBg" class="color-input" value="#ffffff">
+            </div>
+            <div class="color-picker">
+                <label>لون حدود الجدول:</label>
+                <input type="color" id="tableBorderColor" class="color-input" value="#ddd">
+            </div>
+        </div>
+        
+        <div class="settings-group">
+            <h3>تغيير أحجام الخطوط</h3>
+            <div class="font-size-picker">
+                <label>حجم عنوان التقرير:</label>
+                <input type="number" id="titleFontSize" class="font-size-input" value="28" min="10" max="50"> px
+            </div>
+            <div class="font-size-picker">
+                <label>حجم اسم التحليل:</label>
+                <input type="number" id="testNameFontSize" class="font-size-input" value="16" min="10" max="30"> px
+            </div>
+            <div class="font-size-picker">
+                <label>حجم النتيجة:</label>
+                <input type="number" id="resultFontSize" class="font-size-input" value="16" min="10" max="30"> px
+            </div>
+            <div class="font-size-picker">
+                <label>حجم النطاق الطبيعي:</label>
+                <input type="number" id="rangeFontSize" class="font-size-input" value="16" min="10" max="30"> px
+            </div>
+            <div class="font-size-picker">
+                <label>حجم التذييل:</label>
+                <input type="number" id="footerFontSize" class="font-size-input" value="14" min="10" max="30"> px
+            </div>
+        </div>
+        
+        <div class="settings-group">
+            <h3>تغيير ألوان الخطوط</h3>
+            <div class="color-picker">
+                <label>لون عنوان التقرير:</label>
+                <input type="color" id="titleFontColor" class="color-input" value="#2c7da0">
+            </div>
+            <div class="color-picker">
+                <label>لون اسم التحليل:</label>
+                <input type="color" id="testNameFontColor" class="color-input" value="#333333">
+            </div>
+            <div class="color-picker">
+                <label>لون النتيجة:</label>
+                <input type="color" id="resultFontColor" class="color-input" value="#333333">
+            </div>
+            <div class="color-picker">
+                <label>لون النطاق الطبيعي:</label>
+                <input type="color" id="rangeFontColor" class="color-input" value="#b90f0f">
+            </div>
+            <div class="color-picker">
+                <label>لون التذييل:</label>
+                <input type="color" id="footerFontColor" class="color-input" value="#ffffff">
+            </div>
+        </div>
+        
+        <div class="settings-group">
+            <h3>تغيير أنواع الخطوط</h3>
+            <div class="font-picker">
+                <label>الخط الرئيسي:</label>
+                <select id="mainFont" class="settings-select">
+                    <option value="'Cairo', sans-serif">Cairo</option>
+                    <option value="'Amiri', serif">Amiri</option>
+                    <option value="'Tajawal', sans-serif">Tajawal</option>
+                    <option value="'Scheherazade', serif">Scheherazade</option>
+                    <option value="'Noto Naskh Arabic', serif">Noto Naskh Arabic</option>
+                </select>
+            </div>
+            <div class="font-picker">
+                <label>خط العنوان:</label>
+                <select id="titleFont" class="settings-select">
+                    <option value="'Amiri', serif">Amiri</option>
+                    <option value="'Cairo', sans-serif">Cairo</option>
+                    <option value="'Tajawal', sans-serif">Tajawal</option>
+                    <option value="'Scheherazade', serif">Scheherazade</option>
+                    <option value="'Noto Naskh Arabic', serif">Noto Naskh Arabic</option>
+                </select>
+            </div>
+            <div class="font-picker">
+                <label>خط العناوين الفرعية:</label>
+                <select id="subtitleFont" class="settings-select">
+                    <option value="'Cairo', sans-serif">Cairo</option>
+                    <option value="'Amiri', serif">Amiri</option>
+                    <option value="'Tajawal', sans-serif">Tajawal</option>
+                    <option value="'Scheherazade', serif">Scheherazade</option>
+                    <option value="'Noto Naskh Arabic', serif">Noto Naskh Arabic</option>
+                </select>
+            </div>
+            <div class="font-picker">
+                <label>خط أسماء التحاليل:</label>
+                <select id="testFont" class="settings-select">
+                    <option value="'Cairo', sans-serif">Cairo</option>
+                    <option value="'Amiri', serif">Amiri</option>
+                    <option value="'Tajawal', sans-serif">Tajawal</option>
+                    <option value="'Scheherazade', serif">Scheherazade</option>
+                    <option value="'Noto Naskh Arabic', serif">Noto Naskh Arabic</option>
+                </select>
+            </div>
+            <div class="font-picker">
+                <label>خط النتائج:</label>
+                <select id="resultFont" class="settings-select">
+                    <option value="'Cairo', sans-serif">Cairo</option>
+                    <option value="'Amiri', serif">Amiri</option>
+                    <option value="'Tajawal', sans-serif">Tajawal</option>
+                    <option value="'Scheherazade', serif">Scheherazade</option>
+                    <option value="'Noto Naskh Arabic', serif">Noto Naskh Arabic</option>
+                </select>
+            </div>
+            <div class="font-picker">
+                <label>خط النطاقات:</label>
+                <select id="rangeFont" class="settings-select">
+                    <option value="'Cairo', sans-serif">Cairo</option>
+                    <option value="'Amiri', serif">Amiri</option>
+                    <option value="'Tajawal', sans-serif">Tajawal</option>
+                    <option value="'Scheherazade', serif">Scheherazade</option>
+                    <option value="'Noto Naskh Arabic', serif">Noto Naskh Arabic</option>
+                </select>
+            </div>
+            <div class="font-picker">
+                <label>خط التذييل:</label>
+                <select id="footerFont" class="settings-select">
+                    <option value="'Cairo', sans-serif">Cairo</option>
+                    <option value="'Amiri', serif">Amiri</option>
+                    <option value="'Tajawal', sans-serif">Tajawal</option>
+                    <option value="'Scheherazade', serif">Scheherazade</option>
+                    <option value="'Noto Naskh Arabic', serif">Noto Naskh Arabic</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="settings-group">
+            <h3>تغيير سمك حدود الجدول</h3>
+            <div class="border-picker">
+                <label>سمك الحدود:</label>
+                <input type="number" id="tableBorderWidth" class="border-width-input" value="1" min="1" max="5"> px
+            </div>
+        </div>
+        
+        <button class="settings-btn" onclick="saveSettings()">حفظ الإعدادات</button>
+        <button class="settings-btn" onclick="resetSettings()" style="background: #f44336;">إعادة الضبط</button>
+        <button class="settings-btn" onclick="toggleSettings()">إغلاق</button>
+    </div>
+
+    <div class="watermark" id="watermark">مختبر الكرخ التعاوني</div>
+    
+    <div class="container">
+        <div class="header">
+            <div class="logo-container">
+                <div class="logo" id="labLogo">
+                    <i class="fas fa-microscope"></i>
+                </div>
+                <div class="header-text">
+                    <h1 id="labTitle">مختبر الكرخ التعاوني</h1>
+                    <div class="doctors-container">
+                        <div class="doctor-name" id="doctor1">الأستاذالدكتورة مي خليل إسماعيل اختصاص المناعةالسريرية</div>
+                        <div class="doctor-name" id="doctor2">الأستاذ الدكتورة ليلى فؤاد علي اختصاص الاحياء المجهرية</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="patient-info" id="patientInfoSection">
+            <div class="info-item">
+                <span class="info-label">اسم المريض:</span>
+                <input type="text" class="editable-field" value="" id="patientName" placeholder="اسم المريض">
+            </div>
+            <div class="info-item">
+                <span class="info-label">العمر:</span>
+                <input type="text" class="editable-field" value="" id="patientAge" placeholder="العمر">
+            </div>
+            <div class="info-item">
+                <span class="info-label">الجنس:</span>
+                <input type="text" class="editable-field" value="" id="patientGender" placeholder="الجنس">
+            </div>
+            <div class="info-item">
+                <span class="info-label">تاريخ الإجراء:</span>
+                <input type="text" class="editable-field" id="currentDate">
+            </div>
+            <div class="info-item">
+                <span class="info-label">الطبيب المعالج:</span>
+                <input type="text" class="editable-field" value="" id="doctorName" placeholder="اسم الطبيب">
+            </div>
+        </div>
+        
+        <div class="filled-tests no-print" id="filledTests"></div>
+
+        <div class="test-selection no-print">
+            <label for="test-select">اختر قسم التحليل:</label>
+            <select id="test-select" onchange="showSelectedSection()">
+                <option value="">اختر قسم...</option>
+            </select>
+            <button class="add-section-btn" onclick="openAddSectionModal()">
+                <i class="fas fa-plus"></i> إضافة قسم جديد
+            </button>
+        </div>
+
+        <div class="action-buttons no-print">
+            <button class="btn btn-print" onclick="printPage()">
+                <i class="fas fa-print"></i> طباعة التقرير
+            </button>
+            <button class="btn btn-save" onclick="savePatientData()">
+                <i class="fas fa-save"></i> حفظ البيانات
+            </button>
+            <button class="btn btn-load" onclick="loadPatientData()">
+                <i class="fas fa-search"></i> بحث واستعادة
+            </button>
+            <button class="btn btn-clear" onclick="clearAllFields()">
+                <i class="fas fa-trash"></i> مسح الكل
+            </button>
+            <button class="btn btn-manage" onclick="openRangeManager()">
+                <i class="fas fa-cog"></i> إدارة النطاقات
+            </button>
+        </div>
+        
+        <div class="results-container" id="resultsContainer">
+            <!-- سيتم إضافة الأقسام ديناميكيًا بواسطة JavaScript -->
+        </div>
+        
+        <div class="footer">
+            <div class="signature-area">
+                <div class="signature-box">
+                    <div>اسم المحلل</div>
+                    <input type="text" class="signature-input" id="examinerName" placeholder="اسم المحلل">
+                </div>
+                <div class="signature-box">
+                    <div>توقيع البايولوجي</div>
+                    <input type="text" class="signature-input" id="biologistSignature" placeholder="توقيع البايولوجي">
+                </div>
+                <div class="signature-box">
+                    <div>تاريخ الإصدار</div>
+                    <input type="text" class="signature-input" id="issueDate" placeholder="التاريخ">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="addSectionModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddSectionModal()">&times;</span>
+            <h2 style="text-align: center; margin-bottom: 20px;">إضافة قسم وتحاليل جديدة</h2>
+            
+            <div class="modal-tabs">
+                <div class="modal-tab active" data-tab="add-section-tab" onclick="switchTab('add-section-tab')">
+                    إضافة قسم جديد
+                </div>
+                <div class="modal-tab" data-tab="add-test-tab" onclick="switchTab('add-test-tab')">
+                    إضافة تحليل لقسم موجود
+                </div>
+            </div>
+            
+            <div id="add-section-tab" class="tab-content active">
+                <div class="new-section-form">
+                    <div class="form-group">
+                        <label>اسم القسم:</label>
+                        <input type="text" id="new-section-name" class="form-input" placeholder="أدخل اسم القسم">
+                    </div>
+                    <div class="form-group">
+                        <label>أيقونة القسم:</label>
+                        <select id="new-section-icon" class="form-input">
+                            <option value="fas fa-vial">أنبوب اختبار</option>
+                            <option value="fas fa-tint">دم</option>
+                            <option value="fas fa-flask">قارورة</option>
+                            <option value="fas fa-microscope">ميكروسكوب</option>
+                            <option value="fas fa-prescription-bottle">زجاجة دواء</option>
+                            <option value="fas fa-chart-pie">رسم بياني</option>
+                            <option value="fas fa-capsules">كبسولات</option>
+                            <option value="fas fa-seedling">سائل منوي</option>
+                            <option value="fas fa-poo">براز</option>
+                            <option value="fas fa-heartbeat">تخثر</option>
+                            <option value="fas fa-virus">فيروسات</option>
+                            <option value="fas fa-lungs">رئتين</option>
+                            <option value="fas fa-brain">دماغ</option>
+                        </select>
+                    </div>
+                    <h3>تحاليل القسم:</h3>
+                    <div id="new-section-tests">
+                        <div class="test-item">
+                            <input type="text" class="form-input test-name-input" placeholder="اسم التحليل">
+                            <input type="text" class="form-input test-range-input" placeholder="النطاق الطبيعي">
+                            <span class="remove-test" onclick="removeNewTest(this)">×</span>
+                        </div>
+                    </div>
+                    <button class="add-test-btn" onclick="addNewTestField()">
+                        <i class="fas fa-plus"></i> إضافة تحليل
+                    </button>
+                    <button class="btn btn-save" onclick="saveNewSection()">
+                        <i class="fas fa-save"></i> حفظ القسم الجديد
+                    </button>
+                </div>
+            </div>
+            
+            <div id="add-test-tab" class="tab-content">
+                <div class="new-test-form">
+                    <div class="form-group">
+                        <label>اختر القسم:</label>
+                        <select id="existing-sections" class="form-input">
+                            <option value="">اختر قسم...</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>اسم التحليل:</label>
+                        <input type="text" id="new-test-name" class="form-input" placeholder="أدخل اسم التحليل">
+                    </div>
+                    <div class="form-group">
+                        <label>النطاق الطبيعي:</label>
+                        <input type="text" id="new-test-range" class="form-input" placeholder="أدخل النطاق الطبيعي">
+                    </div>
+                    <button class="btn btn-save" onclick="saveNewTest()">
+                        <i class="fas fa-save"></i> إضافة التحليل
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="rangeModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeRangeManager()">&times;</span>
+            <h2 style="text-align: center; margin-bottom: 20px;">إدارة النطاقات الطبيعية للتحاليل</h2>
+            
+            <div class="range-management">
+                <div style="margin-bottom: 15px;">
+                    <label for="sectionSelect">اختر قسم التحليل:</label>
+                    <select id="sectionSelect" onchange="loadSectionRanges()" class="form-input" style="width: 100%; margin-top: 5px;">
+                        <option value="">اختر قسم...</option>
+                    </select>
+                </div>
+                
+                <div id="rangeTableContainer">
+                    <p>يرجى اختيار قسم لعرض التحاليل</p>
+                </div>
+                
+                <div style="text-align: left; margin-top: 20px;">
+                    <button class="btn btn-save" onclick="saveRanges()">
+                        <i class="fas fa-save"></i> حفظ التعديلات
+                    </button>
+                    <button class="btn btn-clear" onclick="closeRangeManager()">
+                        <i class="fas fa-times"></i> إغلاق
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="searchModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeSearchModal()">&times;</span>
+            <h2 style="text-align: center; margin-bottom: 20px;">البحث عن بيانات المريض</h2>
+            
+            <div style="margin-bottom: 20px;">
+                <label for="searchPatientName">اسم المريض:</label>
+                <input type="text" id="searchPatientName" class="form-input" placeholder="أدخل اسم المريض" style="width: 100%; padding: 10px; margin-top: 5px;">
+            </div>
+            
+            <div style="text-align: left; margin-top: 20px;">
+                <button class="btn btn-load" onclick="searchPatientData()">
+                    <i class="fas fa-search"></i> البحث
+                </button>
+                <button class="btn btn-clear" onclick="closeSearchModal()">
+                    <i class="fas fa-times"></i> إغلاق
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="lab-footer">
+        <div class="lab-footer-content">
+            <div class="lab-footer-item">
+                <div class="lab-footer-title" id="footerLabName">مختبر الكرخ التعاوني</div>
+                <div id="biologistName">شكراً لزيارتكم</div>
+            </div>
+            <div class="lab-footer-item">
+                <div class="lab-footer-title">العنوان</div>
+                <div id="labAddress">بغداد الكرخ الرحمانية شارع الشيخ معروف قرب جامع حداد</div>
+            </div>
+            <div class="lab-footer-item">
+                <div class="lab-footer-title">رقم الهاتف</div>
+                <div id="labPhone">07901821264</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // متغيرات قاعدة البيانات
+        const DB_NAME = 'LabDatabase';
+        const DB_VERSION = 1;
+        const STORE_NAME = 'patients';
+        let db;
+
+        // هيكل المختبر الافتراضي
+        const defaultLabStructure = [
+            { 
+                id: 'chemicalSection', 
+                title: 'Chemical Tests', 
+                icon: 'fas fa-prescription-bottle', 
+                tests: {
+                    "F.B.S": "mg/dl (60-120)", 
+                    "R.B.S": "mg/dl (110-170)", 
+                    "HbA1C": "4.8-6.0 %",
+                    "Na+": "mmol/L (135-155)", 
+                    "K+": "mmol/L (3.6-5.5)",
+                    "B. Urea": "mg/dl (15-45)", 
+                    "S. Creatinine": "mg/dl (0.4-1.1)", 
+                    "eGFR": ">90 ml/min/1.73m²",
+                    "Uric acid": "mg/dl (3-6)", 
+                    "S. Calcium": "mg/dl (8.5-10.3)", 
+                    "S. Total Protein": "g/dl (6.6-8.0)",
+                    "S. Albumin": "g/dl (3.5-5.5)", 
+                    "Total Bilirubin": "mg/dl (0.2-1.2)", 
+                    "Direct Bilirubin": "mg/dl (0-0.3)",
+                    "Indirect Bilirubin": "mg/dl (0.2-0.9)", 
+                    "ALT (GPT)": "U/L (<46)", 
+                    "AST (GOT)": "U/L (<46)",
+                    "ALP": "U/L (40-150)", 
+                    "Amylase": "U/L (30-110)", 
+                    "Lipase": "U/L (10-140)", 
+                    "CK": "U/L (20-200)",
+                    "CK-MB": "U/L (<25)", 
+                    "LDH": "U/L (140-280)", 
+                    "A.S.O Titer": "IU/ml (<200)"
+                }
+            },
+            { 
+                id: 'lipidSection', 
+                title: 'Lipid Profile', 
+                icon: 'fas fa-chart-pie', 
+                tests: {
+                    "S. Cholesterol": "mg/dl (150-200)", 
+                    "S. Triglyceride": "mg/dl (35-165)", 
+                    "VLDL": "mg/dl (5-30)",
+                    "S. LDL": "mg/dl (130-160)", 
+                    "S. HDL": "mg/dl (35-65)", 
+                    "Chol/HDL Ratio": "<5.0",
+                    "LDL/HDL Ratio": "<3.5"
+                }
+            },
+            { 
+                id: 'cbcSection', 
+                title: 'CBC (Complete Blood Count)', 
+                icon: 'fas fa-microscope', 
+                tests: {
+                    "WBC": "4.5 - 11.0 x 10³/µL", 
+                    "RBC": "4.5 - 5.5 x 10⁶/µL", 
+                    "Hb": "13.5 - 17.5 g/dL (M), 12.0 - 15.5 g/dL (F)",
+                    "HCT": "41 - 53% (M), 36 - 46% (F)", 
+                    "MCV": "80 - 100 fL", 
+                    "MCH": "27 - 33 pg", 
+                    "MCHC": "32 - 36 g/dL",
+                    "RDW": "11.5 - 14.5%", 
+                    "Platelets": "150 - 450 x 10³/µL", 
+                    "Neutrophils": "40 - 70 %", 
+                    "Lymphocytes": "20 - 40 %",
+                    "Monocytes": "2 - 8 %", 
+                    "Eosinophils": "1 - 4 %", 
+                    "Basophils": "0.5 - 1 %"
+                }
+            },
+            { 
+                id: 'hematologySection', 
+                title: 'Hematology', 
+                icon: 'fas fa-tint', 
+                tests: {
+                    "HbA1c": "4.8 - 6.0 %",
+                    "Hemoglobin (Hb)": "13 - 17 g/dl (M), 12 - 15 g/dl (F)",
+                    "Hematocrit (Hct)": "40 - 54 % (M), 36 - 47 % (F)",
+                    "RBC Count": "4.5 - 5.9 M/µL (M), 4.1 - 5.1 M/µL (F)",
+                    "WBC Count": "4,000 - 11,000 /µL",
+                    "Platelet Count": "150,000 - 450,000 /µL",
+                    "MCV": "80 - 100 fL",
+                    "MCH": "27 - 33 pg",
+                    "MCHC": "32 - 36 g/dL",
+                    "Reticulocyte Count": "0.5 - 1.5 %",
+                    "ESR": "0 - 15 mm/hr (M), 0 - 20 mm/hr (F)",
+                    "Blood Group": "ABO + Rh",
+                    "Bleeding Time": "2 - 7 min",
+                    "Clotting Time": "5 - 15 min",
+                    "Ferritin": "30 - 400 ng/ml (M), 13 - 150 ng/ml (F)"
+                }
+            },
+            {
+                id: 'liverSection',
+                title: 'Liver Function Tests',
+                icon: 'fas fa-vial',
+                tests: {
+                    "ALT (SGPT)": "7 - 56 U/L",
+                    "AST (SGOT)": "5 - 40 U/L",
+                    "Alkaline Phosphatase": "44 - 147 U/L",
+                    "Total Bilirubin": "0.3 - 1.2 mg/dL",
+                    "Direct Bilirubin": "0.0 - 0.3 mg/dL",
+                    "Total Protein": "6.0 - 8.3 g/dL",
+                    "Albumin": "3.4 - 5.4 g/dL"
+                }
+            },
+            {
+                id: 'thyroidSection',
+                title: 'Thyroid Function Tests',
+                icon: 'fas fa-dna',
+                tests: {
+                    "T3": "0.8 - 2.0 nmol/L",
+                    "T4": "60 - 120 nmol/L",
+                    "TSH": "0.4 - 4.0 µIU/ml",
+                    "FT3": "2.0 - 4.4 pg/ml",
+                    "FT4": "0.9 - 1.7 ng/dl",
+                    "TPO Ab": "< 34 IU/ml",
+                    "Tg Ab": "< 20 IU/ml"
+                }
+            },
+            {
+                id: 'renalSection',
+                title: 'Renal Function Tests',
+                icon: 'fas fa-vial',
+                tests: {
+                    "Creatinine": "0.6 - 1.2 mg/dL (M), 0.5 - 1.1 mg/dL (F)",
+                    "Urea (BUN)": "7 - 20 mg/dL",
+                    "Uric Acid": "3.5 - 7.2 mg/dL (M), 2.6 - 6.0 mg/dL (F)",
+                    "GFR": "90+ mL/min/1.73m² (Normal)",
+                    "Sodium (Na)": "135 - 145 mEq/L",
+                    "Potassium (K)": "3.5 - 5.0 mEq/L",
+                    "Chloride (Cl)": "96 - 106 mEq/L",
+                    "Bicarbonate (HCO3)": "22 - 29 mEq/L"
+                }
+            },
+            {
+                id: 'ironProfileSection',
+                title: 'Iron Profile',
+                icon: 'fas fa-vial',
+                tests: {
+                    "Serum Iron": "60 - 170 µg/dL (M), 50 - 170 µg/dL (F)",
+                    "TIBC (Total Iron Binding Capacity)": "250 - 450 µg/dL",
+                    "Transferrin Saturation": "20 - 50 %",
+                    "Ferritin": "20 - 250 ng/mL (M), 10 - 120 ng/mL (F)",
+                    "Transferrin": "200 - 360 mg/dL"
+                }
+            },
+            { 
+                id: 'hormoneSection', 
+                title: 'Hormone Tests', 
+                icon: 'fas fa-microscope', 
+                tests: {
+                    "Cortisol": "µg/dl (Morning 6-23)", 
+                    "LH": "IU/L", 
+                    "FSH": "IU/L", 
+                    "Prolactin": "ng/ml (M: 2-18, F: 3-29)",
+                    "Testosterone": "ng/dl (M: 300-1000, F: 15-70)", 
+                    "Estradiol (E2)": "pg/ml (F: varies by cycle phase, M: 10-50)",
+                    "Progesterone": "ng/ml (F: varies by cycle phase)", 
+                    "hCG": "mIU/ml (Negative in non-pregnant)",
+                    "Insulin": "µIU/ml (2-25)", 
+                    "C-Peptide": "ng/ml (0.5-2.0)", 
+                    "DHEA-S": "µg/dl (M: 80-560, F: 35-430)",
+                    "Growth Hormone (GH)": "ng/ml (0-10)", 
+                    "IGF-1": "ng/ml (varies by age)", 
+                    "Parathyroid Hormone (PTH)": "pg/ml (10-65)"
+                }
+            },
+            { 
+                id: 'serologySection', 
+                title: 'Serology & Immunology', 
+                icon: 'fas fa-vial', 
+                tests: {
+                    "Salmonella typhi": "Negative", 
+                    "Salmonella typhi IgG": "Negative", 
+                    "Salmonella typhi IgM": "Negative", 
+                    "Rose Bengal (Brucella)": "Negative",
+                    "H.pylori Ab": "Negative", 
+                    "CRP": "mg/L (<5)", 
+                    "Rheumatoid Factor": "IU/ml (<20)", 
+                    "A.S.O Titer": "IU/ml (<200)",
+                    "Toxoplasma IgG": "Negative", 
+                    "Toxoplasma IgM": "Negative", 
+                    "Pregnancy Test": "", 
+                    "CMV IgG": "Negative", 
+                    "CMV IgM": "Negative",
+                    "EBV (VCA IgG)": "Negative", 
+                    "EBV (VCA IgM)": "Negative", 
+                    "HBsAg": "Negative", 
+                    "HBsAb": "Negative",
+                    "Anti-HCV (HCV-Ab)": "Negative", 
+                    "HIV AB": "Negative", 
+                    "HIV (ELISA)": "Negative",
+                    "VDRL / RPR (Syphilis)": "Negative", 
+                    "ANA": "Negative", 
+                    "Anti-dsDNA": "Negative",
+                    "IgG": "700-1600 mg/dl", 
+                    "IgA": "70-400 mg/dl", 
+                    "IgM": "40-230 mg/dl", 
+                    "IgE": "<100 IU/ml",
+                    "C3 Complement": "90-180 mg/dl", 
+                    "C4 Complement": "10-40 mg/dl"
+                }
+            },
+            { 
+                id: 'urineSection', 
+                title: 'General Urine Examination', 
+                icon: 'fas fa-flask', 
+                tests: {
+                    "Color": "Light Yellow to Yellow", 
+                    "Appearance": "Clear", 
+                    "Specific Gravity": "1.005 - 1.030",
+                    "pH": "4.5 - 8.0", 
+                    "Glucose": "Nil", 
+                    "Protein": "Nil", 
+                    "Ketones": "Nil", 
+                    "Blood": "Nil", 
+                    "Bilirubin": "Nil", 
+                    "Urobilinogen": "Normal", 
+                    "Nitrites": "Nil", 
+                    "Leukocytes": "Nil",
+                    "RBCs": "0-2 /HPF", 
+                    "Pus Cells": "0-5 /HPF", 
+                    "Epithelial Cells": "Few", 
+                    "Casts": "Nil",
+                    "Crystals": "Nil", 
+                    "Amorphous Urates": "Nil", 
+                    "Amorphous Phosphates": "Nil", 
+                    "Bacteria": "Nil",
+                    "Yeast": "Nil", 
+                    "Mucus threads": "Few"
+                }
+            },
+            { 
+                id: 'seminalSection', 
+                title: 'SEMİNAL FLUID ANALYSIS', 
+                icon: 'fas fa-seedling', 
+                tests: {
+                    "Volume": "ml (1.5-5.0)", 
+                    "Color": "Whitish gray/Opalecent", 
+                    "Liquefaction": "min (<60)", 
+                    "Viscosity": "Low", 
+                    "pH": "7.2 - 8.0", 
+                    "Sperm Concentration": "M/ml (≥15)", 
+                    "Total Sperm Count": "M (≥39)", 
+                    "Motility (Total)": "% (≥40)", 
+                    "Progressive Motility": "% (≥32)", 
+                    "Non-Progressive Motility": "Normal", 
+                    "Non-Motile": "Normal", 
+                    "Morphology": "% (≥4)",
+                    "Vitality": "% (≥58)", 
+                    "WBC": "/hpf (<1)", 
+                    "RBC": "/hpf (<1)", 
+                    "Agglutination": "Negative", 
+                    "Microscopic Examination": "Normal"
+                }
+            },
+            { 
+                id: 'stoolSection', 
+                title: 'GENERAL STOOL EXAMINATION', 
+                icon: 'fas fa-poo', 
+                tests: {
+                    "Color": "Brown", 
+                    "Consistency": "Formed", 
+                    "Mucus": "Nil", 
+                    "Blood": "Nil", 
+                    "Ova/Parasite": "Nil", 
+                    "WBC": "/hpf (Nil)", 
+                    "RBC": "/hpf (Nil)", 
+                    "Fat Globules": "/hpf (Nil)", 
+                    "Starch Granules": "Nil", 
+                    "Undigested Muscle Fibers": "Nil", 
+                    "Yeast Cells": "Nil", 
+                    "Occult Blood": "Negative"
+                }
+            },
+            { 
+                id: 'coagulationSection', 
+                title: 'Coagulation Test', 
+                icon: 'fas fa-heartbeat', 
+                tests: {
+                    "Prothrombin Time (PT)": "10-14 seconds", 
+                    "INR": "0.8-1.2", 
+                    "APTT": "25-35 seconds",
+                    "Thrombin Time (TT)": "12-18 seconds", 
+                    "Fibrinogen": "200-400 mg/dL", 
+                    "D-Dimer": "<500 ng/mL",
+                    "Platelet Function Assay (PFA)": "Closure Time (varies by instrument)"
+                }
+            },
+            { 
+                id: 'viralSection', 
+                title: 'Viral Studies', 
+                icon: 'fas fa-virus', 
+                tests: {
+                    "Hepatitis A virus (HAV) IgM": "Negative", 
+                    "Hepatitis A virus (HAV) IgG": "Negative", 
+                    "Hepatitis B virus (HBV) DNA": "Undetectable",
+                    "Hepatitis C virus (HCV) RNA": "Undetectable", 
+                    "Epstein-Barr virus (EBV)": "Negative",
+                    "Cytomegalovirus (CMV) IgG": "Negative", 
+                    "Cytomegalovirus (CMV) IgM": "Negative",
+                    "Herpes Simplex Virus 1/2 (HSV-1/2) IgG": "Negative", 
+                    "Herpes Simplex Virus 1/2 (HSV-1/2) IgM": "Negative",
+                    "HIV 1/2 Ab": "Negative", 
+                    "HIV p24 Ag": "Negative", 
+                    "Measles IgG": "Negative", 
+                    "Measles IgM": "Negative",
+                    "Mumps IgG": "Negative", 
+                    "Mumps IgM": "Negative"
+                }
+            },
+            { 
+                id: 'vitaminsSection', 
+                title: 'Vitamin Tests', 
+                icon: 'fas fa-capsules', 
+                tests: {
+                    "Vitamin A": "30-95 µg/dL", 
+                    "Vitamin B1 (Thiamine)": "2.5-7.5 µg/dL", 
+                    "Vitamin B6": "5-30 ng/mL",
+                    "Vitamin B9 (Folic Acid)": ">5.4 ng/mL", 
+                    "Vitamin B12": "200-900 pg/mL", 
+                    "Vitamin C": "0.4-2.0 mg/dL",
+                    "Vitamin D (25-OH)": "30-100 ng/mL", 
+                    "Vitamin E": "5.5-17.0 mg/L", 
+                    "Vitamin K": "0.2-3.2 ng/mL"
+                }
+            }
+        ];
+
+        let labStructure = [];
+
+        // دوال إدارة الإعدادات
+        function handleLogoUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const logoPreview = document.getElementById('logoPreview');
+                    logoPreview.src = e.target.result;
+                    logoPreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function resetLogo() {
+            document.getElementById('logoPreview').src = '';
+            document.getElementById('logoPreview').style.display = 'none';
+            document.getElementById('logoUpload').value = '';
+            const logoElement = document.getElementById('labLogo');
+            logoElement.innerHTML = `<i class="fas fa-microscope"></i>`;
+        }
+
+        function loadCurrentSettings() {
+            document.getElementById('labNameInput').value = localStorage.getItem('labName') || 'مختبر الكرخ التعاوني';
+            document.getElementById('labAddressInput').value = localStorage.getItem('labAddress') || 'بغداد الكرخ الرحمانية شارع الشيخ معروف قرب جامع حداد';
+            document.getElementById('labPhoneInput').value = localStorage.getItem('labPhone') || '07901821264';
+            document.getElementById('biologistNameInput').value = localStorage.getItem('biologistName') || 'شكراً لزيارتكم';
+            document.getElementById('doctor1Name').value = localStorage.getItem('doctor1Name') || 'الأستاذالدكتورة مي خليل إسماعيل اختصاص المناعةالسريرية';
+            document.getElementById('doctor2Name').value = localStorage.getItem('doctor2Name') || 'الأستاذ الدكتورة ليلى فؤاد علي اختصاص الاحياء المجهرية';
+
+            document.getElementById('headerColor').value = localStorage.getItem('headerColor') || '#2c7da0';
+            document.getElementById('backgroundColor').value = localStorage.getItem('backgroundColor') || '#f5f7fa';
+            document.getElementById('buttonColor').value = localStorage.getItem('buttonColor') || '#4CAF50';
+            document.getElementById('patientInfoBg').value = localStorage.getItem('patientInfoBg') || '#c11717';
+            document.getElementById('headerBg').value = localStorage.getItem('headerBg') || '#ffffff';
+            document.getElementById('tableBorderColor').value = localStorage.getItem('tableBorderColor') || '#ddd';
+
+            const savedLogo = localStorage.getItem('labLogo');
+            if (savedLogo) {
+                document.getElementById('logoPreview').src = savedLogo;
+                document.getElementById('logoPreview').style.display = 'block';
+            }
+
+            document.getElementById('titleFontSize').value = localStorage.getItem('titleFontSize') || '28';
+            document.getElementById('testNameFontSize').value = localStorage.getItem('testNameFontSize') || '16';
+            document.getElementById('resultFontSize').value = localStorage.getItem('resultFontSize') || '16';
+            document.getElementById('rangeFontSize').value = localStorage.getItem('rangeFontSize') || '16';
+            document.getElementById('footerFontSize').value = localStorage.getItem('footerFontSize') || '14';
+            document.getElementById('tableBorderWidth').value = localStorage.getItem('tableBorderWidth') || '1';
+
+            document.getElementById('titleFontColor').value = localStorage.getItem('titleFontColor') || '#2c7da0';
+            document.getElementById('testNameFontColor').value = localStorage.getItem('testNameFontColor') || '#333333';
+            document.getElementById('resultFontColor').value = localStorage.getItem('resultFontColor') || '#333333';
+            document.getElementById('rangeFontColor').value = localStorage.getItem('rangeFontColor') || '#b90f0f';
+            document.getElementById('footerFontColor').value = localStorage.getItem('footerFontColor') || '#ffffff';
+
+            document.getElementById('mainFont').value = localStorage.getItem('mainFont') || "'Cairo', sans-serif";
+            document.getElementById('titleFont').value = localStorage.getItem('titleFont') || "'Amiri', serif";
+            document.getElementById('subtitleFont').value = localStorage.getItem('subtitleFont') || "'Cairo', sans-serif";
+            document.getElementById('testFont').value = localStorage.getItem('testFont') || "'Cairo', sans-serif";
+            document.getElementById('resultFont').value = localStorage.getItem('resultFont') || "'Cairo', sans-serif";
+            document.getElementById('rangeFont').value = localStorage.getItem('rangeFont') || "'Cairo', sans-serif";
+            document.getElementById('footerFont').value = localStorage.getItem('footerFont') || "'Cairo', sans-serif";
+        }
+
+        function saveSettings() {
+            localStorage.setItem('labName', document.getElementById('labNameInput').value);
+            localStorage.setItem('labAddress', document.getElementById('labAddressInput').value);
+            localStorage.setItem('labPhone', document.getElementById('labPhoneInput').value);
+            localStorage.setItem('biologistName', document.getElementById('biologistNameInput').value);
+            localStorage.setItem('doctor1Name', document.getElementById('doctor1Name').value);
+            localStorage.setItem('doctor2Name', document.getElementById('doctor2Name').value);
+
+            localStorage.setItem('headerColor', document.getElementById('headerColor').value);
+            localStorage.setItem('backgroundColor', document.getElementById('backgroundColor').value);
+            localStorage.setItem('buttonColor', document.getElementById('buttonColor').value);
+            localStorage.setItem('patientInfoBg', document.getElementById('patientInfoBg').value);
+            localStorage.setItem('headerBg', document.getElementById('headerBg').value);
+            localStorage.setItem('tableBorderColor', document.getElementById('tableBorderColor').value);
+
+            const logoPreview = document.getElementById('logoPreview');
+            if (logoPreview.src && logoPreview.src !== '') {
+                localStorage.setItem('labLogo', logoPreview.src);
+            } else {
+                localStorage.removeItem('labLogo');
+            }
+
+            localStorage.setItem('titleFontSize', document.getElementById('titleFontSize').value);
+            localStorage.setItem('testNameFontSize', document.getElementById('testNameFontSize').value);
+            localStorage.setItem('resultFontSize', document.getElementById('resultFontSize').value);
+            localStorage.setItem('rangeFontSize', document.getElementById('rangeFontSize').value);
+            localStorage.setItem('footerFontSize', document.getElementById('footerFontSize').value);
+            localStorage.setItem('tableBorderWidth', document.getElementById('tableBorderWidth').value);
+
+            localStorage.setItem('titleFontColor', document.getElementById('titleFontColor').value);
+            localStorage.setItem('testNameFontColor', document.getElementById('testNameFontColor').value);
+            localStorage.setItem('resultFontColor', document.getElementById('resultFontColor').value);
+            localStorage.setItem('rangeFontColor', document.getElementById('rangeFontColor').value);
+            localStorage.setItem('footerFontColor', document.getElementById('footerFontColor').value);
+
+            localStorage.setItem('mainFont', document.getElementById('mainFont').value);
+            localStorage.setItem('titleFont', document.getElementById('titleFont').value);
+            localStorage.setItem('subtitleFont', document.getElementById('subtitleFont').value);
+            localStorage.setItem('testFont', document.getElementById('testFont').value);
+            localStorage.setItem('resultFont', document.getElementById('resultFont').value);
+            localStorage.setItem('rangeFont', document.getElementById('rangeFont').value);
+            localStorage.setItem('footerFont', document.getElementById('footerFont').value);
+
+            applySettings();
+            toggleSettings();
+            alert('تم حفظ الإعدادات بنجاح!');
+        }
+
+        function resetSettings() {
+            if (confirm('هل أنت متأكد من إعادة الضبط؟ سيتم مسح جميع الإعدادات المخصصة')) {
+                localStorage.clear();
+                loadCurrentSettings();
+                applySettings();
+                location.reload();
+                alert('تم إعادة الضبط بنجاح!');
+            }
+        }
+
+        function applySettings() {
+            const labName = localStorage.getItem('labName') || 'مختبر الكرخ التعاوني';
+            const labAddress = localStorage.getItem('labAddress') || 'بغداد الكرخ الرحمانية شارع الشيخ معروف قرب جامع حداد';
+            const labPhone = localStorage.getItem('labPhone') || '07901821264';
+            const biologistName = localStorage.getItem('biologistName') || 'شكراً لزيارتكم';
+            const doctor1Name = localStorage.getItem('doctor1Name') || 'الأستاذالدكتورة مي خليل إسماعيل اختصاص المناعةالسريرية';
+            const doctor2Name = localStorage.getItem('doctor2Name') || 'الأستاذ الدكتورة ليلى فؤاد علي اختصاص الاحياء المجهرية';
+
+            document.getElementById('watermark').textContent = labName;
+            document.getElementById('labTitle').textContent = labName;
+            document.getElementById('footerLabName').textContent = labName;
+            document.getElementById('biologistName').textContent = biologistName;
+            document.getElementById('labAddress').textContent = labAddress;
+            document.getElementById('labPhone').textContent = labPhone;
+            document.getElementById('doctor1').textContent = doctor1Name;
+            document.getElementById('doctor2').textContent = doctor2Name;
+
+            const savedLogo = localStorage.getItem('labLogo');
+            const logoElement = document.getElementById('labLogo');
+            if (savedLogo) {
+                logoElement.innerHTML = `<img src="${savedLogo}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">`;
+            } else {
+                logoElement.innerHTML = `<i class="fas fa-microscope"></i>`;
+            }
+
+            document.documentElement.style.setProperty('--header-color', localStorage.getItem('headerColor') || '#2c7da0');
+            document.documentElement.style.setProperty('--background-color', localStorage.getItem('backgroundColor') || '#f5f7fa');
+            document.documentElement.style.setProperty('--button-color', localStorage.getItem('buttonColor') || '#4CAF50');
+            document.documentElement.style.setProperty('--patient-info-bg', localStorage.getItem('patientInfoBg') || '#c11717');
+            document.documentElement.style.setProperty('--header-bg', localStorage.getItem('headerBg') || '#ffffff');
+            document.documentElement.style.setProperty('--table-border-color', localStorage.getItem('tableBorderColor') || '#ddd');
+            document.documentElement.style.setProperty('--table-border-width', (localStorage.getItem('tableBorderWidth') || '1') + 'px');
+
+            document.documentElement.style.setProperty('--title-font-size', (localStorage.getItem('titleFontSize') || '28') + 'px');
+            document.documentElement.style.setProperty('--test-name-font-size', (localStorage.getItem('testNameFontSize') || '16') + 'px');
+            document.documentElement.style.setProperty('--result-font-size', (localStorage.getItem('resultFontSize') || '16') + 'px');
+            document.documentElement.style.setProperty('--range-font-size', (localStorage.getItem('rangeFontSize') || '16') + 'px');
+            document.documentElement.style.setProperty('--footer-font-size', (localStorage.getItem('footerFontSize') || '14') + 'px');
+
+            document.documentElement.style.setProperty('--title-font-color', localStorage.getItem('titleFontColor') || '#2c7da0');
+            document.documentElement.style.setProperty('--test-name-font-color', localStorage.getItem('testNameFontColor') || '#333333');
+            document.documentElement.style.setProperty('--result-font-color', localStorage.getItem('resultFontColor') || '#333333');
+            document.documentElement.style.setProperty('--range-font-color', localStorage.getItem('rangeFontColor') || '#b90f0f');
+            document.documentElement.style.setProperty('--footer-font-color', localStorage.getItem('footerFontColor') || '#ffffff');
+
+            document.documentElement.style.setProperty('--main-font', localStorage.getItem('mainFont') || "'Cairo', sans-serif");
+            document.documentElement.style.setProperty('--title-font', localStorage.getItem('titleFont') || "'Amiri', serif");
+            document.documentElement.style.setProperty('--subtitle-font', localStorage.getItem('subtitleFont') || "'Cairo', sans-serif");
+            document.documentElement.style.setProperty('--test-font', localStorage.getItem('testFont') || "'Cairo', sans-serif");
+            document.documentElement.style.setProperty('--result-font', localStorage.getItem('resultFont') || "'Cairo', sans-serif");
+            document.documentElement.style.setProperty('--range-font', localStorage.getItem('rangeFont') || "'Cairo', sans-serif");
+            document.documentElement.style.setProperty('--footer-font', localStorage.getItem('footerFont') || "'Cairo', sans-serif");
+        }
+
+        function toggleSettings() {
+            const panel = document.getElementById('settingsPanel');
+            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+            if (panel.style.display === 'block') {
+                loadCurrentSettings();
+            }
+        }
+
+        // دوال قاعدة البيانات
+        function initDb() {
+            const request = indexedDB.open(DB_NAME, DB_VERSION);
+            request.onerror = (event) => console.error("IndexedDB error:", event.target.error);
+            request.onupgradeneeded = (event) => {
+                db = event.target.result;
+                if (!db.objectStoreNames.contains(STORE_NAME)) {
+                    db.createObjectStore(STORE_NAME, { keyPath: 'patientName' });
+                }
+            };
+            request.onsuccess = (event) => {
+                db = event.target.result;
+                console.log("Database initialized successfully");
+            };
+        }
+
+        // دوال إدارة هيكل المختبر
+        function loadLabStructure() {
+            const customSections = JSON.parse(localStorage.getItem('customSections')) || {};
+            const customTests = JSON.parse(localStorage.getItem('customTests') || '{}');
+
+            labStructure = JSON.parse(JSON.stringify(defaultLabStructure));
+
+            // إضافة الأقسام المخصصة
+            for (const sectionId in customSections) {
+                const customSection = customSections[sectionId];
+                const tests = {};
+                customSection.tests.forEach(test => {
+                    tests[test.name] = test.range;
+                });
+                labStructure.push({
+                    id: sectionId,
+                    title: customSection.name,
+                    icon: customSection.icon,
+                    tests: tests
+                });
+            }
+
+            // إضافة التحاليل المخصصة للأقسام الموجودة
+            for (const sectionId in customTests) {
+                const existingSection = labStructure.find(sec => sec.id === sectionId);
+                if (existingSection) {
+                    customTests[sectionId].forEach(test => {
+                        existingSection.tests[test.name] = test.range;
+                    });
+                }
+            }
+
+            renderLabStructure();
+            updateSelectMenus();
+        }
+
+        function renderLabStructure() {
+            const resultsContainer = document.getElementById('resultsContainer');
+            resultsContainer.innerHTML = '';
+            
+            labStructure.forEach(section => {
+                const sectionDiv = document.createElement('div');
+                sectionDiv.id = section.id;
+                sectionDiv.className = 'section';
+                
+                let tableHTML = `<div class="section-title"><i class="${section.icon}"></i> ${section.title}</div>`;
+                
+                if (section.id === 'urineSection') {
+                    tableHTML += `
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Test</th>
+                                    <th>Result</th>
+                                    <th>Normal Range</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td colspan="3" class="sub-section-title">Physical Examination</td></tr>
+                                <tr>
+                                    <td class="test-name">Color</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Pale Yellow">Pale Yellow</option>
+                                            <option value="Yellow">Yellow</option>
+                                            <option value="Dark Yellow">Dark Yellow</option>
+                                            <option value="Amber">Amber</option>
+                                            <option value="Orange">Orange</option>
+                                            <option value="Red/Pink">Red/Pink</option>
+                                            <option value="Brown">Brown</option>
+                                            <option value="Blue/Green">Blue/Green</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Color"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Appearance</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Clear">Clear</option>
+                                            <option value="Slightly Cloudy">Slightly Cloudy</option>
+                                            <option value="Cloudy">Cloudy</option>
+                                            <option value="Turbid">Turbid</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Appearance"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Specific Gravity</td>
+                                    <td><input type="text" class="result-input" placeholder="e.g., 1.020"></td>
+                                    <td class="normal-range">${section.tests["Specific Gravity"] || ''}</td>
+                                </tr>
+                                <tr><td colspan="3" class="sub-section-title">Chemical Examination (Dipstick)</td></tr>
+                                <tr>
+                                    <td class="test-name">pH</td>
+                                    <td><input type="text" class="result-input" placeholder="e.g., 6.0"></td>
+                                    <td class="normal-range">${section.tests["pH"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Glucose</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Trace">Trace</option>
+                                            <option value="1+">1+</option>
+                                            <option value="2+">2+</option>
+                                            <option value="3+">3+</option>
+                                            <option value="4+">4+</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Glucose"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Protein</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Trace">Trace</option>
+                                            <option value="1+">1+</option>
+                                            <option value="2+">2+</option>
+                                            <option value="3+">3+</option>
+                                            <option value="4+">4+</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Protein"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Ketones</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Trace">Trace</option>
+                                            <option value="1+">1+</option>
+                                            <option value="2+">2+</option>
+                                            <option value="3+">3+</option>
+                                            <option value="4+">4+</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Ketones"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Blood</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Trace">Trace</option>
+                                            <option value="1+">1+</option>
+                                            <option value="2+">2+</option>
+                                            <option value="3+">3+</option>
+                                            <option value="4+">4+</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Blood"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Bilirubin</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Positive">Positive</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Bilirubin"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Urobilinogen</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Normal">Normal</option>
+                                            <option value="Increased">Increased</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Urobilinogen"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Nitrites</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Positive">Positive</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Nitrites"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Leukocytes</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Trace">Trace</option>
+                                            <option value="1+">1+</option>
+                                            <option value="2+">2+</option>
+                                            <option value="3+">3+</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Leukocytes"] || ''}</td>
+                                </tr>
+                                <tr><td colspan="3" class="sub-section-title">Microscopic Examination</td></tr>
+                                <tr>
+                                    <td class="test-name">RBCs</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="0-2/HPF">0-2 /HPF</option>
+                                            <option value="3-5/HPF">3-5 /HPF</option>
+                                            <option value="6-10/HPF">6-10 /HPF</option>
+                                            <option value=">10/HPF">>10 /HPF</option>
+                                            <option value="Full Filed">Full Filed</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["RBCs"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Pus Cells</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="0-5/HPF">0-5 /HPF</option>
+                                            <option value="6-10/HPF">6-10 /HPF</option>
+                                            <option value="11-20/HPF">11-20 /HPF</option>
+                                            <option value=">20/HPF">>20 /HPF</option>
+                                            <option value="Full Filed">Full Filed</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Pus Cells"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Epithelial Cells</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Few">Few</option>
+                                            <option value="Moderate">Moderate</option>
+                                            <option value="Many">Many</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Epithelial Cells"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Casts</td>
+                                    <td><input type="text" class="result-input" placeholder="e.g., Hyaline Casts"></td>
+                                    <td class="normal-range">${section.tests["Casts"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Crystals</td>
+                                    <td><input type="text" class="result-input" placeholder="e.g., Calcium Oxalate"></td>
+                                    <td class="normal-range">${section.tests["Crystals"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Amorphous Urates</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Few">Few</option>
+                                            <option value="Moderate">Moderate</option>
+                                            <option value="Many">Many</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Amorphous Urates"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Amorphous Phosphates</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Few">Few</option>
+                                            <option value="Moderate">Moderate</option>
+                                            <option value="Many">Many</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Amorphous Phosphates"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Bacteria</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Few">Few</option>
+                                            <option value="Moderate">Moderate</option>
+                                            <option value="Many">Many</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Bacteria"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Yeast</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Positive">Positive</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Yeast"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Mucus threads</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Few">Few</option>
+                                            <option value="Moderate">Moderate</option>
+                                            <option value="Many">Many</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Mucus threads"] || ''}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    `;
+                } else if (section.id === 'seminalSection') {
+                    tableHTML += `
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Test</th>
+                                    <th>Result</th>
+                                    <th>Normal Range</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="test-name">Volume</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["Volume"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Color</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Whitish gray/Opalecent">Whitish gray/Opalecent</option>
+                                            <option value="Yellowish">Yellowish</option>
+                                            <option value="Reddish/Brown">Reddish/Brown</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Color"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Liquefaction</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["Liquefaction"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Viscosity</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Low">Low</option>
+                                            <option value="High">High</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Viscosity"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">pH</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["pH"] || ''}</td>
+                                </tr>
+                                <tr><td colspan="3" class="sub-section-title">Microscopic Examination</td></tr>
+                                <tr>
+                                    <td class="test-name">Sperm Concentration</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["Sperm Concentration"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Total Sperm Count</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["Total Sperm Count"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Motility (Total)</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["Motility (Total)"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Progressive Motility</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["Progressive Motility"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Non-Progressive Motility</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["Non-Progressive Motility"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Non-Motile</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["Non-Motile"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Morphology</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["Morphology"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Vitality</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["Vitality"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">WBC</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["WBC"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">RBC</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["RBC"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Agglutination</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Negative">Negative</option>
+                                            <option value="Positive">Positive</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Agglutination"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Microscopic Examination</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["Microscopic Examination"] || ''}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    `;
+                } else if (section.id === 'stoolSection') {
+                    tableHTML += `
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Test</th>
+                                    <th>Result</th>
+                                    <th>Normal Range</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td colspan="3" class="sub-section-title">Physical Examination</td></tr>
+                                <tr>
+                                    <td class="test-name">Color</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Brown">Brown</option>
+                                            <option value="Green">Green</option>
+                                            <option value="Black">Black</option>
+                                            <option value="Clay-colored">Clay-colored</option>
+                                            <option value="Yellowish">Yellowish</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Color"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Consistency</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Formed">Formed</option>
+                                            <option value="Soft">Soft</option>
+                                            <option value="Loose">Loose</option>
+                                            <option value="Watery">Watery</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Consistency"] || ''}</td>
+                                </tr>
+                                <tr><td colspan="3" class="sub-section-title">Chemical & Microscopic Examination</td></tr>
+                                <tr>
+                                    <td class="test-name">Mucus</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Trace">Trace</option>
+                                            <option value="Present">Present</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Mucus"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Blood</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Trace">Trace</option>
+                                            <option value="Present">Present</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Blood"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Ova/Parasite</td>
+                                    <td><input type="text" class="result-input" placeholder="e.g., E. histolytica"></td>
+                                    <td class="normal-range">${section.tests["Ova/Parasite"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">WBC</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["WBC"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">RBC</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["RBC"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Fat Globules</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["Fat Globules"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Starch Granules</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Present">Present</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Starch Granules"] || ''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Undigested Muscle Fibers</td>
+                                    <td>
+                                        <select class="result-select">
                                             <option value="">Select</option>
                                             <option value="Nil">Nil</option>
                                             <option value="Present">Present</option>
@@ -31,9 +2597,7 @@
                             </tbody>
                         </table>
                     `;
-                } 
-                // التعامل الخاص مع أقسام التحاليل المناعية والفيروسية
-                else if (section.id === 'serologySection' || section.id === 'viralSection') {
+                } else if (section.id === 'serologySection' || section.id === 'viralSection') {
                     tableHTML += `<table><tr><th>Test</th><th>Result</th><th>Normal Range</th></tr>`;
                     for (const testName in section.tests) {
                         let resultInputHTML;
@@ -54,9 +2618,7 @@
                         `;
                     }
                     tableHTML += `</table>`;
-                } 
-                // الأقسام العادية
-                else {
+                } else {
                     tableHTML += `<table><tr><th>Test</th><th>Result</th><th>Normal Range</th></tr>`;
                     for (const testName in section.tests) {
                         tableHTML += `
@@ -336,7 +2898,7 @@
                 return;
             }
             
-            let customTests = JSON.parse(localStorage.getItem('customTests')) || {};
+            let customTests = JSON.parse(localStorage.getItem('customTests') || '{}');
             if (!customTests[sectionId]) {
                 customTests[sectionId] = [];
             }
@@ -497,25 +3059,18 @@
         // دوال العرض والطباعة
         function setCurrentDate() {
             const now = new Date();
-            const options = { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric',
-                weekday: 'long'
-            };
-            const dateString = now.toLocaleDateString('ar-SA', options);
-            document.getElementById('currentDate').value = dateString;
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            document.getElementById('currentDate').value = `${year}-${month}-${day}`;
         }
 
         function setIssueDate() {
             const now = new Date();
-            const options = { 
-                year: 'numeric', 
-                month: 'short', 
-                day: 'numeric'
-            };
-            const dateString = now.toLocaleDateString('ar-SA', options);
-            document.getElementById('issueDate').value = dateString;
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            document.getElementById('issueDate').value = `${year}-${month}-${day}`;
         }
 
         function showSelectedSection() {
