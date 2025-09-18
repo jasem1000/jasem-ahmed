@@ -48,6 +48,8 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             position: relative;
             padding-bottom: 120px;
+            display: table;
+            width: 100%;
         }
 
         .header {
@@ -55,6 +57,7 @@
             margin-bottom: 20px;
             padding-bottom: 15px;
             border-bottom: 2px solid var(--button-color);
+            display: table-header-group;
         }
 
         .logo-container {
@@ -138,6 +141,7 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
+            display: table-row-group;
         }
 
         .section {
@@ -328,18 +332,15 @@
         }
 
         .lab-footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            display: table-footer-group;
             background: linear-gradient(135deg, var(--header-color) 0%, #1a5e78 100%);
             padding: 15px;
             text-align: center;
             border-top: 2px solid var(--button-color);
             font-family: 'Cairo', sans-serif;
-            z-index: 1000;
             color: var(--footer-font-color);
             font-size: var(--footer-font-size);
+            position: running(footer);
         }
 
         .lab-footer-content {
@@ -735,10 +736,18 @@
             font-family: 'Cairo', sans-serif;
         }
 
+        .filled-tests {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 10px;
+            text-align: center;
+            display: none;
+        }
+
         @media print {
             @page {
                 size: portrait;
-                margin: 0.5cm;
+                margin: 0.5cm 0.5cm 2cm 0.5cm;
             }
 
             body, html {
@@ -765,9 +774,11 @@
                 box-shadow: none;
                 border-radius: 0;
                 flex-grow: 1;
+                display: table;
+                border-collapse: collapse;
             }
 
-            .no-print, .action-buttons, .test-selection, .settings-toggle {
+            .no-print, .action-buttons, .test-selection, .settings-toggle, .filled-tests {
                 display: none !important;
             }
 
@@ -782,6 +793,7 @@
                 border-bottom: 2px solid #000;
                 margin-bottom: 10px;
                 padding-bottom: 10px;
+                display: table-header-group;
             }
 
             .patient-info {
@@ -823,6 +835,7 @@
 
             .results-container {
                 gap: 10px;
+                display: table-row-group;
             }
 
             table {
@@ -863,8 +876,7 @@
             }
 
             .lab-footer {
-                position: relative;
-                bottom: unset;
+                display: table-footer-group;
                 border-top: 2px solid #000;
                 padding: 10px;
                 font-size: 12px;
@@ -1041,6 +1053,8 @@
             </div>
         </div>
         
+        <div class="filled-tests no-print" id="filledTests"></div>
+
         <div class="test-selection no-print">
             <label for="test-select">اختر قسم التحليل:</label>
             <select id="test-select" onchange="showSelectedSection()">
@@ -1073,7 +1087,27 @@
             <!-- سيتم إضافة الأقسام ديناميكيًا بواسطة JavaScript -->
         </div>
         
-     
+        <div class="footer">
+            <div class="examiner-name">
+                <span>الفاحص:</span>
+                <input type="text" class="examiner-input" placeholder="اسم الفاحص" id="examinerName">
+            </div>
+            <div class="signature-area">
+                <div class="signature-box">
+                    <div>التوقيع</div>
+                    <input type="text" class="signature-input" placeholder="التوقيع">
+                </div>
+                <div class="signature-box">
+                    <div>البايلوجي</div>
+                    <input type="text" class="signature-input" placeholder="اسم البايلوجي" id="biologistSignature">
+                </div>
+                <div class="signature-box">
+                    <div>تاريخ الإصدار</div>
+                    <input type="text" class="signature-input" id="issueDate">
+                </div>
+            </div>
+        </div>
+    </div>
     
     <div id="addSectionModal" class="modal">
         <div class="modal-content">
@@ -1751,11 +1785,10 @@
                 sectionDiv.id = section.id;
                 sectionDiv.className = 'section';
                 
-                let tableHTML = `<div class="section-title"><i class="${section.icon}"></i> ${section.title}</div>`;
+                let tableHTML = `<div class="section-title"><i class="${section.icon}"></i> ${section.title}</div><table><tr><th>Test</th><th>Result</th><th>Normal Range</th></tr>`;
                 
-                // التعامل الخاص مع قسم تحليل البول
                 if (section.id === 'urineSection') {
-                    tableHTML += `
+                    tableHTML = `<div class="section-title"><i class="${section.icon}"></i> ${section.title}</div>
                         <table>
                             <thead>
                                 <tr>
@@ -2151,7 +2184,7 @@
                             </tbody>
                         </table>
                     `;
-                }
+                } 
                 // التعامل الخاص مع قسم تحليل البراز
                 else if (section.id === 'stoolSection') {
                     tableHTML += `
@@ -2182,7 +2215,7 @@
                                 <tr>
                                     <td class="test-name">Consistency</td>
                                     <td>
-                                                                                <select class="result-select">
+                                        <select class="result-select">
                                             <option value="">Select</option>
                                             <option value="Formed">Formed</option>
                                             <option value="Soft">Soft</option>
@@ -2328,6 +2361,9 @@
             });
             
             showSelectedSection();
+            document.querySelectorAll('.result-input, .result-select').forEach(input => {
+                input.addEventListener('change', updateFilledTests);
+            });
         }
 
         function updateSelectMenus() {
@@ -2668,6 +2704,7 @@
 
                     alert('تم استعادة بيانات المريض بنجاح!');
                     closeSearchModal();
+                    updateFilledTests();
                 } else {
                     alert('لم يتم العثور على بيانات لهذا المريض.');
                 }
@@ -2695,6 +2732,7 @@
             };
             const dateString = now.toLocaleDateString('ar-SA', options);
             document.getElementById('currentDate').value = dateString;
+            document.getElementById('issueDate').value = dateString;
         }
 
         function showSelectedSection() {
@@ -2725,6 +2763,7 @@
                 
                 setCurrentDate();
                 showSelectedSection();
+                updateFilledTests();
                 alert('تم مسح جميع الحقول بنجاح!');
             }
         }
@@ -2840,6 +2879,26 @@
                 }
             }
         });
+
+        function updateFilledTests() {
+            const filledList = document.getElementById('filledTests');
+            const allResultInputs = document.querySelectorAll('.result-input, .result-select');
+            let filledTests = [];
+
+            allResultInputs.forEach(input => {
+                if (input.value.trim() !== '' && input.selectedIndex !== 0) {
+                    const testName = input.closest('tr').querySelector('.test-name').textContent.trim();
+                    filledTests.push(testName);
+                }
+            });
+
+            if (filledTests.length > 0) {
+                filledList.textContent = 'التحاليل المكتملة: ' + filledTests.join(', ');
+                filledList.style.display = 'block';
+            } else {
+                filledList.style.display = 'none';
+            }
+        }
     </script>
 </body>
 </html>
