@@ -20,15 +20,18 @@
             --result-font-size: 16px;
             --range-font-size: 16px;
             --footer-font-size: 14px;
+            --doctor-font-size: 14px; /* New: Doctor font size */
             --title-font-color: #2c7da0;
             --test-name-font-color: #333333;
             --result-font-color: #333333;
             --range-font-color: #b90f0f;
             --footer-font-color: #ffffff;
+            --doctor-font-color: #11be65; /* New: Doctor font color */
             --patient-info-bg: #c11717;
             --header-bg: #ffffff;
             --table-border-width: 1px;
             --table-border-color: #ddd;
+            --doctor-box-border-radius: 4px; /* New: Doctor box border radius */
             --main-font: 'Cairo', sans-serif;
             --title-font: 'Amiri', serif;
             --subtitle-font: 'Cairo', sans-serif;
@@ -36,6 +39,7 @@
             --result-font: 'Cairo', sans-serif;
             --range-font: 'Cairo', sans-serif;
             --footer-font: 'Cairo', sans-serif;
+            --doctor-font: 'Cairo', sans-serif; /* New: Doctor font family */
         }
 
         * {
@@ -115,25 +119,32 @@
 
         .doctors-container {
             display: flex;
-            justify-content: space-between;
+            justify-content: center; /* Center if only one */
             width: 100%;
             gap: 10px;
         }
 
         .header .doctor-name {
-            flex: 1;
+            flex: 0 1 45%; /* Flexible width */
+            max-width: 45%; /* Limit max width */
             text-align: center;
-            color: #11be65;
-            font-size: medium;
+            color: var(--doctor-font-color);
+            font-size: var(--doctor-font-size);
             font-weight: bolder;
             margin-bottom: 5px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
             letter-spacing: 2px;
             border: 1px solid #ddd;
             padding: 5px;
-            border-radius: 4px;
-            font-family: var(--subtitle-font);
-            /* Removed background-color to use header-bg */
+            border-radius: var(--doctor-box-border-radius);
+            font-family: var(--doctor-font);
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(240,255,240,0.9) 100%); /* Beautiful gradient */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Soft shadow for beauty */
+            transition: all 0.3s ease; /* Smooth hover */
+        }
+
+        .header .doctor-name:hover {
+            transform: scale(1.02); /* Slight zoom on hover */
         }
 
         .patient-info {
@@ -818,7 +829,7 @@
             min-width: 120px;
         }
 
-        .border-width-input {
+        .border-width-input, .border-radius-input {
             width: 60px;
             padding: 5px;
             border: 1px solid #ddd;
@@ -869,6 +880,10 @@
             padding: 5px 10px;
             font-size: 12px;
             border-radius: 4px;
+        }
+
+        .hidden {
+            display: none !important;
         }
 
         @media print {
@@ -1134,6 +1149,10 @@
                 <label>حجم التذييل:</label>
                 <input type="number" id="footerFontSize" class="font-size-input" value="14" min="10" max="30"> px
             </div>
+            <div class="font-size-picker">
+                <label>حجم أسماء الأطباء:</label>
+                <input type="number" id="doctorFontSize" class="font-size-input" value="14" min="10" max="30"> px
+            </div>
         </div>
         
         <div class="settings-group">
@@ -1157,6 +1176,10 @@
             <div class="color-picker">
                 <label>لون التذييل:</label>
                 <input type="color" id="footerFontColor" class="color-input" value="#ffffff">
+            </div>
+            <div class="color-picker">
+                <label>لون أسماء الأطباء:</label>
+                <input type="color" id="doctorFontColor" class="color-input" value="#11be65">
             </div>
         </div>
         
@@ -1232,6 +1255,16 @@
                     <option value="'Noto Naskh Arabic', serif">Noto Naskh Arabic</option>
                 </select>
             </div>
+            <div class="font-picker">
+                <label>خط أسماء الأطباء:</label>
+                <select id="doctorFont" class="settings-select">
+                    <option value="'Cairo', sans-serif">Cairo</option>
+                    <option value="'Amiri', serif">Amiri</option>
+                    <option value="'Tajawal', sans-serif">Tajawal</option>
+                    <option value="'Scheherazade', serif">Scheherazade</option>
+                    <option value="'Noto Naskh Arabic', serif">Noto Naskh Arabic</option>
+                </select>
+            </div>
         </div>
         
         <div class="settings-group">
@@ -1239,6 +1272,22 @@
             <div class="border-picker">
                 <label>سمك الحدود:</label>
                 <input type="number" id="tableBorderWidth" class="border-width-input" value="1" min="1" max="5"> px
+            </div>
+        </div>
+
+        <div class="settings-group">
+            <h3>إعدادات مربعات الأطباء</h3>
+            <div class="border-picker">
+                <label>نصف قطر الحدود:</label>
+                <input type="number" id="doctorBoxBorderRadius" class="border-radius-input" value="4" min="0" max="50"> px
+            </div>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <input type="checkbox" id="showDoctor1" checked>
+                <label for="showDoctor1">إظهار الدكتور الأول</label>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <input type="checkbox" id="showDoctor2" checked>
+                <label for="showDoctor2">إظهار الدكتور الثاني</label>
             </div>
         </div>
         
@@ -1871,13 +1920,16 @@
             document.getElementById('resultFontSize').value = localStorage.getItem('resultFontSize') || '16';
             document.getElementById('rangeFontSize').value = localStorage.getItem('rangeFontSize') || '16';
             document.getElementById('footerFontSize').value = localStorage.getItem('footerFontSize') || '14';
+            document.getElementById('doctorFontSize').value = localStorage.getItem('doctorFontSize') || '14';
             document.getElementById('tableBorderWidth').value = localStorage.getItem('tableBorderWidth') || '1';
+            document.getElementById('doctorBoxBorderRadius').value = localStorage.getItem('doctorBoxBorderRadius') || '4';
 
             document.getElementById('titleFontColor').value = localStorage.getItem('titleFontColor') || '#2c7da0';
             document.getElementById('testNameFontColor').value = localStorage.getItem('testNameFontColor') || '#333333';
             document.getElementById('resultFontColor').value = localStorage.getItem('resultFontColor') || '#333333';
             document.getElementById('rangeFontColor').value = localStorage.getItem('rangeFontColor') || '#b90f0f';
             document.getElementById('footerFontColor').value = localStorage.getItem('footerFontColor') || '#ffffff';
+            document.getElementById('doctorFontColor').value = localStorage.getItem('doctorFontColor') || '#11be65';
 
             document.getElementById('mainFont').value = localStorage.getItem('mainFont') || "'Cairo', sans-serif";
             document.getElementById('titleFont').value = localStorage.getItem('titleFont') || "'Amiri', serif";
@@ -1886,6 +1938,10 @@
             document.getElementById('resultFont').value = localStorage.getItem('resultFont') || "'Cairo', sans-serif";
             document.getElementById('rangeFont').value = localStorage.getItem('rangeFont') || "'Cairo', sans-serif";
             document.getElementById('footerFont').value = localStorage.getItem('footerFont') || "'Cairo', sans-serif";
+            document.getElementById('doctorFont').value = localStorage.getItem('doctorFont') || "'Cairo', sans-serif";
+
+            document.getElementById('showDoctor1').checked = localStorage.getItem('showDoctor1') !== 'false';
+            document.getElementById('showDoctor2').checked = localStorage.getItem('showDoctor2') !== 'false';
         }
 
         function saveSettings() {
@@ -1915,13 +1971,16 @@
             localStorage.setItem('resultFontSize', document.getElementById('resultFontSize').value);
             localStorage.setItem('rangeFontSize', document.getElementById('rangeFontSize').value);
             localStorage.setItem('footerFontSize', document.getElementById('footerFontSize').value);
+            localStorage.setItem('doctorFontSize', document.getElementById('doctorFontSize').value);
             localStorage.setItem('tableBorderWidth', document.getElementById('tableBorderWidth').value);
+            localStorage.setItem('doctorBoxBorderRadius', document.getElementById('doctorBoxBorderRadius').value);
 
             localStorage.setItem('titleFontColor', document.getElementById('titleFontColor').value);
             localStorage.setItem('testNameFontColor', document.getElementById('testNameFontColor').value);
             localStorage.setItem('resultFontColor', document.getElementById('resultFontColor').value);
             localStorage.setItem('rangeFontColor', document.getElementById('rangeFontColor').value);
             localStorage.setItem('footerFontColor', document.getElementById('footerFontColor').value);
+            localStorage.setItem('doctorFontColor', document.getElementById('doctorFontColor').value);
 
             localStorage.setItem('mainFont', document.getElementById('mainFont').value);
             localStorage.setItem('titleFont', document.getElementById('titleFont').value);
@@ -1930,6 +1989,10 @@
             localStorage.setItem('resultFont', document.getElementById('resultFont').value);
             localStorage.setItem('rangeFont', document.getElementById('rangeFont').value);
             localStorage.setItem('footerFont', document.getElementById('footerFont').value);
+            localStorage.setItem('doctorFont', document.getElementById('doctorFont').value);
+
+            localStorage.setItem('showDoctor1', document.getElementById('showDoctor1').checked);
+            localStorage.setItem('showDoctor2', document.getElementById('showDoctor2').checked);
 
             applySettings();
             toggleSettings();
@@ -1984,12 +2047,14 @@
             document.documentElement.style.setProperty('--result-font-size', (localStorage.getItem('resultFontSize') || '16') + 'px');
             document.documentElement.style.setProperty('--range-font-size', (localStorage.getItem('rangeFontSize') || '16') + 'px');
             document.documentElement.style.setProperty('--footer-font-size', (localStorage.getItem('footerFontSize') || '14') + 'px');
+            document.documentElement.style.setProperty('--doctor-font-size', (localStorage.getItem('doctorFontSize') || '14') + 'px');
 
             document.documentElement.style.setProperty('--title-font-color', localStorage.getItem('titleFontColor') || '#2c7da0');
             document.documentElement.style.setProperty('--test-name-font-color', localStorage.getItem('testNameFontColor') || '#333333');
             document.documentElement.style.setProperty('--result-font-color', localStorage.getItem('resultFontColor') || '#333333');
             document.documentElement.style.setProperty('--range-font-color', localStorage.getItem('rangeFontColor') || '#b90f0f');
             document.documentElement.style.setProperty('--footer-font-color', localStorage.getItem('footerFontColor') || '#ffffff');
+            document.documentElement.style.setProperty('--doctor-font-color', localStorage.getItem('doctorFontColor') || '#11be65');
 
             document.documentElement.style.setProperty('--main-font', localStorage.getItem('mainFont') || "'Cairo', sans-serif");
             document.documentElement.style.setProperty('--title-font', localStorage.getItem('titleFont') || "'Amiri', serif");
@@ -1998,6 +2063,21 @@
             document.documentElement.style.setProperty('--result-font', localStorage.getItem('resultFont') || "'Cairo', sans-serif");
             document.documentElement.style.setProperty('--range-font', localStorage.getItem('rangeFont') || "'Cairo', sans-serif");
             document.documentElement.style.setProperty('--footer-font', localStorage.getItem('footerFont') || "'Cairo', sans-serif");
+            document.documentElement.style.setProperty('--doctor-font', localStorage.getItem('doctorFont') || "'Cairo', sans-serif");
+
+            document.documentElement.style.setProperty('--doctor-box-border-radius', (localStorage.getItem('doctorBoxBorderRadius') || '4') + 'px');
+
+            const showDoctor1 = localStorage.getItem('showDoctor1') !== 'false';
+            const showDoctor2 = localStorage.getItem('showDoctor2') !== 'false';
+            document.getElementById('doctor1').classList.toggle('hidden', !showDoctor1);
+            document.getElementById('doctor2').classList.toggle('hidden', !showDoctor2);
+
+            const doctorsContainer = document.querySelector('.doctors-container');
+            if (!showDoctor1 && !showDoctor2) {
+                doctorsContainer.style.display = 'none';
+            } else {
+                doctorsContainer.style.display = 'flex';
+            }
         }
 
         function toggleSettings() {
