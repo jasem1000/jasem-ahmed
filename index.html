@@ -92,6 +92,17 @@
             font-family: 'Amiri', serif;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
             letter-spacing: 2px;
+            background-color: darkslategrey;
+        }
+          .header h6 {
+            text-align: center;
+            background-color: #053e6d;
+            color: #11be65;
+            font-size: medium;
+            font-weight: bolder;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            letter-spacing: 2px;
         }
 
         .patient-info {
@@ -103,7 +114,7 @@
             padding: 15px;
             border: 1px solid #ddd;
             border-radius: 8px;
-            background-color: #f9f9f9;
+            background-color: #c11717;
         }
 
         .info-item {
@@ -247,8 +258,8 @@
 
         .footer {
             text-align: center;
-            margin-top: 25px;
-            padding-top: 15px;
+            margin-top: 250px;
+            padding-top: 150px;
             border-top: 2px solid var(--button-color);
             color: #666;
             font-size: 14px;
@@ -1071,6 +1082,9 @@
                 </div>
                 <div class="header-text">
                     <h1 id="labTitle">مختبر الكرخ التعاوني</h1>
+                 <h6>الأستاذالدكتورة مي خليل إسماعيل اختصاص المناعةالسريرية</h6>
+                 <h6>الأستاذ الدكتورة ليلى فؤاد علي اختصاص الاحياء المجهرية</h6>
+
                 </div>
             </div>
         </div>
@@ -1132,27 +1146,7 @@
             <!-- سيتم إضافة الأقسام ديناميكيًا بواسطة JavaScript -->
         </div>
         
-        <div class="footer">
-            <div class="examiner-name">
-                <span>الفاحص:</span>
-                <input type="text" class="examiner-input" placeholder="اسم الفاحص" id="examinerName">
-            </div>
-            <div class="signature-area">
-                <div class="signature-box">
-                    <div>التوقيع</div>
-                    <input type="text" class="signature-input" placeholder="التوقيع">
-                </div>
-                <div class="signature-box">
-                    <div>البايلوجي</div>
-                    <input type="text" class="signature-input" placeholder="اسم البايلوجي" id="biologistSignature">
-                </div>
-                <div class="signature-box">
-                    <div>تاريخ الإصدار</div>
-                    <input type="text" class="signature-input" id="issueDate">
-                </div>
-            </div>
-        </div>
-    </div>
+       
     
     <div id="addSectionModal" class="modal">
         <div class="modal-content">
@@ -2843,7 +2837,7 @@
             };
             const dateString = now.toLocaleDateString('ar-SA', options);
             document.getElementById('currentDate').value = dateString;
-            document.getElementById('issueDate').value = dateString;
+           
         }
 
         function showSelectedSection() {
@@ -3042,3 +3036,4 @@
     </script>
 </body>
 </html> 
+
