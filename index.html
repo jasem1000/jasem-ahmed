@@ -54,7 +54,7 @@
             text-align: center;
             margin-bottom: 20px;
             padding-bottom: 15px;
-            border-bottom: 2px solid #4CAF50;
+            border-bottom: 2px solid var(--button-color);
         }
 
         .logo-container {
@@ -71,7 +71,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+            background: linear-gradient(135deg, var(--button-color) 0%, #2E7D32 100%);
             border-radius: 50%;
             color: white;
             font-size: 40px;
@@ -112,13 +112,13 @@
 
         .info-label {
             font-weight: bold;
-            color: #2c7da0;
+            color: var(--header-color);
         }
 
         .editable-field {
             font-weight: bold;
             font-size: small;
-            border: 1px dashed #4CAF50;
+            border: 1px dashed var(--button-color);
             padding: 4px 8px;
             border-radius: 4px;
             min-width: 120px;
@@ -182,7 +182,7 @@
         th {
             background-color: #f2f2f2;
             font-weight: bold;
-            color: #2c7da0;
+            color: var(--header-color);
         }
 
         .test-name {
@@ -203,7 +203,7 @@
 
         .result-input {
             width: 100%;
-            border: 1px dashed #4CAF50;
+            border: 1px dashed var(--button-color);
             padding: 5px;
             border-radius: 4px;
             text-align: center;
@@ -223,7 +223,7 @@
 
         .result-select {
             width: 100%;
-            border: 1px dashed #4CAF50;
+            border: 1px dashed var(--button-color);
             padding: 5px;
             border-radius: 4px;
             text-align: center;
@@ -245,7 +245,7 @@
             text-align: center;
             margin-top: 25px;
             padding-top: 15px;
-            border-top: 2px solid #4CAF50;
+            border-top: 2px solid var(--button-color);
             color: #666;
             font-size: 14px;
         }
@@ -308,7 +308,7 @@
         }
 
         .btn-save {
-            background: linear-gradient(135deg, #2c7da0 0%, #1a5e78 100%);
+            background: linear-gradient(135deg, var(--header-color) 0%, #1a5e78 100%);
             color: white;
         }
 
@@ -335,7 +335,7 @@
             background: linear-gradient(135deg, var(--header-color) 0%, #1a5e78 100%);
             padding: 15px;
             text-align: center;
-            border-top: 2px solid #4CAF50;
+            border-top: 2px solid var(--button-color);
             font-family: 'Cairo', sans-serif;
             z-index: 1000;
             color: var(--footer-font-color);
@@ -368,7 +368,7 @@
             gap: 10px;
             margin-bottom: 20px;
             font-weight: bold;
-            color: #2c7da0;
+            color: var(--header-color);
             flex-wrap: wrap;
         }
 
@@ -378,7 +378,7 @@
 
         .test-selection select {
             padding: 8px 12px;
-            border: 1px solid #4CAF50;
+            border: 1px solid var(--button-color);
             border-radius: 8px;
             font-family: 'Cairo', sans-serif;
             font-size: 14px;
@@ -417,7 +417,7 @@
         }
 
         .examiner-input {
-            border: 1px dashed #4CAF50;
+            border: 1px dashed var(--button-color);
             padding: 5px 10px;
             border-radius: 4px;
             text-align: left;
@@ -557,8 +557,8 @@
         }
 
         .modal-tab.active {
-            border-bottom: 3px solid #4CAF50;
-            color: #4CAF50;
+            border-bottom: 3px solid var(--button-color);
+            color: var(--button-color);
             font-weight: bold;
         }
 
@@ -610,7 +610,6 @@
             border-bottom: none;
         }
 
-        /* إضافة أنماط جديدة للوحة التحكم */
         .settings-panel {
             position: fixed;
             top: 20px;
@@ -630,7 +629,7 @@
             position: fixed;
             top: 20px;
             left: 20px;
-            background: #4CAF50;
+            background: var(--button-color);
             color: white;
             width: 50px;
             height: 50px;
@@ -651,7 +650,7 @@
 
         .settings-group h3 {
             margin-bottom: 10px;
-            color: #2c7da0;
+            color: var(--header-color);
         }
 
         .color-picker {
@@ -684,7 +683,7 @@
         }
 
         .settings-btn {
-            background: #4CAF50;
+            background: var(--button-color);
             color: white;
             border: none;
             padding: 10px 15px;
@@ -695,7 +694,47 @@
             font-family: 'Cairo', sans-serif;
         }
 
-        /* Print Styles */
+        .font-size-picker {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        
+        .font-size-picker label {
+            min-width: 120px;
+        }
+        
+        .font-size-input {
+            width: 60px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .logo-preview {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 10px auto;
+            display: block;
+            border: 2px dashed var(--button-color);
+        }
+        
+        .logo-upload-btn {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 5px;
+            font-family: 'Cairo', sans-serif;
+        }
+
         @media print {
             @page {
                 size: portrait;
@@ -753,8 +792,8 @@
 
             .logo {
                 background: white;
-                color: #4CAF50;
-                border: 2px solid #4CAF50;
+                color: var(--button-color);
+                border: 2px solid var(--button-color);
             }
 
             .section-title {
@@ -866,48 +905,6 @@
                 left: 5%;
             }
         }
-        
-        /* إضافة أنماط جديدة لإعدادات الخطوط */
-        .font-size-picker {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 10px;
-            align-items: center;
-        }
-        
-        .font-size-picker label {
-            min-width: 120px;
-        }
-        
-        .font-size-input {
-            width: 60px;
-            padding: 5px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            text-align: center;
-        }
-        
-        .logo-preview {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 10px auto;
-            display: block;
-            border: 2px dashed #4CAF50;
-        }
-        
-        .logo-upload-btn {
-            background: #2196F3;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 5px;
-            font-family: 'Cairo', sans-serif;
-        }
     </style>
 </head>
 <body>
@@ -1006,16 +1003,17 @@
         <button class="settings-btn" onclick="resetSettings()" style="background: #f44336;">إعادة الضبط</button>
         <button class="settings-btn" onclick="toggleSettings()">إغلاق</button>
     </div>
-    <div class="watermark">مختبر الكرخ التعاوني</div>
+
+    <div class="watermark" id="watermark">مختبر الكرخ التعاوني</div>
     
     <div class="container">
         <div class="header">
             <div class="logo-container">
-                <div class="logo">
+                <div class="logo" id="labLogo">
                     <i class="fas fa-microscope"></i>
                 </div>
                 <div class="header-text">
-                    <h1>مختبر الكرخ التعاوني</h1>
+                    <h1 id="labTitle">مختبر الكرخ التعاوني</h1>
                 </div>
             </div>
         </div>
@@ -1042,25 +1040,11 @@
                 <input type="text" class="editable-field" value="" id="doctorName" placeholder="اسم الطبيب">
             </div>
         </div>
+        
         <div class="test-selection no-print">
             <label for="test-select">اختر قسم التحليل:</label>
             <select id="test-select" onchange="showSelectedSection()">
-                <option value="chemicalSection">Chemical Tests</option>
-                <option value="lipidSection">Lipid Profile</option>
-                <option value="cbcSection">CBC</option>
-                <option value="hematologySection">Hematology</option>
-                <option value="hormoneSection">Hormone Tests</option>
-                <option value="thyroidSection">Thyroid Function Tests</option>
-                <option value="liverSection">Liver Function Tests</option>
-                <option value="ironProfileSection">Iron Profile</option>
-                <option value="renalSection">Renal Function Tests</option>      
-                <option value="serologySection">Serology & Immunology</option>
-                <option value="urineSection">General Urine Examination</option>
-                <option value="vitaminsSection">Vitamin Tests</option>
-                <option value="seminalSection">SEMİNAL FLUID ANALYSIS</option>
-                <option value="stoolSection">GENERAL STOOL EXAMINATION</option>
-                <option value="coagulationSection">Coagulation Test</option>
-                <option value="viralSection">Viral Studies</option>
+                <option value="">اختر قسم...</option>
             </select>
             <button class="add-section-btn" onclick="openAddSectionModal()">
                 <i class="fas fa-plus"></i> إضافة قسم جديد
@@ -1085,13 +1069,28 @@
             </button>
         </div>
         
-        <div class="results-container">
+        <div class="results-container" id="resultsContainer">
             <!-- سيتم إضافة الأقسام ديناميكيًا بواسطة JavaScript -->
         </div>
         
         <div class="footer">
+            <div class="examiner-name">
+                <span>الفاحص:</span>
+                <input type="text" class="examiner-input" placeholder="اسم الفاحص" id="examinerName">
+            </div>
             <div class="signature-area">
-                <!-- سيتم إضافة منطقة التوقيع ديناميكيًا -->
+                <div class="signature-box">
+                    <div>التوقيع</div>
+                    <input type="text" class="signature-input" placeholder="التوقيع">
+                </div>
+                <div class="signature-box">
+                    <div>البايلوجي</div>
+                    <input type="text" class="signature-input" placeholder="اسم البايلوجي" id="biologistSignature">
+                </div>
+                <div class="signature-box">
+                    <div>تاريخ الإصدار</div>
+                    <input type="text" class="signature-input" id="issueDate">
+                </div>
             </div>
         </div>
     </div>
@@ -1126,6 +1125,8 @@
                             <option value="fas fa-poo">براز</option>
                             <option value="fas fa-heartbeat">تخثر</option>
                             <option value="fas fa-virus">فيروسات</option>
+                            <option value="fas fa-lungs">رئتين</option>
+                            <option value="fas fa-brain">دماغ</option>
                         </select>
                     </div>
                     <h3>تحاليل القسم:</h3>
@@ -1195,15 +1196,36 @@
         </div>
     </div>
     
+    <div id="searchModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeSearchModal()">&times;</span>
+            <h2 style="text-align: center; margin-bottom: 20px;">البحث عن بيانات المريض</h2>
+            
+            <div style="margin-bottom: 20px;">
+                <label for="searchPatientName">اسم المريض:</label>
+                <input type="text" id="searchPatientName" class="form-input" placeholder="أدخل اسم المريض" style="width: 100%; padding: 10px; margin-top: 5px;">
+            </div>
+            
+            <div style="text-align: left; margin-top: 20px;">
+                <button class="btn btn-load" onclick="searchPatientData()">
+                    <i class="fas fa-search"></i> البحث
+                </button>
+                <button class="btn btn-clear" onclick="closeSearchModal()">
+                    <i class="fas fa-times"></i> إغلاق
+                </button>
+            </div>
+        </div>
+    </div>
+    
     <div class="lab-footer">
         <div class="lab-footer-content">
             <div class="lab-footer-item">
-                <div class="lab-footer-title">مختبر الكرخ التعاوني</div>
-                <div id="biologistName"> شكراً لزيارتكم </div>
+                <div class="lab-footer-title" id="footerLabName">مختبر الكرخ التعاوني</div>
+                <div id="biologistName">شكراً لزيارتكم</div>
             </div>
             <div class="lab-footer-item">
                 <div class="lab-footer-title">العنوان</div>
-                <div id="labAddress">   بغداد الكرخ الرحمانية شارع الشيخ معروف قرب جامع حداد  </div>
+                <div id="labAddress">بغداد الكرخ الرحمانية شارع الشيخ معروف قرب جامع حداد</div>
             </div>
             <div class="lab-footer-item">
                 <div class="lab-footer-title">رقم الهاتف</div>
@@ -1213,149 +1235,13 @@
     </div>
 
     <script>
-        // دالة مساعدة لتحميل اللوغو
-        function handleLogoUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const logoPreview = document.getElementById('logoPreview');
-                    logoPreview.src = e.target.result;
-                    logoPreview.style.display = 'block';
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        // دالة لإعادة اللوغو الافتراضي
-        function resetLogo() {
-            document.getElementById('logoPreview').src = '';
-            document.getElementById('logoPreview').style.display = 'none';
-            document.getElementById('logoUpload').value = '';
-            const logoElement = document.querySelector('.logo');
-            logoElement.innerHTML = `<i class="fas fa-microscope"></i>`;
-        }
-
-        // دالة لتحميل الإعدادات الحالية
-        function loadCurrentSettings() {
-            // تحميل إعدادات المختبر
-            document.getElementById('labNameInput').value = localStorage.getItem('labName') || 'مختبر الكرخ التعاوني';
-            document.getElementById('labAddressInput').value = localStorage.getItem('labAddress') || 'بغداد الكرخ الرحمانية شارع الشيخ معروف قرب جامع حداد';
-            document.getElementById('labPhoneInput').value = localStorage.getItem('labPhone') || '07901821264';
-            document.getElementById('biologistNameInput').value = localStorage.getItem('biologistName') || 'شكراً لزيارتكم';
-
-            // تحميل إعدادات الألوان
-            document.getElementById('headerColor').value = localStorage.getItem('headerColor') || '#2c7da0';
-            document.getElementById('backgroundColor').value = localStorage.getItem('backgroundColor') || '#f5f7fa';
-            document.getElementById('buttonColor').value = localStorage.getItem('buttonColor') || '#4CAF50';
-
-            // تحميل إعدادات اللوغو
-            const savedLogo = localStorage.getItem('labLogo');
-            if (savedLogo) {
-                document.getElementById('logoPreview').src = savedLogo;
-                document.getElementById('logoPreview').style.display = 'block';
-            }
-
-            // تحميل إعدادات أحجام الخطوط
-            document.getElementById('titleFontSize').value = localStorage.getItem('titleFontSize') || '28';
-            document.getElementById('testNameFontSize').value = localStorage.getItem('testNameFontSize') || '16';
-            document.getElementById('resultFontSize').value = localStorage.getItem('resultFontSize') || '16';
-            document.getElementById('rangeFontSize').value = localStorage.getItem('rangeFontSize') || '16';
-            document.getElementById('footerFontSize').value = localStorage.getItem('footerFontSize') || '14';
-
-            // تحميل إعدادات ألوان الخطوط
-            document.getElementById('titleFontColor').value = localStorage.getItem('titleFontColor') || '#2c7da0';
-            document.getElementById('testNameFontColor').value = localStorage.getItem('testNameFontColor') || '#333333';
-            document.getElementById('resultFontColor').value = localStorage.getItem('resultFontColor') || '#333333';
-            document.getElementById('rangeFontColor').value = localStorage.getItem('rangeFontColor') || '#b90f0f';
-            document.getElementById('footerFontColor').value = localStorage.getItem('footerFontColor') || '#ffffff';
-        }
-
-        // دالة لحفظ الإعدادات
-        function saveSettings() {
-            // حفظ إعدادات المختبر
-            localStorage.setItem('labName', document.getElementById('labNameInput').value);
-            localStorage.setItem('labAddress', document.getElementById('labAddressInput').value);
-            localStorage.setItem('labPhone', document.getElementById('labPhoneInput').value);
-            localStorage.setItem('biologistName', document.getElementById('biologistNameInput').value);
-
-            // حفظ إعدادات الألوان
-            localStorage.setItem('headerColor', document.getElementById('headerColor').value);
-            localStorage.setItem('backgroundColor', document.getElementById('backgroundColor').value);
-            localStorage.setItem('buttonColor', document.getElementById('buttonColor').value);
-
-            // حفظ اللوغو
-            const logoPreview = document.getElementById('logoPreview');
-            if (logoPreview.src && logoPreview.src !== '') {
-                localStorage.setItem('labLogo', logoPreview.src);
-            } else {
-                localStorage.removeItem('labLogo');
-            }
-
-            // حفظ أحجام الخطوط
-            localStorage.setItem('titleFontSize', document.getElementById('titleFontSize').value);
-            localStorage.setItem('testNameFontSize', document.getElementById('testNameFontSize').value);
-            localStorage.setItem('resultFontSize', document.getElementById('resultFontSize').value);
-            localStorage.setItem('rangeFontSize', document.getElementById('rangeFontSize').value);
-            localStorage.setItem('footerFontSize', document.getElementById('footerFontSize').value);
-
-            // حفظ ألوان الخطوط
-            localStorage.setItem('titleFontColor', document.getElementById('titleFontColor').value);
-            localStorage.setItem('testNameFontColor', document.getElementById('testNameFontColor').value);
-            localStorage.setItem('resultFontColor', document.getElementById('resultFontColor').value);
-            localStorage.setItem('rangeFontColor', document.getElementById('rangeFontColor').value);
-            localStorage.setItem('footerFontColor', document.getElementById('footerFontColor').value);
-
-            applySettings();
-            toggleSettings();
-            alert('تم حفظ الإعدادات بنجاح!');
-        }
-
-        // دالة لإعادة الضبط
-        function resetSettings() {
-            localStorage.clear();
-            loadCurrentSettings();
-            applySettings();
-            alert('تم إعادة الضبط!');
-        }
-
-        // دالة لتطبيق الإعدادات
-        function applySettings() {
-            document.querySelector('.watermark').textContent = localStorage.getItem('labName') || 'مختبر الكرخ التعاوني';
-            document.querySelector('.header h1').textContent = localStorage.getItem('labName') || 'مختبر الكرخ التعاوني';
-            document.getElementById('biologistName').textContent = localStorage.getItem('biologistName') || 'شكراً لزيارتكم';
-            document.getElementById('labAddress').textContent = localStorage.getItem('labAddress') || 'بغداد الكرخ الرحمانية شارع الشيخ معروف قرب جامع حداد';
-            document.getElementById('labPhone').textContent = localStorage.getItem('labPhone') || '07901821264';
-
-            const savedLogo = localStorage.getItem('labLogo');
-            const logoElement = document.querySelector('.logo');
-            if (savedLogo) {
-                logoElement.innerHTML = `<img src="${savedLogo}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">`;
-            } else {
-                logoElement.innerHTML = `<i class="fas fa-microscope"></i>`;
-            }
-
-            document.documentElement.style.setProperty('--header-color', localStorage.getItem('headerColor') || '#2c7da0');
-            document.documentElement.style.setProperty('--background-color', localStorage.getItem('backgroundColor') || '#f5f7fa');
-            document.documentElement.style.setProperty('--button-color', localStorage.getItem('buttonColor') || '#4CAF50');
-            document.documentElement.style.setProperty('--title-font-size', (localStorage.getItem('titleFontSize') || '28') + 'px');
-            document.documentElement.style.setProperty('--test-name-font-size', (localStorage.getItem('testNameFontSize') || '16') + 'px');
-            document.documentElement.style.setProperty('--result-font-size', (localStorage.getItem('resultFontSize') || '16') + 'px');
-            document.documentElement.style.setProperty('--range-font-size', (localStorage.getItem('rangeFontSize') || '16') + 'px');
-            document.documentElement.style.setProperty('--footer-font-size', (localStorage.getItem('footerFontSize') || '14') + 'px');
-            document.documentElement.style.setProperty('--title-font-color', localStorage.getItem('titleFontColor') || '#2c7da0');
-            document.documentElement.style.setProperty('--test-name-font-color', localStorage.getItem('testNameFontColor') || '#333333');
-            document.documentElement.style.setProperty('--result-font-color', localStorage.getItem('resultFontColor') || '#333333');
-            document.documentElement.style.setProperty('--range-font-color', localStorage.getItem('rangeFontColor') || '#b90f0f');
-            document.documentElement.style.setProperty('--footer-font-color', localStorage.getItem('footerFontColor') || '#ffffff');
-        }
-
-        // باقي الكود الـ JavaScript كما هو مع التصحيحات اللازمة للأخطاء في التكرارات والأسماء
+        // متغيرات العمودية
         const DB_NAME = 'LabDatabase';
         const DB_VERSION = 1;
         const STORE_NAME = 'patients';
         let db;
 
+        // هيكل المختبر الافتراضي
         const defaultLabStructure = [
             { 
                 id: 'chemicalSection', 
@@ -1515,7 +1401,7 @@
                     "hCG": "mIU/ml (Negative in non-pregnant)",
                     "Insulin": "µIU/ml (2-25)", 
                     "C-Peptide": "ng/ml (0.5-2.0)", 
-                    "DHEA-S": "µg/dl (M: 80-560, F: 35-430)",
+                    "DHEA-S": "µg/dl                    "DHEA-S": "µg/dl (M: 80-560, F: 35-430)",
                     "Growth Hormone (GH)": "ng/ml (0-10)", 
                     "IGF-1": "ng/ml (varies by age)", 
                     "Parathyroid Hormone (PTH)": "pg/ml (10-65)"
@@ -1685,6 +1571,137 @@
 
         let labStructure = [];
 
+        // دوال إدارة الإعدادات
+        function handleLogoUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const logoPreview = document.getElementById('logoPreview');
+                    logoPreview.src = e.target.result;
+                    logoPreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function resetLogo() {
+            document.getElementById('logoPreview').src = '';
+            document.getElementById('logoPreview').style.display = 'none';
+            document.getElementById('logoUpload').value = '';
+            const logoElement = document.getElementById('labLogo');
+            logoElement.innerHTML = `<i class="fas fa-microscope"></i>`;
+        }
+
+        function loadCurrentSettings() {
+            document.getElementById('labNameInput').value = localStorage.getItem('labName') || 'مختبر الكرخ التعاوني';
+            document.getElementById('labAddressInput').value = localStorage.getItem('labAddress') || 'بغداد الكرخ الرحمانية شارع الشيخ معروف قرب جامع حداد';
+            document.getElementById('labPhoneInput').value = localStorage.getItem('labPhone') || '07901821264';
+            document.getElementById('biologistNameInput').value = localStorage.getItem('biologistName') || 'شكراً لزيارتكم';
+
+            document.getElementById('headerColor').value = localStorage.getItem('headerColor') || '#2c7da0';
+            document.getElementById('backgroundColor').value = localStorage.getItem('backgroundColor') || '#f5f7fa';
+            document.getElementById('buttonColor').value = localStorage.getItem('buttonColor') || '#4CAF50';
+
+            const savedLogo = localStorage.getItem('labLogo');
+            if (savedLogo) {
+                document.getElementById('logoPreview').src = savedLogo;
+                document.getElementById('logoPreview').style.display = 'block';
+            }
+
+            document.getElementById('titleFontSize').value = localStorage.getItem('titleFontSize') || '28';
+            document.getElementById('testNameFontSize').value = localStorage.getItem('testNameFontSize') || '16';
+            document.getElementById('resultFontSize').value = localStorage.getItem('resultFontSize') || '16';
+            document.getElementById('rangeFontSize').value = localStorage.getItem('rangeFontSize') || '16';
+            document.getElementById('footerFontSize').value = localStorage.getItem('footerFontSize') || '14';
+
+            document.getElementById('titleFontColor').value = localStorage.getItem('titleFontColor') || '#2c7da0';
+            document.getElementById('testNameFontColor').value = localStorage.getItem('testNameFontColor') || '#333333';
+            document.getElementById('resultFontColor').value = localStorage.getItem('resultFontColor') || '#333333';
+            document.getElementById('rangeFontColor').value = localStorage.getItem('rangeFontColor') || '#b90f0f';
+            document.getElementById('footerFontColor').value = localStorage.getItem('footerFontColor') || '#ffffff';
+        }
+
+        function saveSettings() {
+            localStorage.setItem('labName', document.getElementById('labNameInput').value);
+            localStorage.setItem('labAddress', document.getElementById('labAddressInput').value);
+            localStorage.setItem('labPhone', document.getElementById('labPhoneInput').value);
+            localStorage.setItem('biologistName', document.getElementById('biologistNameInput').value);
+
+            localStorage.setItem('headerColor', document.getElementById('headerColor').value);
+            localStorage.setItem('backgroundColor', document.getElementById('backgroundColor').value);
+            localStorage.setItem('buttonColor', document.getElementById('buttonColor').value);
+
+            const logoPreview = document.getElementById('logoPreview');
+            if (logoPreview.src && logoPreview.src !== '') {
+                localStorage.setItem('labLogo', logoPreview.src);
+            } else {
+                localStorage.removeItem('labLogo');
+            }
+
+            localStorage.setItem('titleFontSize', document.getElementById('titleFontSize').value);
+            localStorage.setItem('testNameFontSize', document.getElementById('testNameFontSize').value);
+            localStorage.setItem('resultFontSize', document.getElementById('resultFontSize').value);
+            localStorage.setItem('rangeFontSize', document.getElementById('rangeFontSize').value);
+            localStorage.setItem('footerFontSize', document.getElementById('footerFontSize').value);
+
+            localStorage.setItem('titleFontColor', document.getElementById('titleFontColor').value);
+            localStorage.setItem('testNameFontColor', document.getElementById('testNameFontColor').value);
+            localStorage.setItem('resultFontColor', document.getElementById('resultFontColor').value);
+            localStorage.setItem('rangeFontColor', document.getElementById('rangeFontColor').value);
+            localStorage.setItem('footerFontColor', document.getElementById('footerFontColor').value);
+
+            applySettings();
+            toggleSettings();
+            alert('تم حفظ الإعدادات بنجاح!');
+        }
+
+        function resetSettings() {
+            if (confirm('هل أنت متأكد من إعادة الضبط؟ سيتم مسح جميع الإعدادات المخصصة')) {
+                localStorage.clear();
+                loadCurrentSettings();
+                applySettings();
+                location.reload();
+                alert('تم إعادة الضبط بنجاح!');
+            }
+        }
+
+        function applySettings() {
+            const labName = localStorage.getItem('labName') || 'مختبر الكرخ التعاوني';
+            const labAddress = localStorage.getItem('labAddress') || 'بغداد الكرخ الرحمانية شارع الشيخ معروف قرب جامع حداد';
+            const labPhone = localStorage.getItem('labPhone') || '07901821264';
+            const biologistName = localStorage.getItem('biologistName') || 'شكراً لزيارتكم';
+
+            document.getElementById('watermark').textContent = labName;
+            document.getElementById('labTitle').textContent = labName;
+            document.getElementById('footerLabName').textContent = labName;
+            document.getElementById('biologistName').textContent = biologistName;
+            document.getElementById('labAddress').textContent = labAddress;
+            document.getElementById('labPhone').textContent = labPhone;
+
+            const savedLogo = localStorage.getItem('labLogo');
+            const logoElement = document.getElementById('labLogo');
+            if (savedLogo) {
+                logoElement.innerHTML = `<img src="${savedLogo}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">`;
+            } else {
+                logoElement.innerHTML = `<i class="fas fa-microscope"></i>`;
+            }
+
+            document.documentElement.style.setProperty('--header-color', localStorage.getItem('headerColor') || '#2c7da0');
+            document.documentElement.style.setProperty('--background-color', localStorage.getItem('backgroundColor') || '#f5f7fa');
+            document.documentElement.style.setProperty('--button-color', localStorage.getItem('buttonColor') || '#4CAF50');
+            document.documentElement.style.setProperty('--title-font-size', (localStorage.getItem('titleFontSize') || '28') + 'px');
+            document.documentElement.style.setProperty('--test-name-font-size', (localStorage.getItem('testNameFontSize') || '16') + 'px');
+            document.documentElement.style.setProperty('--result-font-size', (localStorage.getItem('resultFontSize') || '16') + 'px');
+            document.documentElement.style.setProperty('--range-font-size', (localStorage.getItem('rangeFontSize') || '16') + 'px');
+            document.documentElement.style.setProperty('--footer-font-size', (localStorage.getItem('footerFontSize') || '14') + 'px');
+            document.documentElement.style.setProperty('--title-font-color', localStorage.getItem('titleFontColor') || '#2c7da0');
+            document.documentElement.style.setProperty('--test-name-font-color', localStorage.getItem('testNameFontColor') || '#333333');
+            document.documentElement.style.setProperty('--result-font-color', localStorage.getItem('resultFontColor') || '#333333');
+            document.documentElement.style.setProperty('--range-font-color', localStorage.getItem('rangeFontColor') || '#b90f0f');
+            document.documentElement.style.setProperty('--footer-font-color', localStorage.getItem('footerFontColor') || '#ffffff');
+        }
+
         function toggleSettings() {
             const panel = document.getElementById('settingsPanel');
             panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
@@ -1693,6 +1710,7 @@
             }
         }
 
+        // دوال قاعدة البيانات
         function initDb() {
             const request = indexedDB.open(DB_NAME, DB_VERSION);
             request.onerror = (event) => console.error("IndexedDB error:", event.target.error);
@@ -1704,15 +1722,18 @@
             };
             request.onsuccess = (event) => {
                 db = event.target.result;
+                console.log("Database initialized successfully");
             };
         }
 
+        // دوال إدارة هيكل المختبر
         function loadLabStructure() {
             const customSections = JSON.parse(localStorage.getItem('customSections')) || {};
             const customTests = JSON.parse(localStorage.getItem('customTests') || '{}');
 
             labStructure = JSON.parse(JSON.stringify(defaultLabStructure));
 
+            // إضافة الأقسام المخصصة
             for (const sectionId in customSections) {
                 const customSection = customSections[sectionId];
                 const tests = {};
@@ -1727,6 +1748,7 @@
                 });
             }
 
+            // إضافة التحاليل المخصصة للأقسام الموجودة
             for (const sectionId in customTests) {
                 const existingSection = labStructure.find(sec => sec.id === sectionId);
                 if (existingSection) {
@@ -1741,7 +1763,7 @@
         }
 
         function renderLabStructure() {
-            const resultsContainer = document.querySelector('.results-container');
+            const resultsContainer = document.getElementById('resultsContainer');
             resultsContainer.innerHTML = '';
             
             labStructure.forEach(section => {
@@ -1749,21 +1771,11 @@
                 sectionDiv.id = section.id;
                 sectionDiv.className = 'section';
                 
-                let tableHTML = `<div class="section-title"><i class="${section.icon}"></i> ${section.title}</div><table><tr><th>Test</th><th>Result</th><th>Normal Range</th></tr>`;
-
-                if (section.id === 'cbcSection' || section.id === 'hematologySection') {
-                    for (const testName in section.tests) {
-                        tableHTML += `
-                            <tr>
-                                <td class="test-name">${testName}</td>
-                                <td><input type="text" class="result-input"></td>
-                                <td class="normal-range">${section.tests[testName]}</td>
-                            </tr>
-                        `;
-                    }
-                } else if (section.id === 'urineSection') {
-                    sectionDiv.innerHTML = `
-                        <div class="section-title"><i class="${section.icon}"></i> ${section.title}</div>
+                let tableHTML = `<div class="section-title"><i class="${section.icon}"></i> ${section.title}</div>`;
+                
+                // التعامل الخاص مع قسم تحليل البول
+                if (section.id === 'urineSection') {
+                    tableHTML += `
                         <table>
                             <thead>
                                 <tr>
@@ -1791,18 +1803,521 @@
                                     </td>
                                     <td class="normal-range">${section.tests["Color"]}</td>
                                 </tr>
-                                <!-- ... باقي الحقول كما هي في الكود الأصلي ... -->
+                                <tr>
+                                    <td class="test-name">Appearance</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Clear">Clear</option>
+                                            <option value="Slightly Cloudy">Slightly Cloudy</option>
+                                            <option value="Cloudy">Cloudy</option>
+                                            <option value="Turbid">Turbid</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Appearance"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Specific Gravity</td>
+                                    <td><input type="text" class="result-input" placeholder="e.g., 1.020"></td>
+                                    <td class="normal-range">${section.tests["Specific Gravity"]}</td>
+                                </tr>
+                                <tr><td colspan="3" class="sub-section-title">Chemical Examination (Dipstick)</td></tr>
+                                <tr>
+                                    <td class="test-name">pH</td>
+                                    <td><input type="text" class="result-input" placeholder="e.g., 6.0"></td>
+                                    <td class="normal-range">${section.tests["pH"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Glucose</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Trace">Trace</option>
+                                            <option value="1+">1+</option>
+                                            <option value="2+">2+</option>
+                                            <option value="3+">3+</option>
+                                            <option value="4+">4+</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Glucose"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Protein</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Trace">Trace</option>
+                                            <option value="1+">1+</option>
+                                            <option value="2+">2+</option>
+                                            <option value="3+">3+</option>
+                                            <option value="4+">4+</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Protein"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Ketones</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Trace">Trace</option>
+                                            <option value="1+">1+</option>
+                                            <option value="2+">2+</option>
+                                            <option value="3+">3+</option>
+                                            <option value="4+">4+</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Ketones"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Blood</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Trace">Trace</option>
+                                            <option value="1+">1+</option>
+                                            <option value="2+">2+</option>
+                                            <option value="3+">3+</option>
+                                            <option value="4+">4+</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Blood"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Bilirubin</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Positive">Positive</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Bilirubin"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Urobilinogen</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Normal">Normal</option>
+                                            <option value="Increased">Increased</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Urobilinogen"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Nitrites</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Positive">Positive</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Nitrites"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Leukocytes</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Trace">Trace</option>
+                                            <option value="1+">1+</option>
+                                            <option value="2+">2+</option>
+                                            <option value="3+">3+</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Leukocytes"]}</td>
+                                </tr>
+                                <tr><td colspan="3" class="sub-section-title">Microscopic Examination</td></tr>
+                                <tr>
+                                    <td class="test-name">RBCs</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="0-2/HPF">0-2 /HPF</option>
+                                            <option value="3-5/HPF">3-5 /HPF</option>
+                                            <option value="6-10/HPF">6-10 /HPF</option>
+                                            <option value=">10/HPF">>10 /HPF</option>
+                                            <option value="Full Filed">Full Filed</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["RBCs"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Pus Cells</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="0-5/HPF">0-5 /HPF</option>
+                                            <option value="6-10/HPF">6-10 /HPF</option>
+                                            <option value="11-20/HPF">11-20 /HPF</option>
+                                            <option value=">20/HPF">>20 /HPF</option>
+                                            <option value="Full Filed">Full Filed</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Pus Cells"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Epithelial Cells</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Few">Few</option>
+                                            <option value="Moderate">Moderate</option>
+                                            <option value="Many">Many</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Epithelial Cells"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Casts</td>
+                                    <td><input type="text" class="result-input" placeholder="e.g., Hyaline Casts"></td>
+                                    <td class="normal-range">${section.tests["Casts"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Crystals</td>
+                                    <td><input type="text" class="result-input" placeholder="e.g., Calcium Oxalate"></td>
+                                    <td class="normal-range">${section.tests["Crystals"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Amorphous Urates</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Few">Few</option>
+                                            <option value="Moderate">Moderate</option>
+                                            <option value="Many">Many</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Amorphous Urates"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Amorphous Phosphates</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Few">Few</option>
+                                            <option value="Moderate">Moderate</option>
+                                            <option value="Many">Many</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Amorphous Phosphates"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Bacteria</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Few">Few</option>
+                                            <option value="Moderate">Moderate</option>
+                                            <option value="Many">Many</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Bacteria"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Yeast</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Positive">Positive</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Yeast"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Mucus threads</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Few">Few</option>
+                                            <option value="Moderate">Moderate</option>
+                                            <option value="Many">Many</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Mucus threads"]}</td>
+                                </tr>
                             </tbody>
                         </table>
                     `;
-                } else {
+                } 
+                // التعامل الخاص مع قسم تحليل السائل المنوي
+                else if (section.id === 'seminalSection') {
+                    tableHTML += `
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Test</th>
+                                    <th>Result</th>
+                                    <th>Normal Range</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="test-name">Volume</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["Volume"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Color</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Whitish gray/Opalecent">Whitish gray/Opalecent</option>
+                                            <option value="Yellowish">Yellowish</option>
+                                            <option value="Reddish/Brown">Reddish/Brown</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Color"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Liquefaction</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["Liquefaction"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Viscosity</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Low">Low</option>
+                                            <option value="High">High</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Viscosity"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">pH</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["pH"]}</td>
+                                </tr>
+                                <tr><td colspan="3" class="sub-section-title">Microscopic Examination</td></tr>
+                                <tr>
+                                    <td class="test-name">Sperm Concentration</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["Sperm Concentration"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Total Sperm Count</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["Total Sperm Count"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Motility (Total)</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["Motility (Total)"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Progressive Motility</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["Progressive Motility"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Non-Progressive Motility</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["Non-Progressive Motility"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Non-Motile</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["Non-Motile"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Morphology</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["Morphology"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Vitality</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["Vitality"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">WBC</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["WBC"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">RBC</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["RBC"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Agglutination</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Negative">Negative</option>
+                                            <option value="Positive">Positive</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Agglutination"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Microscopic Examination</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["Microscopic Examination"]}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    `;
+                }
+                // التعامل الخاص مع قسم تحليل البراز
+                else if (section.id === 'stoolSection') {
+                    tableHTML += `
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Test</th>
+                                    <th>Result</th>
+                                    <th>Normal Range</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td colspan="3" class="sub-section-title">Physical Examination</td></tr>
+                                <tr>
+                                    <td class="test-name">Color</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Brown">Brown</option>
+                                            <option value="Green">Green</option>
+                                            <option value="Black">Black</option>
+                                            <option value="Clay-colored">Clay-colored</option>
+                                            <option value="Yellowish">Yellowish</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Color"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Consistency</td>
+                                    <td>
+                                                                                <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Formed">Formed</option>
+                                            <option value="Soft">Soft</option>
+                                            <option value="Loose">Loose</option>
+                                            <option value="Watery">Watery</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Consistency"]}</td>
+                                </tr>
+                                <tr><td colspan="3" class="sub-section-title">Chemical & Microscopic Examination</td></tr>
+                                <tr>
+                                    <td class="test-name">Mucus</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Trace">Trace</option>
+                                            <option value="Present">Present</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Mucus"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Blood</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Trace">Trace</option>
+                                            <option value="Present">Present</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Blood"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Ova/Parasite</td>
+                                    <td><input type="text" class="result-input" placeholder="e.g., E. histolytica"></td>
+                                    <td class="normal-range">${section.tests["Ova/Parasite"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">WBC</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["WBC"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">RBC</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["RBC"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Fat Globules</td>
+                                    <td><input type="text" class="result-input"></td>
+                                    <td class="normal-range">${section.tests["Fat Globules"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Starch Granules</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Present">Present</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Starch Granules"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Undigested Muscle Fibers</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Present">Present</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Undigested Muscle Fibers"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Yeast Cells</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Nil">Nil</option>
+                                            <option value="Present">Present</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Yeast Cells"]}</td>
+                                </tr>
+                                <tr>
+                                    <td class="test-name">Occult Blood</td>
+                                    <td>
+                                        <select class="result-select">
+                                            <option value="">Select</option>
+                                            <option value="Negative">Negative</option>
+                                            <option value="Positive">Positive</option>
+                                        </select>
+                                    </td>
+                                    <td class="normal-range">${section.tests["Occult Blood"]}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    `;
+                } 
+                // التعامل الخاص مع أقسام التحاليل المناعية والفيروسية
+                else if (section.id === 'serologySection' || section.id === 'viralSection') {
+                    tableHTML += `<table><tr><th>Test</th><th>Result</th><th>Normal Range</th></tr>`;
                     for (const testName in section.tests) {
-                        let resultInputHTML = `<td><input type="text" class="result-input"></td>`;
-                        if (section.id === 'serologySection' || section.id === 'viralSection') {
-                            if (['Salmonella typhi', 'Salmonella typhi IgG', 'Salmonella typhi IgM', 'Rose Bengal (Brucella)', 'H.pylori Ab', 'Rheumatoid Factor', 'Toxoplasma IgG','Pregnancy Test	', 'Toxoplasma IgM', 'CMV IgG', 'CMV IgM', 'EBV (VCA IgG)', 'EBV (VCA IgM)', 'HBsAg', 'HBsAb', 'Anti-HCV (HCV-Ab)', 'HIV AB', 'HIV (ELISA)', 'VDRL / RPR (Syphilis)', 'ANA', 'Anti-dsDNA', 'Hepatitis A virus (HAV) IgM', 'Hepatitis A virus (HAV) IgG', 'Hepatitis B virus (HBV) DNA', 'Hepatitis C virus (HCV) RNA', 'Epstein-Barr virus (EBV)', 'Herpes Simplex Virus 1/2 (HSV-1/2) IgG', 'Herpes Simplex Virus 1/2 (HSV-1/2) IgM', 'HIV 1/2 Ab', 'HIV p24 Ag', 'Measles IgG', 'Measles IgM', 'Mumps IgG', 'Mumps IgM'].includes(testName)) {
-                                resultInputHTML = `<td><select class="result-select"><option value="">Select</option><option value="Positive">Positive</option><option value="Negative">Negative</option></select></td>`;
-                            }
+                        let resultInputHTML;
+                        const serologyTests = ['Salmonella typhi', 'Salmonella typhi IgG', 'Salmonella typhi IgM', 'Rose Bengal (Brucella)', 'H.pylori Ab', 'Rheumatoid Factor', 'Toxoplasma IgG', 'Toxoplasma IgM', 'CMV IgG', 'CMV IgM', 'EBV (VCA IgG)', 'EBV (VCA IgM)', 'HBsAg', 'HBsAb', 'Anti-HCV (HCV-Ab)', 'HIV AB', 'HIV (ELISA)', 'VDRL / RPR (Syphilis)', 'ANA', 'Anti-dsDNA', 'Hepatitis A virus (HAV) IgM', 'Hepatitis A virus (HAV) IgG', 'Hepatitis B virus (HBV) DNA', 'Hepatitis C virus (HCV) RNA', 'Epstein-Barr virus (EBV)', 'Herpes Simplex Virus 1/2 (HSV-1/2) IgG', 'Herpes Simplex Virus 1/2 (HSV-1/2) IgM', 'HIV 1/2 Ab', 'HIV p24 Ag', 'Measles IgG', 'Measles IgM', 'Mumps IgG', 'Mumps IgM'];
+                        
+                        if (serologyTests.includes(testName)) {
+                            resultInputHTML = `<td><select class="result-select"><option value="">Select</option><option value="Positive">Positive</option><option value="Negative">Negative</option></select></td>`;
+                        } else {
+                            resultInputHTML = `<td><input type="text" class="result-input"></td>`;
                         }
+
                         tableHTML += `
                             <tr>
                                 <td class="test-name">${testName}</td>
@@ -1811,22 +2326,540 @@
                             </tr>
                         `;
                     }
+                    tableHTML += `</table>`;
+                } 
+                // الأقسام العادية
+                else {
+                    tableHTML += `<table><tr><th>Test</th><th>Result</th><th>Normal Range</th></tr>`;
+                    for (const testName in section.tests) {
+                        tableHTML += `
+                            <tr>
+                                <td class="test-name">${testName}</td>
+                                <td><input type="text" class="result-input"></td>
+                                <td class="normal-range">${section.tests[testName]}</td>
+                            </tr>
+                        `;
+                    }
+                    tableHTML += `</table>`;
                 }
-                tableHTML += `</table>`;
+                
                 sectionDiv.innerHTML = tableHTML;
                 resultsContainer.appendChild(sectionDiv);
+            });
+            
+            showSelectedSection();
+        }
+
+        function updateSelectMenus() {
+            const testSelect = document.getElementById('test-select');
+            const sectionSelectModal = document.getElementById('sectionSelect');
+            const sectionForNewTestSelect = document.getElementById('existing-sections');
+            
+            testSelect.innerHTML = '<option value="">اختر قسم...</option>';
+            sectionSelectModal.innerHTML = '<option value="">اختر قسم...</option>';
+            sectionForNewTestSelect.innerHTML = '<option value="">اختر قسم...</option>';
+            
+            labStructure.forEach(section => {
+                const option = document.createElement('option');
+                option.value = section.id;
+                option.textContent = section.title;
+                testSelect.appendChild(option.cloneNode(true));
+                
+                const option2 = option.cloneNode(true);
+                sectionSelectModal.appendChild(option2);
+                
+                const option3 = option.cloneNode(true);
+                sectionForNewTestSelect.appendChild(option3);
+            });
+        }
+
+        // دوال إدارة النطاقات
+        function openRangeManager() {
+            document.getElementById('rangeModal').style.display = 'block';
+            updateSelectMenus();
+            loadSectionRanges();
+        }
+
+        function closeRangeManager() {
+            document.getElementById('rangeModal').style.display = 'none';
+        }
+
+        function loadSectionRanges() {
+            const sectionId = document.getElementById('sectionSelect').value;
+            const selectedSection = labStructure.find(sec => sec.id === sectionId);
+            
+            if (!selectedSection) return;
+
+            let tableHTML = `
+                <table class="range-table">
+                    <tr>
+                        <th>اسم التحليل</th>
+                        <th>النطاق الطبيعي</th>
+                    </tr>
+            `;
+            
+            for (const testName in selectedSection.tests) {
+                tableHTML += `
+                    <tr>
+                        <td>${testName}</td>
+                        <td>
+                            <input type="text" class="normal-range-input" 
+                                data-section="${sectionId}" 
+                                data-test="${testName}" 
+                                value="${selectedSection.tests[testName]}">
+                        </td>
+                    </tr>
+                `;
+            }
+            
+            tableHTML += `</table>`;
+            document.getElementById('rangeTableContainer').innerHTML = tableHTML;
+        }
+
+        function saveRanges() {
+            const inputs = document.querySelectorAll('#rangeTableContainer .normal-range-input');
+            const customRanges = JSON.parse(localStorage.getItem('customTests')) || {};
+
+            inputs.forEach(input => {
+                const sectionId = input.dataset.section;
+                const testName = input.dataset.test;
+                const rangeValue = input.value.trim();
+
+                const section = labStructure.find(sec => sec.id === sectionId);
+                if (section) {
+                    section.tests[testName] = rangeValue;
+                }
+                
+                if (!customRanges[sectionId]) {
+                    customRanges[sectionId] = [];
+                }
+                const existingTest = customRanges[sectionId].find(test => test.name === testName);
+                if (existingTest) {
+                    existingTest.range = rangeValue;
+                } else {
+                    customRanges[sectionId].push({ name: testName, range: rangeValue });
+                }
+            });
+
+            localStorage.setItem('customTests', JSON.stringify(customRanges));
+            loadLabStructure();
+            alert('تم حفظ النطاقات الطبيعية بنجاح!');
+            closeRangeManager();
+        }
+
+        // دوال إدارة الأقسام والتحاليل الجديدة
+        function openAddSectionModal() {
+            document.getElementById('addSectionModal').style.display = 'block';
+            populateExistingSections();
+        }
+
+        function closeAddSectionModal() {
+            document.getElementById('addSectionModal').style.display = 'none';
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.modal-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            const tabEl = document.querySelector(`.modal-tab[onclick="switchTab('${tabId}')"]`);
+            if (tabEl) tabEl.classList.add('active');
+            
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        function addNewTestField() {
+            const newTestHTML = `
+                <div class="test-item">
+                    <input type="text" class="form-input test-name-input" placeholder="اسم التحليل">
+                    <input type="text" class="form-input test-range-input" placeholder="النطاق الطبيعي">
+                    <span class="remove-test" onclick="removeNewTest(this)">×</span>
+                </div>
+            `;
+            document.getElementById('new-section-tests').insertAdjacentHTML('beforeend', newTestHTML);
+        }
+
+        function removeNewTest(element) {
+            element.parentElement.remove();
+        }
+
+        function saveNewSection() {
+            const sectionName = document.getElementById('new-section-name').value.trim();
+            const sectionIcon = document.getElementById('new-section-icon').value;
+            
+            if (!sectionName) {
+                alert('يرجى إدخال اسم للقسم الجديد.');
+                return;
+            }
+            
+            const sectionId = 'customSection_' + Date.now();
+            const testInputs = document.querySelectorAll('#new-section-tests .test-item');
+            const tests = [];
+            
+            testInputs.forEach(testItem => {
+                const nameInput = testItem.querySelector('.test-name-input');
+                const rangeInput = testItem.querySelector('.test-range-input');
+                
+                if (nameInput.value.trim() && rangeInput.value.trim()) {
+                    tests.push({
+                        name: nameInput.value.trim(),
+                        range: rangeInput.value.trim()
+                    });
+                }
+            });
+            
+            if (tests.length === 0) {
+                alert('يرجى إدخال تحليل واحد على الأقل للقسم الجديد.');
+                return;
+            }
+            
+            let customSections = JSON.parse(localStorage.getItem('customSections')) || {};
+            customSections[sectionId] = {
+                name: sectionName,
+                icon: sectionIcon,
+                tests: tests
+            };
+            localStorage.setItem('customSections', JSON.stringify(customSections));
+            
+            loadLabStructure();
+            
+            document.getElementById('new-section-name').value = '';
+            document.getElementById('new-section-tests').innerHTML = `
+                <div class="test-item">
+                    <input type="text" class="form-input test-name-input" placeholder="اسم التحليل">
+                    <input type="text" class="form-input test-range-input" placeholder="النطاق الطبيعي">
+                    <span class="remove-test" onclick="removeNewTest(this)">×</span>
+                </div>
+            `;
+            
+            alert('تم إضافة القسم الجديد بنجاح!');
+            closeAddSectionModal();
+        }
+
+        function populateExistingSections() {
+            const existingSectionsSelect = document.getElementById('existing-sections');
+            existingSectionsSelect.innerHTML = '<option value="">اختر قسم...</option>';
+            
+            labStructure.forEach(section => {
+                const option = document.createElement('option');
+                option.value = section.id;
+                option.textContent = section.title;
+                existingSectionsSelect.appendChild(option);
+            });
+        }
+
+        function saveNewTest() {
+            const sectionId = document.getElementById('existing-sections').value;
+            const testName = document.getElementById('new-test-name').value.trim();
+            const testRange = document.getElementById('new-test-range').value.trim();
+            
+            if (!sectionId || !testName || !testRange) {
+                alert('يرجى إدخال اسم القسم واسم التحليل والنطاق الطبيعي.');
+                return;
+            }
+            
+            let customTests = JSON.parse(localStorage.getItem('customTests')) || {};
+            if (!customTests[sectionId]) {
+                customTests[sectionId] = [];
+            }
+            customTests[sectionId].push({ name: testName, range: testRange });
+            localStorage.setItem('customTests', JSON.stringify(customTests));
+            
+            loadLabStructure();
+            
+            document.getElementById('new-test-name').value = '';
+            document.getElementById('new-test-range').value = '';
+            
+            alert('تم إضافة التحليل الجديد بنجاح!');
+        }
+
+        // دوال إدارة بيانات المريض
+        function savePatientData() {
+            const patientName = document.getElementById('patientName').value.trim();
+            if (!patientName) {
+                alert('يرجى إدخال اسم المريض أولاً.');
+                return;
+            }
+
+            if (!db) {
+                alert('قاعدة البيانات غير جاهزة. يرجى المحاولة مرة أخرى.');
+                return;
+            }
+
+            const transaction = db.transaction([STORE_NAME], 'readwrite');
+            const store = transaction.objectStore(STORE_NAME);
+
+            const patientData = {
+                patientName: patientName,
+                patientAge: document.getElementById('patientAge').value,
+                patientGender: document.getElementById('patientGender').value,
+                currentDate: document.getElementById('currentDate').value,
+                doctorName: document.getElementById('doctorName').value,
+                examinerName: document.getElementById('examinerName').value,
+                biologistSignature: document.getElementById('biologistSignature').value,
+                issueDate: document.getElementById('issueDate').value,
+                tests: {}
+            };
+
+            const allSections = document.querySelectorAll('.section');
+            allSections.forEach(section => {
+                const sectionId = section.id;
+                patientData.tests[sectionId] = {};
+                
+                const rows = section.querySelectorAll('tr');
+                rows.forEach(row => {
+                    const testNameElement = row.querySelector('.test-name');
+                    const resultInput = row.querySelector('.result-input, .result-select');
+
+                    if (testNameElement && resultInput) {
+                        const testName = testNameElement.textContent.trim();
+                        const resultValue = resultInput.value.trim();
+                        if (resultValue) {
+                            patientData.tests[sectionId][testName] = resultValue;
+                        }
+                    }
+                });
+            });
+
+            const request = store.put(patientData);
+
+            request.onsuccess = () => {
+                alert('تم حفظ بيانات المريض بنجاح!');
+            };
+
+            request.onerror = (event) => {
+                console.error("خطأ في الحفظ:", event.target.error);
+                alert('فشل في حفظ البيانات. يرجى المحاولة مرة أخرى.');
+            };
+        }
+
+        function loadPatientData() {
+            document.getElementById('searchModal').style.display = 'block';
+        }
+
+        function searchPatientData() {
+            const patientName = document.getElementById('searchPatientName').value.trim();
+            if (!patientName) {
+                alert('يرجى إدخال اسم المريض للبحث.');
+                return;
+            }
+
+            if (!db) {
+                alert('قاعدة البيانات غير جاهزة.');
+                return;
+            }
+
+            const transaction = db.transaction([STORE_NAME], 'readonly');
+            const store = transaction.objectStore(STORE_NAME);
+            const request = store.get(patientName);
+
+            request.onsuccess = (event) => {
+                const patientData = event.target.result;
+                if (patientData) {
+                    document.getElementById('patientName').value = patientData.patientName || '';
+                    document.getElementById('patientAge').value = patientData.patientAge || '';
+                    document.getElementById('patientGender').value = patientData.patientGender || '';
+                    document.getElementById('currentDate').value = patientData.currentDate || '';
+                    document.getElementById('doctorName').value = patientData.doctorName || '';
+                    document.getElementById('examinerName').value = patientData.examinerName || '';
+                    document.getElementById('biologistSignature').value = patientData.biologistSignature || '';
+                    document.getElementById('issueDate').value = patientData.issueDate || '';
+
+                    // مسح جميع النتائج أولاً
+                    document.querySelectorAll('.result-input, .result-select').forEach(input => {
+                        input.value = '';
+                    });
+                    
+                    // استعادة النتائج
+                    for (const sectionId in patientData.tests) {
+                        const tests = patientData.tests[sectionId];
+                        for (const testName in tests) {
+                            const testRows = document.querySelectorAll('#' + sectionId + ' .test-name');
+                            for (let row of testRows) {
+                                if (row.textContent.trim() === testName) {
+                                    const input = row.closest('tr').querySelector('.result-input, .result-select');
+                                    if (input) {
+                                        input.value = tests[testName];
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    alert('تم استعادة بيانات المريض بنجاح!');
+                    closeSearchModal();
+                } else {
+                    alert('لم يتم العثور على بيانات لهذا المريض.');
+                }
+            };
+
+            request.onerror = (event) => {
+                console.error("خطأ في الاستعادة:", event.target.error);
+                alert('فشل في استعادة البيانات.');
+            };
+        }
+
+        function closeSearchModal() {
+            document.getElementById('searchModal').style.display = 'none';
+            document.getElementById('searchPatientName').value = '';
+        }
+
+        // دوال العرض والطباعة
+        function setCurrentDate() {
+            const now = new Date();
+            const options = { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                weekday: 'long'
+            };
+            const dateString = now.toLocaleDateString('ar-SA', options);
+            document.getElementById('currentDate').value = dateString;
+            document.getElementById('issueDate').value = dateString;
+        }
+
+        function showSelectedSection() {
+            const sections = document.querySelectorAll('.section');
+            const selectedSectionId = document.getElementById('test-select').value;
+            sections.forEach(section => {
+                if (section.id === selectedSectionId) {
+                    section.classList.add('active');
+                } else {
+                    section.classList.remove('active');
+                }
+            });
+        }
+
+        function clearAllFields() {
+            if(confirm('هل أنت متأكد من مسح جميع الحقول؟')) {
+                const inputs = document.querySelectorAll('input[type="text"], input[type="number"]');
+                inputs.forEach(input => {
+                    if (input.id !== 'currentDate' && input.id !== 'issueDate') {
+                        input.value = '';
+                    }
+                });
+                
+                const selects = document.querySelectorAll('select');
+                selects.forEach(select => {
+                    select.selectedIndex = 0;
+                });
+                
+                setCurrentDate();
+                showSelectedSection();
+                alert('تم مسح جميع الحقول بنجاح!');
+            }
+        }
+
+        function prepareForPrint() {
+            // إظهار جميع الأقسام للطباعة
+            const allSections = document.querySelectorAll('.section');
+            allSections.forEach(section => {
+                section.classList.add('active');
+            });
+
+            // إخفاء الصفوف الفارغة
+            const allResultInputs = document.querySelectorAll('.result-input, .result-select');
+            allResultInputs.forEach(input => {
+                const row = input.closest('tr');
+                if ((input.value.trim() === '' || (input.tagName === 'SELECT' && input.selectedIndex === 0)) && row) {
+                    row.classList.add('no-print-row');
+                } else {
+                    row.classList.remove('no-print-row');
+                }
+            });
+            
+            // إخفاء معلومات المريض الفارغة
+            const patientInfoInputs = document.querySelectorAll('#patientInfoSection .editable-field');
+            patientInfoInputs.forEach(input => {
+                const infoItem = input.closest('.info-item');
+                if (input.value.trim() === '' && infoItem) {
+                    infoItem.classList.add('no-print-item');
+                } else {
+                    infoItem.classList.remove('no-print-item');
+                }
+            });
+            
+            // إخفاء الأقسام الفارغة بالكامل
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                const inputsInSection = section.querySelectorAll('input, select');
+                let hasValue = false;
+                
+                inputsInSection.forEach(input => {
+                    if (input.value.trim() !== '' || (input.tagName === 'SELECT' && input.selectedIndex > 0)) {
+                        hasValue = true;
+                    }
+                });
+                
+                if (!hasValue) {
+                    section.classList.add('no-print-section');
+                } else {
+                    section.classList.remove('no-print-section');
+                }
+            });
+        }
+
+        function restoreAfterPrint() {
+            const hiddenElements = document.querySelectorAll('.no-print-row, .no-print-item, .no-print-section');
+            hiddenElements.forEach(element => {
+                element.classList.remove('no-print-row', 'no-print-item', 'no-print-section');
             });
             showSelectedSection();
         }
 
-        // باقي الدوال كما هي مع ضمان عملها بشكل صحيح (تم تصحيح أي أخطاء محتملة في التنفيذ)
-        // مثل initDb، savePatientData، loadPatientData، إلخ.
+        function printPage() {
+            if (!document.getElementById('patientName').value.trim()) {
+                alert('يرجى إدخال اسم المريض قبل الطباعة.');
+                return;
+            }
+            prepareForPrint();
+            window.print();
+        }
 
+        // إضافة مستمع للطباعة
+        if (window.matchMedia) {
+            const mediaQueryList = window.matchMedia('print');
+            mediaQueryList.addListener(function(mql) {
+                if (!mql.matches) {
+                    restoreAfterPrint();
+                }
+            });
+        } else {
+            window.onafterprint = restoreAfterPrint;
+        }
+
+        // إضافة مستمعين للنوافذ المنبثقة
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+
+        // تهيئة الصفحة
         document.addEventListener('DOMContentLoaded', function() {
             setCurrentDate();
             initDb();
             loadLabStructure();
             applySettings();
+        });
+
+        // إضافة مستمع للخروج من النوافذ المنبثقة باستخدام ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (modal.style.display === 'block') {
+                        modal.style.display = 'none';
+                    }
+                });
+                const settingsPanel = document.getElementById('settingsPanel');
+                if (settingsPanel.style.display === 'block') {
+                    toggleSettings();
+                }
+            }
         });
     </script>
 </body>
