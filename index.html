@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Scheherazade:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --header-color: #2c7da0;
@@ -22,6 +25,17 @@
             --result-font-color: #333333;
             --range-font-color: #b90f0f;
             --footer-font-color: #ffffff;
+            --patient-info-bg: #c11717;
+            --header-bg: #ffffff;
+            --table-border-width: 1px;
+            --table-border-color: #ddd;
+            --main-font: 'Cairo', sans-serif;
+            --title-font: 'Amiri', serif;
+            --subtitle-font: 'Cairo', sans-serif;
+            --test-font: 'Cairo', sans-serif;
+            --result-font: 'Cairo', sans-serif;
+            --range-font: 'Cairo', sans-serif;
+            --footer-font: 'Cairo', sans-serif;
         }
 
         * {
@@ -31,7 +45,7 @@
         }
 
         body {
-            font-family: 'Cairo', sans-serif;
+            font-family: var(--main-font);
             line-height: 1.6;
             color: #333;
             background-color: var(--background-color);
@@ -58,6 +72,7 @@
             padding-bottom: 15px;
             border-bottom: 2px solid var(--button-color);
             display: table-header-group;
+            background-color: var(--header-bg);
         }
 
         .logo-container {
@@ -89,12 +104,13 @@
             font-size: var(--title-font-size);
             font-weight: bolder;
             margin-bottom: 5px;
-            font-family: 'Amiri', serif;
+            font-family: var(--title-font);
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
             letter-spacing: 2px;
             background-color: darkslategrey;
         }
-          .header h6 {
+
+        .header .doctor-name {
             text-align: center;
             background-color: #053e6d;
             color: #11be65;
@@ -103,6 +119,10 @@
             margin-bottom: 5px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
             letter-spacing: 2px;
+            border: 1px solid #ddd;
+            padding: 5px;
+            border-radius: 4px;
+            font-family: var(--subtitle-font);
         }
 
         .patient-info {
@@ -114,7 +134,7 @@
             padding: 15px;
             border: 1px solid #ddd;
             border-radius: 8px;
-            background-color: #c11717;
+            background-color: var(--patient-info-bg);
         }
 
         .info-item {
@@ -127,6 +147,7 @@
         .info-label {
             font-weight: bold;
             color: var(--header-color);
+            font-family: var(--main-font);
         }
 
         .editable-field {
@@ -138,7 +159,7 @@
             min-width: 120px;
             text-align: right;
             background-color: white;
-            font-family: 'Cairo', sans-serif;
+            font-family: var(--main-font);
         }
 
         .editable-field:focus {
@@ -157,7 +178,7 @@
 
         .section {
             margin-bottom: 15px;
-            border: 1px solid #e0e0e0;
+            border: var(--table-border-width) solid #e0e0e0;
             border-radius: 8px;
             overflow: hidden;
             background-color: #fff;
@@ -179,6 +200,7 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            font-family: var(--subtitle-font);
         }
 
         table {
@@ -189,7 +211,7 @@
         }
 
         th, td {
-            border: 1px solid #ddd;
+            border: var(--table-border-width) solid var(--table-border-color);
             padding: 8px 6px;
             text-align: center;
         }
@@ -198,6 +220,7 @@
             background-color: #f2f2f2;
             font-weight: bold;
             color: var(--header-color);
+            font-family: var(--subtitle-font);
         }
 
         .test-name {
@@ -207,6 +230,7 @@
             text-align: left;
             padding-left: 10px;
             color: var(--test-name-font-color);
+            font-family: var(--test-font);
         }
 
         .normal-range {
@@ -214,6 +238,7 @@
             font-weight: bold;
             color: var(--range-font-color);
             direction: ltr;
+            font-family: var(--range-font);
         }
 
         .result-input {
@@ -222,7 +247,7 @@
             padding: 5px;
             border-radius: 4px;
             text-align: center;
-            font-family: 'Cairo', sans-serif;
+            font-family: var(--result-font);
             background-color: #f9f9f9;
             font-size: var(--result-font-size);
             font-weight: bolder;
@@ -242,7 +267,7 @@
             padding: 5px;
             border-radius: 4px;
             text-align: center;
-            font-family: 'Cairo', sans-serif;
+            font-family: var(--result-font);
             background-color: #f9f9f9;
             font-size: 13px;
             cursor: pointer;
@@ -263,6 +288,7 @@
             border-top: 2px solid var(--button-color);
             color: #666;
             font-size: 14px;
+            font-family: var(--footer-font);
         }
 
         .signature-area {
@@ -279,6 +305,7 @@
             padding-top: 5px;
             text-align: center;
             font-size: 14px;
+            font-family: var(--main-font);
         }
 
         .signature-input {
@@ -286,7 +313,7 @@
             border-bottom: 1px dashed #333;
             padding: 3px;
             text-align: center;
-            font-family: 'Cairo', sans-serif;
+            font-family: var(--main-font);
             width: 100%;
             margin-top: 3px;
             font-size: 13px;
@@ -310,6 +337,7 @@
             align-items: center;
             gap: 8px;
             transition: all 0.3s ease;
+            font-family: var(--main-font);
         }
 
         .btn-print {
@@ -348,7 +376,7 @@
             padding: 15px;
             text-align: center;
             border-top: 2px solid var(--button-color);
-            font-family: 'Cairo', sans-serif;
+            font-family: var(--footer-font);
             color: var(--footer-font-color);
             font-size: var(--footer-font-size);
             position: running(footer);
@@ -371,6 +399,7 @@
             font-weight: bold;
             color: var(--footer-font-color);
             margin-bottom: 5px;
+            font-family: var(--title-font);
         }
 
         .test-selection {
@@ -382,6 +411,7 @@
             font-weight: bold;
             color: var(--header-color);
             flex-wrap: wrap;
+            font-family: var(--main-font);
         }
 
         .test-selection label {
@@ -392,7 +422,7 @@
             padding: 8px 12px;
             border: 1px solid var(--button-color);
             border-radius: 8px;
-            font-family: 'Cairo', sans-serif;
+            font-family: var(--main-font);
             font-size: 14px;
             cursor: pointer;
             background-color: #f9f9f9;
@@ -415,6 +445,7 @@
             z-index: -1;
             font-weight: bold;
             white-space: nowrap;
+            font-family: var(--title-font);
         }
 
         .examiner-name {
@@ -426,6 +457,7 @@
             border-top: 1px solid #ddd;
             font-weight: bold;
             direction: ltr;
+            font-family: var(--main-font);
         }
 
         .examiner-input {
@@ -433,7 +465,7 @@
             padding: 5px 10px;
             border-radius: 4px;
             text-align: left;
-            font-family: 'Cairo', sans-serif;
+            font-family: var(--main-font);
             width: 200px;
             background-color: white;
         }
@@ -445,6 +477,7 @@
             font-weight: bold;
             border-bottom: 1px solid #ddd;
             direction: ltr;
+            font-family: var(--subtitle-font);
         }
 
         .modal {
@@ -489,7 +522,7 @@
             padding: 8px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            font-family: 'Cairo', sans-serif;
+            font-family: var(--main-font);
         }
 
         .range-management {
@@ -506,6 +539,7 @@
             border: 1px solid #ddd;
             padding: 8px;
             text-align: center;
+            font-family: var(--main-font);
         }
 
         .range-table th {
@@ -523,7 +557,7 @@
             display: flex;
             align-items: center;
             gap: 5px;
-            font-family: 'Cairo', sans-serif;
+            font-family: var(--main-font);
         }
 
         .add-section-btn {
@@ -537,7 +571,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            font-family: 'Cairo', sans-serif;
+            font-family: var(--main-font);
             font-weight: bold;
         }
 
@@ -575,6 +609,7 @@
             flex: 1;
             text-align: center;
             transition: all 0.3s ease;
+            font-family: var(--main-font);
         }
 
         .modal-tab.active {
@@ -617,7 +652,7 @@
             padding: 8px 12px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            font-family: 'Cairo', sans-serif;
+            font-family: var(--main-font);
         }
 
         .test-list {
@@ -689,6 +724,7 @@
         .settings-group h3 {
             margin-bottom: 10px;
             color: var(--header-color);
+            font-family: var(--title-font);
         }
 
         .color-picker {
@@ -717,7 +753,16 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             margin-bottom: 8px;
-            font-family: 'Cairo', sans-serif;
+            font-family: var(--main-font);
+        }
+
+        .settings-select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 8px;
+            font-family: var(--main-font);
         }
 
         .settings-btn {
@@ -729,7 +774,7 @@
             cursor: pointer;
             width: 100%;
             margin-top: 10px;
-            font-family: 'Cairo', sans-serif;
+            font-family: var(--main-font);
         }
 
         .font-size-picker {
@@ -744,6 +789,25 @@
         }
         
         .font-size-input {
+            width: 60px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .border-picker {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .border-picker label {
+            min-width: 120px;
+        }
+
+        .border-width-input {
             width: 60px;
             padding: 5px;
             border: 1px solid #ddd;
@@ -770,7 +834,7 @@
             cursor: pointer;
             width: 100%;
             margin-top: 5px;
-            font-family: 'Cairo', sans-serif;
+            font-family: var(--main-font);
         }
 
         .filled-tests {
@@ -783,6 +847,7 @@
             background-color: #e8f5e8;
             border-radius: 5px;
             border-left: 4px solid var(--button-color);
+            font-family: var(--main-font);
         }
 
         .no-print-row, .no-print-item, .no-print-section {
@@ -836,7 +901,7 @@
             .section {
                 display: block;
                 page-break-inside: avoid;
-                border: 1px solid #ddd;
+                border: var(--table-border-width) solid #ddd;
                 margin-bottom: 10px;
             }
 
@@ -845,12 +910,14 @@
                 margin-bottom: 10px;
                 padding-bottom: 10px;
                 display: table-header-group;
+                background-color: var(--header-bg);
             }
 
             .patient-info {
                 border: 1px solid #ddd;
                 margin-bottom: 10px;
                 padding: 10px;
+                background-color: var(--patient-info-bg);
             }
 
             .logo {
@@ -896,6 +963,7 @@
 
             th, td {
                 padding: 5px 4px;
+                border: var(--table-border-width) solid var(--table-border-color);
             }
 
             .test-name {
@@ -989,6 +1057,8 @@
             <input type="text" id="labAddressInput" class="settings-input" placeholder="العنوان">
             <input type="text" id="labPhoneInput" class="settings-input" placeholder="رقم الهاتف">
             <input type="text" id="biologistNameInput" class="settings-input" placeholder="اسم البايلوجي">
+            <input type="text" id="doctor1Name" class="settings-input" placeholder="اسم الدكتور الأول">
+            <input type="text" id="doctor2Name" class="settings-input" placeholder="اسم الدكتور الثاني">
         </div>
         
         <div class="settings-group">
@@ -1016,6 +1086,18 @@
             <div class="color-picker">
                 <label>لون الأزرار:</label>
                 <input type="color" id="buttonColor" class="color-input" value="#4CAF50">
+            </div>
+            <div class="color-picker">
+                <label>لون خلفية معلومات المريض:</label>
+                <input type="color" id="patientInfoBg" class="color-input" value="#c11717">
+            </div>
+            <div class="color-picker">
+                <label>لون خلفية الرأس:</label>
+                <input type="color" id="headerBg" class="color-input" value="#ffffff">
+            </div>
+            <div class="color-picker">
+                <label>لون حدود الجدول:</label>
+                <input type="color" id="tableBorderColor" class="color-input" value="#ddd">
             </div>
         </div>
         
@@ -1067,6 +1149,88 @@
             </div>
         </div>
         
+        <div class="settings-group">
+            <h3>تغيير أنواع الخطوط</h3>
+            <div class="font-picker">
+                <label>الخط الرئيسي:</label>
+                <select id="mainFont" class="settings-select">
+                    <option value="'Cairo', sans-serif">Cairo</option>
+                    <option value="'Amiri', serif">Amiri</option>
+                    <option value="'Tajawal', sans-serif">Tajawal</option>
+                    <option value="'Scheherazade', serif">Scheherazade</option>
+                    <option value="'Noto Naskh Arabic', serif">Noto Naskh Arabic</option>
+                </select>
+            </div>
+            <div class="font-picker">
+                <label>خط العنوان:</label>
+                <select id="titleFont" class="settings-select">
+                    <option value="'Amiri', serif">Amiri</option>
+                    <option value="'Cairo', sans-serif">Cairo</option>
+                    <option value="'Tajawal', sans-serif">Tajawal</option>
+                    <option value="'Scheherazade', serif">Scheherazade</option>
+                    <option value="'Noto Naskh Arabic', serif">Noto Naskh Arabic</option>
+                </select>
+            </div>
+            <div class="font-picker">
+                <label>خط العناوين الفرعية:</label>
+                <select id="subtitleFont" class="settings-select">
+                    <option value="'Cairo', sans-serif">Cairo</option>
+                    <option value="'Amiri', serif">Amiri</option>
+                    <option value="'Tajawal', sans-serif">Tajawal</option>
+                    <option value="'Scheherazade', serif">Scheherazade</option>
+                    <option value="'Noto Naskh Arabic', serif">Noto Naskh Arabic</option>
+                </select>
+            </div>
+            <div class="font-picker">
+                <label>خط أسماء التحاليل:</label>
+                <select id="testFont" class="settings-select">
+                    <option value="'Cairo', sans-serif">Cairo</option>
+                    <option value="'Amiri', serif">Amiri</option>
+                    <option value="'Tajawal', sans-serif">Tajawal</option>
+                    <option value="'Scheherazade', serif">Scheherazade</option>
+                    <option value="'Noto Naskh Arabic', serif">Noto Naskh Arabic</option>
+                </select>
+            </div>
+            <div class="font-picker">
+                <label>خط النتائج:</label>
+                <select id="resultFont" class="settings-select">
+                    <option value="'Cairo', sans-serif">Cairo</option>
+                    <option value="'Amiri', serif">Amiri</option>
+                    <option value="'Tajawal', sans-serif">Tajawal</option>
+                    <option value="'Scheherazade', serif">Scheherazade</option>
+                    <option value="'Noto Naskh Arabic', serif">Noto Naskh Arabic</option>
+                </select>
+            </div>
+            <div class="font-picker">
+                <label>خط النطاقات:</label>
+                <select id="rangeFont" class="settings-select">
+                    <option value="'Cairo', sans-serif">Cairo</option>
+                    <option value="'Amiri', serif">Amiri</option>
+                    <option value="'Tajawal', sans-serif">Tajawal</option>
+                    <option value="'Scheherazade', serif">Scheherazade</option>
+                    <option value="'Noto Naskh Arabic', serif">Noto Naskh Arabic</option>
+                </select>
+            </div>
+            <div class="font-picker">
+                <label>خط التذييل:</label>
+                <select id="footerFont" class="settings-select">
+                    <option value="'Cairo', sans-serif">Cairo</option>
+                    <option value="'Amiri', serif">Amiri</option>
+                    <option value="'Tajawal', sans-serif">Tajawal</option>
+                    <option value="'Scheherazade', serif">Scheherazade</option>
+                    <option value="'Noto Naskh Arabic', serif">Noto Naskh Arabic</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="settings-group">
+            <h3>تغيير سمك حدود الجدول</h3>
+            <div class="border-picker">
+                <label>سمك الحدود:</label>
+                <input type="number" id="tableBorderWidth" class="border-width-input" value="1" min="1" max="5"> px
+            </div>
+        </div>
+        
         <button class="settings-btn" onclick="saveSettings()">حفظ الإعدادات</button>
         <button class="settings-btn" onclick="resetSettings()" style="background: #f44336;">إعادة الضبط</button>
         <button class="settings-btn" onclick="toggleSettings()">إغلاق</button>
@@ -1082,9 +1246,8 @@
                 </div>
                 <div class="header-text">
                     <h1 id="labTitle">مختبر الكرخ التعاوني</h1>
-                 <h6>الأستاذالدكتورة مي خليل إسماعيل اختصاص المناعةالسريرية</h6>
-                 <h6>الأستاذ الدكتورة ليلى فؤاد علي اختصاص الاحياء المجهرية</h6>
-
+                    <div class="doctor-name" id="doctor1">الأستاذالدكتورة مي خليل إسماعيل اختصاص المناعةالسريرية</div>
+                    <div class="doctor-name" id="doctor2">الأستاذ الدكتورة ليلى فؤاد علي اختصاص الاحياء المجهرية</div>
                 </div>
             </div>
         </div>
@@ -1146,7 +1309,23 @@
             <!-- سيتم إضافة الأقسام ديناميكيًا بواسطة JavaScript -->
         </div>
         
-       
+        <div class="footer">
+            <div class="signature-area">
+                <div class="signature-box">
+                    <div>اسم المحلل</div>
+                    <input type="text" class="signature-input" id="examinerName" placeholder="اسم المحلل">
+                </div>
+                <div class="signature-box">
+                    <div>توقيع البايولوجي</div>
+                    <input type="text" class="signature-input" id="biologistSignature" placeholder="توقيع البايولوجي">
+                </div>
+                <div class="signature-box">
+                    <div>تاريخ الإصدار</div>
+                    <input type="text" class="signature-input" id="issueDate" placeholder="التاريخ">
+                </div>
+            </div>
+        </div>
+    </div>
     
     <div id="addSectionModal" class="modal">
         <div class="modal-content">
@@ -1568,7 +1747,7 @@
                     "Ova/Parasite": "Nil", 
                     "WBC": "/hpf (Nil)", 
                     "RBC": "/hpf (Nil)", 
-                    "Fat Globules": "/hpf (Nil)", 
+                                        "Fat Globules": "/hpf (Nil)", 
                     "Starch Granules": "Nil", 
                     "Undigested Muscle Fibers": "Nil", 
                     "Yeast Cells": "Nil", 
@@ -1658,10 +1837,15 @@
             document.getElementById('labAddressInput').value = localStorage.getItem('labAddress') || 'بغداد الكرخ الرحمانية شارع الشيخ معروف قرب جامع حداد';
             document.getElementById('labPhoneInput').value = localStorage.getItem('labPhone') || '07901821264';
             document.getElementById('biologistNameInput').value = localStorage.getItem('biologistName') || 'شكراً لزيارتكم';
+            document.getElementById('doctor1Name').value = localStorage.getItem('doctor1Name') || 'الأستاذالدكتورة مي خليل إسماعيل اختصاص المناعةالسريرية';
+            document.getElementById('doctor2Name').value = localStorage.getItem('doctor2Name') || 'الأستاذ الدكتورة ليلى فؤاد علي اختصاص الاحياء المجهرية';
 
             document.getElementById('headerColor').value = localStorage.getItem('headerColor') || '#2c7da0';
             document.getElementById('backgroundColor').value = localStorage.getItem('backgroundColor') || '#f5f7fa';
             document.getElementById('buttonColor').value = localStorage.getItem('buttonColor') || '#4CAF50';
+            document.getElementById('patientInfoBg').value = localStorage.getItem('patientInfoBg') || '#c11717';
+            document.getElementById('headerBg').value = localStorage.getItem('headerBg') || '#ffffff';
+            document.getElementById('tableBorderColor').value = localStorage.getItem('tableBorderColor') || '#ddd';
 
             const savedLogo = localStorage.getItem('labLogo');
             if (savedLogo) {
@@ -1674,12 +1858,21 @@
             document.getElementById('resultFontSize').value = localStorage.getItem('resultFontSize') || '16';
             document.getElementById('rangeFontSize').value = localStorage.getItem('rangeFontSize') || '16';
             document.getElementById('footerFontSize').value = localStorage.getItem('footerFontSize') || '14';
+            document.getElementById('tableBorderWidth').value = localStorage.getItem('tableBorderWidth') || '1';
 
             document.getElementById('titleFontColor').value = localStorage.getItem('titleFontColor') || '#2c7da0';
             document.getElementById('testNameFontColor').value = localStorage.getItem('testNameFontColor') || '#333333';
             document.getElementById('resultFontColor').value = localStorage.getItem('resultFontColor') || '#333333';
             document.getElementById('rangeFontColor').value = localStorage.getItem('rangeFontColor') || '#b90f0f';
             document.getElementById('footerFontColor').value = localStorage.getItem('footerFontColor') || '#ffffff';
+
+            document.getElementById('mainFont').value = localStorage.getItem('mainFont') || "'Cairo', sans-serif";
+            document.getElementById('titleFont').value = localStorage.getItem('titleFont') || "'Amiri', serif";
+            document.getElementById('subtitleFont').value = localStorage.getItem('subtitleFont') || "'Cairo', sans-serif";
+            document.getElementById('testFont').value = localStorage.getItem('testFont') || "'Cairo', sans-serif";
+            document.getElementById('resultFont').value = localStorage.getItem('resultFont') || "'Cairo', sans-serif";
+            document.getElementById('rangeFont').value = localStorage.getItem('rangeFont') || "'Cairo', sans-serif";
+            document.getElementById('footerFont').value = localStorage.getItem('footerFont') || "'Cairo', sans-serif";
         }
 
         function saveSettings() {
@@ -1687,10 +1880,15 @@
             localStorage.setItem('labAddress', document.getElementById('labAddressInput').value);
             localStorage.setItem('labPhone', document.getElementById('labPhoneInput').value);
             localStorage.setItem('biologistName', document.getElementById('biologistNameInput').value);
+            localStorage.setItem('doctor1Name', document.getElementById('doctor1Name').value);
+            localStorage.setItem('doctor2Name', document.getElementById('doctor2Name').value);
 
             localStorage.setItem('headerColor', document.getElementById('headerColor').value);
             localStorage.setItem('backgroundColor', document.getElementById('backgroundColor').value);
             localStorage.setItem('buttonColor', document.getElementById('buttonColor').value);
+            localStorage.setItem('patientInfoBg', document.getElementById('patientInfoBg').value);
+            localStorage.setItem('headerBg', document.getElementById('headerBg').value);
+            localStorage.setItem('tableBorderColor', document.getElementById('tableBorderColor').value);
 
             const logoPreview = document.getElementById('logoPreview');
             if (logoPreview.src && logoPreview.src !== '') {
@@ -1704,12 +1902,21 @@
             localStorage.setItem('resultFontSize', document.getElementById('resultFontSize').value);
             localStorage.setItem('rangeFontSize', document.getElementById('rangeFontSize').value);
             localStorage.setItem('footerFontSize', document.getElementById('footerFontSize').value);
+            localStorage.setItem('tableBorderWidth', document.getElementById('tableBorderWidth').value);
 
             localStorage.setItem('titleFontColor', document.getElementById('titleFontColor').value);
             localStorage.setItem('testNameFontColor', document.getElementById('testNameFontColor').value);
             localStorage.setItem('resultFontColor', document.getElementById('resultFontColor').value);
             localStorage.setItem('rangeFontColor', document.getElementById('rangeFontColor').value);
             localStorage.setItem('footerFontColor', document.getElementById('footerFontColor').value);
+
+            localStorage.setItem('mainFont', document.getElementById('mainFont').value);
+            localStorage.setItem('titleFont', document.getElementById('titleFont').value);
+            localStorage.setItem('subtitleFont', document.getElementById('subtitleFont').value);
+            localStorage.setItem('testFont', document.getElementById('testFont').value);
+            localStorage.setItem('resultFont', document.getElementById('resultFont').value);
+            localStorage.setItem('rangeFont', document.getElementById('rangeFont').value);
+            localStorage.setItem('footerFont', document.getElementById('footerFont').value);
 
             applySettings();
             toggleSettings();
@@ -1731,6 +1938,8 @@
             const labAddress = localStorage.getItem('labAddress') || 'بغداد الكرخ الرحمانية شارع الشيخ معروف قرب جامع حداد';
             const labPhone = localStorage.getItem('labPhone') || '07901821264';
             const biologistName = localStorage.getItem('biologistName') || 'شكراً لزيارتكم';
+            const doctor1Name = localStorage.getItem('doctor1Name') || 'الأستاذالدكتورة مي خليل إسماعيل اختصاص المناعةالسريرية';
+            const doctor2Name = localStorage.getItem('doctor2Name') || 'الأستاذ الدكتورة ليلى فؤاد علي اختصاص الاحياء المجهرية';
 
             document.getElementById('watermark').textContent = labName;
             document.getElementById('labTitle').textContent = labName;
@@ -1738,6 +1947,8 @@
             document.getElementById('biologistName').textContent = biologistName;
             document.getElementById('labAddress').textContent = labAddress;
             document.getElementById('labPhone').textContent = labPhone;
+            document.getElementById('doctor1').textContent = doctor1Name;
+            document.getElementById('doctor2').textContent = doctor2Name;
 
             const savedLogo = localStorage.getItem('labLogo');
             const logoElement = document.getElementById('labLogo');
@@ -1750,16 +1961,30 @@
             document.documentElement.style.setProperty('--header-color', localStorage.getItem('headerColor') || '#2c7da0');
             document.documentElement.style.setProperty('--background-color', localStorage.getItem('backgroundColor') || '#f5f7fa');
             document.documentElement.style.setProperty('--button-color', localStorage.getItem('buttonColor') || '#4CAF50');
+            document.documentElement.style.setProperty('--patient-info-bg', localStorage.getItem('patientInfoBg') || '#c11717');
+            document.documentElement.style.setProperty('--header-bg', localStorage.getItem('headerBg') || '#ffffff');
+            document.documentElement.style.setProperty('--table-border-color', localStorage.getItem('tableBorderColor') || '#ddd');
+            document.documentElement.style.setProperty('--table-border-width', (localStorage.getItem('tableBorderWidth') || '1') + 'px');
+
             document.documentElement.style.setProperty('--title-font-size', (localStorage.getItem('titleFontSize') || '28') + 'px');
             document.documentElement.style.setProperty('--test-name-font-size', (localStorage.getItem('testNameFontSize') || '16') + 'px');
             document.documentElement.style.setProperty('--result-font-size', (localStorage.getItem('resultFontSize') || '16') + 'px');
             document.documentElement.style.setProperty('--range-font-size', (localStorage.getItem('rangeFontSize') || '16') + 'px');
             document.documentElement.style.setProperty('--footer-font-size', (localStorage.getItem('footerFontSize') || '14') + 'px');
+
             document.documentElement.style.setProperty('--title-font-color', localStorage.getItem('titleFontColor') || '#2c7da0');
             document.documentElement.style.setProperty('--test-name-font-color', localStorage.getItem('testNameFontColor') || '#333333');
             document.documentElement.style.setProperty('--result-font-color', localStorage.getItem('resultFontColor') || '#333333');
             document.documentElement.style.setProperty('--range-font-color', localStorage.getItem('rangeFontColor') || '#b90f0f');
             document.documentElement.style.setProperty('--footer-font-color', localStorage.getItem('footerFontColor') || '#ffffff');
+
+            document.documentElement.style.setProperty('--main-font', localStorage.getItem('mainFont') || "'Cairo', sans-serif");
+            document.documentElement.style.setProperty('--title-font', localStorage.getItem('titleFont') || "'Amiri', serif");
+            document.documentElement.style.setProperty('--subtitle-font', localStorage.getItem('subtitleFont') || "'Cairo', sans-serif");
+            document.documentElement.style.setProperty('--test-font', localStorage.getItem('testFont') || "'Cairo', sans-serif");
+            document.documentElement.style.setProperty('--result-font', localStorage.getItem('resultFont') || "'Cairo', sans-serif");
+            document.documentElement.style.setProperty('--range-font', localStorage.getItem('rangeFont') || "'Cairo', sans-serif");
+            document.documentElement.style.setProperty('--footer-font', localStorage.getItem('footerFont') || "'Cairo', sans-serif");
         }
 
         function toggleSettings() {
@@ -1867,7 +2092,7 @@
                                     <td>
                                         <select class="result-select">
                                             <option value="">Select</option>
-                                                                                       <option value="Clear">Clear</option>
+                                            <option value="Clear">Clear</option>
                                             <option value="Slightly Cloudy">Slightly Cloudy</option>
                                             <option value="Cloudy">Cloudy</option>
                                             <option value="Turbid">Turbid</option>
@@ -1941,7 +2166,7 @@
                                             <option value="1+">1+</option>
                                             <option value="2+">2+</option>
                                             <option value="3+">3+</option>
-                                            <option value="4+">4+</option>
+                                                                                        <option value="4+">4+</option>
                                         </select>
                                     </td>
                                     <td class="normal-range">${section.tests["Blood"] || ''}</td>
@@ -2331,7 +2556,7 @@
                                     <td class="test-name">Undigested Muscle Fibers</td>
                                     <td>
                                         <select class="result-select">
-                                            <option value="">Select</option>
+                                                                                        <option value="">Select</option>
                                             <option value="Nil">Nil</option>
                                             <option value="Present">Present</option>
                                         </select>
@@ -2837,7 +3062,17 @@
             };
             const dateString = now.toLocaleDateString('ar-SA', options);
             document.getElementById('currentDate').value = dateString;
-           
+        }
+
+        function setIssueDate() {
+            const now = new Date();
+            const options = { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric'
+            };
+            const dateString = now.toLocaleDateString('ar-SA', options);
+            document.getElementById('issueDate').value = dateString;
         }
 
         function showSelectedSection() {
@@ -2867,6 +3102,7 @@
                 });
                 
                 setCurrentDate();
+                setIssueDate();
                 showSelectedSection();
                 updateFilledTests();
                 alert('تم مسح جميع الحقول بنجاح!');
@@ -3015,6 +3251,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             // تعيين التاريخ الحالي
             setCurrentDate();
+            setIssueDate();
             
             // تهيئة قاعدة البيانات
             initDb();
@@ -3035,5 +3272,4 @@
         });
     </script>
 </body>
-</html> 
-
+</html>
