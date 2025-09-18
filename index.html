@@ -1073,27 +1073,7 @@
             <!-- سيتم إضافة الأقسام ديناميكيًا بواسطة JavaScript -->
         </div>
         
-        <div class="footer">
-            <div class="examiner-name">
-                <span>الفاحص:</span>
-                <input type="text" class="examiner-input" placeholder="اسم الفاحص" id="examinerName">
-            </div>
-            <div class="signature-area">
-                <div class="signature-box">
-                    <div>التوقيع</div>
-                    <input type="text" class="signature-input" placeholder="التوقيع">
-                </div>
-                <div class="signature-box">
-                    <div>البايلوجي</div>
-                    <input type="text" class="signature-input" placeholder="اسم البايلوجي" id="biologistSignature">
-                </div>
-                <div class="signature-box">
-                    <div>تاريخ الإصدار</div>
-                    <input type="text" class="signature-input" id="issueDate">
-                </div>
-            </div>
-        </div>
-    </div>
+     
     
     <div id="addSectionModal" class="modal">
         <div class="modal-content">
@@ -1401,7 +1381,7 @@
                     "hCG": "mIU/ml (Negative in non-pregnant)",
                     "Insulin": "µIU/ml (2-25)", 
                     "C-Peptide": "ng/ml (0.5-2.0)", 
-                    "DHEA-S": "µg/dl                    "DHEA-S": "µg/dl (M: 80-560, F: 35-430)",
+                    "DHEA-S": "µg/dl (M: 80-560, F: 35-430)",
                     "Growth Hormone (GH)": "ng/ml (0-10)", 
                     "IGF-1": "ng/ml (varies by age)", 
                     "Parathyroid Hormone (PTH)": "pg/ml (10-65)"
@@ -2715,7 +2695,6 @@
             };
             const dateString = now.toLocaleDateString('ar-SA', options);
             document.getElementById('currentDate').value = dateString;
-            document.getElementById('issueDate').value = dateString;
         }
 
         function showSelectedSection() {
