@@ -979,6 +979,59 @@
             display: none !important;
         }
 
+        /* New styles for statistics and patients list */
+        .stats-table, .patients-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        .stats-table th, .stats-table td, .patients-table th, .patients-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .stats-table th, .patients-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .delete-btn {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .print-btn {
+            background: var(--button-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .stats-summary {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0;
+            color: var(--header-color);
+        }
+
         @media print {
             @page {
                 size: portrait;
@@ -1148,6 +1201,11 @@
 
             .lab-footer-title {
                 color: #37f740;
+            }
+
+            /* Print styles for stats and patients */
+            .stats-table, .patients-table {
+                font-size: 12px;
             }
         }
 
@@ -1467,6 +1525,12 @@
             <button class="btn btn-manage" onclick="openRangeManager()">
                 <i class="fas fa-cog"></i> إدارة النطاقات
             </button>
+            <button class="btn" onclick="openPasswordModal()" style="background: linear-gradient(135deg, #FF5722 0%, #E64A19 100%);">
+                <i class="fas fa-chart-bar"></i> الإحصائيات
+            </button>
+            <button class="btn" onclick="openPasswordModalForPatients()" style="background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);">
+                <i class="fas fa-users"></i> قائمة المرضى
+            </button>
         </div>
         
         <div class="results-container" id="resultsContainer">
@@ -1624,6 +1688,66 @@
             </div>
         </div>
     </div>
+
+    <!-- Password Modal for Stats and Patients -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePasswordModal()">&times;</span>
+            <h2 style="text-align: center; margin-bottom: 20px;">أدخل رمز الوصول</h2>
+            <input type="password" id="passwordInput" class="password-input" placeholder="أدخل الرمز (100200)" maxlength="6">
+            <button class="btn btn-save" onclick="verifyPassword()" style="width: 100%; margin-top: 10px;">تأكيد</button>
+        </div>
+    </div>
+
+    <!-- Stats Modal -->
+    <div id="statsModal" class="modal">
+        <div class="modal-content" style="max-width: 90%; max-height: 80vh; overflow-y: auto;">
+            <span class="close" onclick="closeStatsModal()">&times;</span>
+            <h2 style="text-align: center; margin-bottom: 20px;">إحصائيات التحاليل الشهرية</h2>
+            <div id="statsSummary" class="stats-summary"></div>
+            <table id="statsTable" class="stats-table">
+                <thead>
+                    <tr>
+                        <th>اسم التحليل</th>
+                        <th>عدد المرات</th>
+                        <th>إجراءات</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="print-btn" onclick="printStats()">طباعة الإحصائيات</button>
+                <button class="btn btn-clear" onclick="clearAllStats()" style="margin-left: 10px;">مسح جميع الإحصائيات</button>
+                <button class="btn btn-clear" onclick="closeStatsModal()" style="margin-left: 10px;">إغلاق</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Patients List Modal -->
+    <div id="patientsModal" class="modal">
+        <div class="modal-content" style="max-width: 90%; max-height: 80vh; overflow-y: auto;">
+            <span class="close" onclick="closePatientsModal()">&times;</span>
+            <h2 style="text-align: center; margin-bottom: 20px;">قائمة المرضى المحفوظين</h2>
+            <table id="patientsTable" class="patients-table">
+                <thead>
+                    <tr>
+                        <th>اسم المريض</th>
+                        <th>العمر</th>
+                        <th>الجنس</th>
+                        <th>تاريخ الإجراء</th>
+                        <th>الطبيب</th>
+                        <th>التحاليل المكتملة</th>
+                        <th>إجراءات</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="print-btn" onclick="printPatientsList()">طباعة القائمة</button>
+                <button class="btn btn-clear" onclick="closePatientsModal()" style="margin-left: 10px;">إغلاق</button>
+            </div>
+        </div>
+    </div>
     
     <div class="lab-footer">
         <div class="lab-footer-content">
@@ -1645,8 +1769,9 @@
     <script>
         // متغيرات قاعدة البيانات
         const DB_NAME = 'LabDatabase';
-        const DB_VERSION = 1;
+        const DB_VERSION = 2; // زيادة الإصدار لإضافة store جديد
         const STORE_NAME = 'patients';
+        const STATS_STORE_NAME = 'statistics';
         let db;
 
         // هيكل المختبر الافتراضي
@@ -1958,6 +2083,10 @@
 
         let labStructure = [];
 
+        // الرمز المطلوب
+        const PASSWORD = '100200';
+        let passwordModalType = ''; // 'stats' or 'patients'
+
         // دوال إدارة الإعدادات
         function handleLogoUpload(event) {
             const file = event.target.files[0];
@@ -2105,7 +2234,6 @@
             document.getElementById('doctor2').textContent = doctor2Name;
 
             const savedLogo = localStorage.getItem('labLogo');
-                        const savedLogo = localStorage.getItem('labLogo');
             const logoElement = document.getElementById('labLogo');
             if (savedLogo) {
                 logoElement.innerHTML = `<img src="${savedLogo}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">`;
@@ -2204,6 +2332,11 @@
                 if (!db.objectStoreNames.contains(STORE_NAME)) {
                     db.createObjectStore(STORE_NAME, { keyPath: 'patientName' });
                 }
+                if (!db.objectStoreNames.contains(STATS_STORE_NAME)) {
+                    const statsStore = db.createObjectStore(STATS_STORE_NAME, { keyPath: 'id', autoIncrement: true });
+                    statsStore.createIndex('date', 'date', { unique: false });
+                    statsStore.createIndex('testName', 'testName', { unique: false });
+                }
             };
             request.onsuccess = (event) => {
                 db = event.target.result;
@@ -2254,7 +2387,7 @@
             if (testData.type === 'text') {
                 return `<input type="text" class="result-input" data-test-name="${testName}" placeholder="أدخل النتيجة">`;
             } else if (testData.type === 'select') {
-                let optionsHTML = '<select class="result-select" data-test-name="${testName}"><option value="">اختر...</option>';
+                let optionsHTML = `<select class="result-select" data-test-name="${testName}"><option value="">اختر...</option>`;
                 if (testData.choices && testData.choices.length > 0) {
                     testData.choices.forEach(choice => {
                         optionsHTML += `<option value="${choice}">${choice}</option>`;
@@ -3343,6 +3476,8 @@
             const request = store.put(patientData);
 
             request.onsuccess = () => {
+                // حفظ الإحصائيات
+                saveStatsForPatient(patientData);
                 alert('تم حفظ بيانات المريض بنجاح!');
             };
 
@@ -3350,6 +3485,28 @@
                 console.error("خطأ في الحفظ:", event.target.error);
                 alert('فشل في حفظ البيانات. يرجى المحاولة مرة أخرى.');
             };
+        }
+
+        // دالة حفظ الإحصائيات
+        function saveStatsForPatient(patientData) {
+            const saveDate = new Date().toISOString();
+            const statsTransaction = db.transaction([STATS_STORE_NAME], 'readwrite');
+            const statsStore = statsTransaction.objectStore(STATS_STORE_NAME);
+
+            let totalTests = 0;
+            for (const sectionId in patientData.tests) {
+                for (const testName in patientData.tests[sectionId]) {
+                    if (patientData.tests[sectionId][testName]) {
+                        const statEntry = {
+                            date: saveDate,
+                            testName: testName,
+                            patientName: patientData.patientName
+                        };
+                        statsStore.add(statEntry);
+                        totalTests++;
+                    }
+                }
+            }
         }
 
         function loadPatientData() {
@@ -3450,6 +3607,213 @@
         function closeSearchModal() {
             document.getElementById('searchModal').style.display = 'none';
             document.getElementById('searchPatientName').value = '';
+        }
+
+        // دوال الإحصائيات والمرضى المحمية بالرمز
+        function openPasswordModal(type = 'stats') {
+            passwordModalType = type;
+            document.getElementById('passwordModal').style.display = 'block';
+        }
+
+        function openPasswordModalForPatients() {
+            openPasswordModal('patients');
+        }
+
+        function closePasswordModal() {
+            document.getElementById('passwordModal').style.display = 'none';
+            document.getElementById('passwordInput').value = '';
+        }
+
+        function verifyPassword() {
+            const input = document.getElementById('passwordInput').value;
+            if (input === PASSWORD) {
+                closePasswordModal();
+                if (passwordModalType === 'stats') {
+                    openStatsModal();
+                } else if (passwordModalType === 'patients') {
+                    openPatientsModal();
+                }
+            } else {
+                alert('رمز خاطئ!');
+                document.getElementById('passwordInput').value = '';
+            }
+        }
+
+        function openStatsModal() {
+            document.getElementById('statsModal').style.display = 'block';
+            loadStats();
+        }
+
+        function closeStatsModal() {
+            document.getElementById('statsModal').style.display = 'none';
+        }
+
+        function loadStats() {
+            if (!db) return;
+
+            const now = new Date();
+            const currentMonth = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0');
+            const firstDay = currentMonth + '-01';
+            const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0).toISOString().split('T')[0];
+
+            const transaction = db.transaction([STATS_STORE_NAME], 'readonly');
+            const store = transaction.objectStore(STATS_STORE_NAME);
+            const index = store.index('date');
+            const request = index.getAll(IDBKeyRange.bound(firstDay, lastDay));
+
+            request.onsuccess = (event) => {
+                const stats = event.target.result;
+                const testCounts = {};
+                stats.forEach(stat => {
+                    const testName = stat.testName;
+                    testCounts[testName] = (testCounts[testName] || 0) + 1;
+                });
+
+                const total = stats.length;
+                document.getElementById('statsSummary').innerHTML = `إجمالي التحاليل في الشهر الحالي: ${total}`;
+
+                const tbody = document.querySelector('#statsTable tbody');
+                tbody.innerHTML = '';
+                Object.entries(testCounts).forEach(([testName, count]) => {
+                    const row = tbody.insertRow();
+                    row.innerHTML = `
+                        <td>${testName}</td>
+                        <td>${count}</td>
+                        <td><button class="delete-btn" onclick="deleteStat('${testName}')">حذف</button></td>
+                    `;
+                });
+            };
+        }
+
+        function deleteStat(testName) {
+            if (confirm(`هل تريد حذف إحصائيات التحليل "${testName}"؟`)) {
+                const now = new Date();
+                const currentMonth = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0');
+                const firstDay = currentMonth + '-01';
+                const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0).toISOString().split('T')[0];
+
+                const transaction = db.transaction([STATS_STORE_NAME], 'readwrite');
+                const store = transaction.objectStore(STATS_STORE_NAME);
+                const index = store.index('testName');
+                const range = IDBKeyRange.only(testName);
+                const request = index.openCursor(range);
+
+                request.onsuccess = (event) => {
+                    const cursor = event.target.result;
+                    if (cursor) {
+                        if (cursor.value.date.startsWith(currentMonth)) {
+                            store.delete(cursor.value.id);
+                        }
+                        cursor.continue();
+                    } else {
+                        loadStats();
+                        alert('تم الحذف بنجاح!');
+                    }
+                };
+            }
+        }
+
+        function clearAllStats() {
+            if (confirm('هل تريد مسح جميع الإحصائيات؟')) {
+                const transaction = db.transaction([STATS_STORE_NAME], 'readwrite');
+                const store = transaction.objectStore(STATS_STORE_NAME);
+                const request = store.clear();
+
+                request.onsuccess = () => {
+                    loadStats();
+                    alert('تم مسح جميع الإحصائيات!');
+                };
+            }
+        }
+
+        function printStats() {
+            const printWindow = window.open('', '_blank');
+            const statsHtml = document.getElementById('statsModal').innerHTML;
+            printWindow.document.write(`
+                <html><head><title>إحصائيات التحاليل</title>
+                <style>
+                    body { font-family: 'Cairo', sans-serif; direction: rtl; }
+                    table { width: 100%; border-collapse: collapse; }
+                    th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+                    th { background-color: #f2f2f2; }
+                    .stats-summary { text-align: center; font-size: 18px; font-weight: bold; margin: 10px; }
+                </style></head><body>
+                <h2 style="text-align: center;">إحصائيات التحاليل الشهرية</h2>
+                ${document.getElementById('statsSummary').outerHTML}
+                ${document.getElementById('statsTable').outerHTML}
+                </body></html>
+            `);
+            printWindow.document.close();
+            printWindow.print();
+        }
+
+        function openPatientsModal() {
+            document.getElementById('patientsModal').style.display = 'block';
+            loadPatientsList();
+        }
+
+        function closePatientsModal() {
+            document.getElementById('patientsModal').style.display = 'none';
+        }
+
+        function loadPatientsList() {
+            if (!db) return;
+
+            const transaction = db.transaction([STORE_NAME], 'readonly');
+            const store = transaction.objectStore(STORE_NAME);
+            const request = store.getAll();
+
+            request.onsuccess = (event) => {
+                const patients = event.target.result;
+                const tbody = document.querySelector('#patientsTable tbody');
+                tbody.innerHTML = '';
+
+                patients.forEach(patient => {
+                    const totalTests = Object.values(patient.tests).reduce((acc, section) => acc + Object.keys(section).length, 0);
+                    const row = tbody.insertRow();
+                    row.innerHTML = `
+                        <td>${patient.patientName || ''}</td>
+                        <td>${patient.patientAge || ''}</td>
+                        <td>${patient.patientGender || ''}</td>
+                        <td>${patient.currentDate || ''}</td>
+                        <td>${patient.doctorName || ''}</td>
+                        <td>${totalTests}</td>
+                        <td><button class="delete-btn" onclick="deletePatient('${patient.patientName}')">حذف</button></td>
+                    `;
+                });
+            };
+        }
+
+        function deletePatient(patientName) {
+            if (confirm(`هل تريد حذف بيانات المريض "${patientName}"؟`)) {
+                const transaction = db.transaction([STORE_NAME], 'readwrite');
+                const store = transaction.objectStore(STORE_NAME);
+                const request = store.delete(patientName);
+
+                request.onsuccess = () => {
+                    loadPatientsList();
+                    alert('تم الحذف بنجاح!');
+                };
+            }
+        }
+
+        function printPatientsList() {
+            const printWindow = window.open('', '_blank');
+            const patientsHtml = document.getElementById('patientsModal').innerHTML;
+            printWindow.document.write(`
+                <html><head><title>قائمة المرضى</title>
+                <style>
+                    body { font-family: 'Cairo', sans-serif; direction: rtl; }
+                    table { width: 100%; border-collapse: collapse; }
+                    th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+                    th { background-color: #f2f2f2; }
+                </style></head><body>
+                <h2 style="text-align: center;">قائمة المرضى المحفوظين</h2>
+                ${document.getElementById('patientsTable').outerHTML}
+                </body></html>
+            `);
+            printWindow.document.close();
+            printWindow.print();
         }
 
         // دوال العرض والطباعة
