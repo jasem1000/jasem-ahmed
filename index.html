@@ -1032,6 +1032,83 @@
             color: var(--header-color);
         }
 
+        /* Styles for patient visits dropdown */
+        .patient-visits-dropdown {
+            position: relative;
+        }
+
+        .visits-button {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .visits-dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 300px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 5px;
+            overflow: hidden;
+            right: 0;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .visits-dropdown-content.show {
+            display: block;
+        }
+
+        .visit-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .visit-item:last-child {
+            border-bottom: none;
+        }
+
+        .visit-date {
+            font-weight: bold;
+            color: var(--header-color);
+        }
+
+        .visit-tests {
+            font-size: 12px;
+            color: #666;
+            text-align: left;
+        }
+
+        .visit-load-btn {
+            background: var(--button-color);
+            color: white;
+            border: none;
+            padding: 3px 6px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 10px;
+            margin-left: 5px;
+        }
+
+        .visit-delete-btn {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 3px 6px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 10px;
+        }
+
         @media print {
             @page {
                 size: portrait;
@@ -1207,6 +1284,11 @@
             .stats-table, .patients-table {
                 font-size: 12px;
             }
+
+            /* Hide dropdowns in print */
+            .visits-dropdown-content {
+                display: none !important;
+            }
         }
 
         @media (max-width: 600px) {
@@ -1244,6 +1326,11 @@
             .choice-option {
                 padding: 2px 4px;
                 font-size: 11px;
+            }
+
+            .visits-dropdown-content {
+                min-width: 250px;
+                right: -50px;
             }
         }
     </style>
@@ -1528,7 +1615,7 @@
             <button class="btn" onclick="openPasswordModal()" style="background: linear-gradient(135deg, #FF5722 0%, #E64A19 100%);">
                 <i class="fas fa-chart-bar"></i> الإحصائيات
             </button>
-            <button class="btn" onclick="openPasswordModalForPatients()" style="background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);">
+            <button class="btn" onclick="openPatientsModal()" style="background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);">
                 <i class="fas fa-users"></i> قائمة المرضى
             </button>
         </div>
@@ -1689,7 +1776,7 @@
         </div>
     </div>
 
-    <!-- Password Modal for Stats and Patients -->
+    <!-- Password Modal for Stats only -->
     <div id="passwordModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closePasswordModal()">&times;</span>
@@ -1734,9 +1821,9 @@
                         <th>اسم المريض</th>
                         <th>العمر</th>
                         <th>الجنس</th>
-                        <th>تاريخ الإجراء</th>
                         <th>الطبيب</th>
-                        <th>التحاليل المكتملة</th>
+                        <th>عدد المراجعات</th>
+                        <th>التحاليل والنتائج</th>
                         <th>إجراءات</th>
                     </tr>
                 </thead>
@@ -1769,8 +1856,8 @@
     <script>
         // متغيرات قاعدة البيانات
         const DB_NAME = 'LabDatabase';
-        const DB_VERSION = 2; // زيادة الإصدار لإضافة store جديد
-        const STORE_NAME = 'patients';
+        const DB_VERSION = 3; // زيادة الإصدار لدعم المراجعات المتعددة
+        const STORE_NAME = 'patientVisits'; // تغيير اسم الـ store لدعم المراجعات
         const STATS_STORE_NAME = 'statistics';
         let db;
 
@@ -2083,9 +2170,8 @@
 
         let labStructure = [];
 
-        // الرمز المطلوب
+        // الرمز المطلوب (للإحصائيات فقط)
         const PASSWORD = '100200';
-        let passwordModalType = ''; // 'stats' or 'patients'
 
         // دوال إدارة الإعدادات
         function handleLogoUpload(event) {
@@ -2329,8 +2415,13 @@
             request.onerror = (event) => console.error("IndexedDB error:", event.target.error);
             request.onupgradeneeded = (event) => {
                 db = event.target.result;
+                if (db.objectStoreNames.contains('patients')) { // إزالة الـ store القديم إذا وجد
+                    db.deleteObjectStore('patients');
+                }
                 if (!db.objectStoreNames.contains(STORE_NAME)) {
-                    db.createObjectStore(STORE_NAME, { keyPath: 'patientName' });
+                    const patientStore = db.createObjectStore(STORE_NAME, { keyPath: 'id', autoIncrement: true });
+                    patientStore.createIndex('patientName', 'patientName', { unique: false });
+                    patientStore.createIndex('visitDate', 'visitDate', { unique: false });
                 }
                 if (!db.objectStoreNames.contains(STATS_STORE_NAME)) {
                     const statsStore = db.createObjectStore(STATS_STORE_NAME, { keyPath: 'id', autoIncrement: true });
@@ -3420,7 +3511,7 @@
             alert('تم إضافة التحليل الجديد بنجاح!');
         }
 
-        // دوال إدارة بيانات المريض
+        // دوال إدارة بيانات المريض (مع دعم المراجعات المتعددة)
         function savePatientData() {
             const patientName = document.getElementById('patientName').value.trim();
             if (!patientName) {
@@ -3445,6 +3536,7 @@
                 examinerName: document.getElementById('examinerName')?.value || '',
                 biologistSignature: document.getElementById('biologistSignature')?.value || '',
                 issueDate: document.getElementById('issueDate')?.value || '',
+                visitDate: new Date().toISOString().split('T')[0], // تاريخ المراجعة
                 tests: {}
             };
 
@@ -3473,12 +3565,13 @@
                 });
             });
 
-            const request = store.put(patientData);
+            const request = store.add(patientData); // استخدام add بدلاً من put لإضافة مراجعة جديدة
 
             request.onsuccess = () => {
                 // حفظ الإحصائيات
                 saveStatsForPatient(patientData);
                 alert('تم حفظ بيانات المريض بنجاح!');
+                updateFilledTests();
             };
 
             request.onerror = (event) => {
@@ -3527,7 +3620,53 @@
 
             const transaction = db.transaction([STORE_NAME], 'readonly');
             const store = transaction.objectStore(STORE_NAME);
-            const request = store.get(patientName);
+            const index = store.index('patientName');
+            const request = index.getAll(patientName);
+
+            request.onsuccess = (event) => {
+                const visits = event.target.result;
+                if (visits.length > 0) {
+                    if (visits.length === 1) {
+                        // إذا كانت مراجعة واحدة فقط، حمّلها مباشرة
+                        loadVisitData(visits[0]);
+                    } else {
+                        // إذا كانت مراجعات متعددة، اعرض قائمة للاختيار
+                        showVisitsList(visits);
+                    }
+                } else {
+                    alert('لم يتم العثور على بيانات لهذا المريض.');
+                }
+            };
+
+            request.onerror = (event) => {
+                console.error("خطأ في الاستعادة:", event.target.error);
+                alert('فشل في استعادة البيانات.');
+            };
+        }
+
+        function showVisitsList(visits) {
+            let listHTML = '<div style="text-align: center; margin: 20px 0;"><h3>اختر مراجعة للاستعادة:</h3><ul style="list-style: none; padding: 0;">';
+            visits.forEach(visit => {
+                listHTML += `<li style="padding: 10px; border: 1px solid #ddd; margin: 5px 0; border-radius: 5px;">
+                    <strong>${visit.visitDate}</strong> - ${Object.values(visit.tests).reduce((acc, sec) => acc + Object.keys(sec).length, 0)} تحليل
+                    <button class="visit-load-btn" onclick="loadVisitData(${visit.id})" style="margin-left: 10px;">تحميل</button>
+                </li>`;
+            });
+            listHTML += '</ul></div>';
+            // يمكن عرض هذا في modal منفصل أو هنا، للبساطة نستخدم alert أو نعدل searchModal
+            const modalContent = document.querySelector('#searchModal .modal-content');
+            modalContent.innerHTML = `<span class="close" onclick="closeSearchModal()">&times;</span>
+                <h2 style="text-align: center;">مراجعات المريض: ${patientName}</h2>
+                ${listHTML}
+                <button class="btn btn-clear" onclick="closeSearchModal()" style="width: 100%; margin-top: 20px;">إغلاق</button>`;
+        }
+
+        function loadVisitData(visitId) {
+            if (!db) return;
+
+            const transaction = db.transaction([STORE_NAME], 'readonly');
+            const store = transaction.objectStore(STORE_NAME);
+            const request = store.get(visitId);
 
             request.onsuccess = (event) => {
                 const patientData = event.target.result;
@@ -3590,33 +3729,44 @@
                         }
                     }
 
-                    alert('تم استعادة بيانات المريض بنجاح!');
+                    alert('تم استعادة بيانات المراجعة بنجاح!');
                     closeSearchModal();
                     updateFilledTests();
-                } else {
-                    alert('لم يتم العثور على بيانات لهذا المريض.');
                 }
-            };
-
-            request.onerror = (event) => {
-                console.error("خطأ في الاستعادة:", event.target.error);
-                alert('فشل في استعادة البيانات.');
             };
         }
 
         function closeSearchModal() {
             document.getElementById('searchModal').style.display = 'none';
             document.getElementById('searchPatientName').value = '';
+            // إعادة تعيين محتوى الـ modal
+            const modalContent = document.querySelector('#searchModal .modal-content');
+            modalContent.innerHTML = `
+                <span class="close" onclick="closeSearchModal()">&times;</span>
+                <h2 style="text-align: center; margin-bottom: 20px;">البحث عن بيانات المريض</h2>
+                <div style="margin-bottom: 20px;">
+                    <label for="searchPatientName">اسم المريض:</label>
+                    <input type="text" id="searchPatientName" class="form-input" placeholder="أدخل اسم المريض" style="width: 100%; padding: 10px; margin-top: 5px;">
+                </div>
+                <div style="text-align: left; margin-top: 20px;">
+                    <button class="btn btn-load" onclick="searchPatientData()">
+                        <i class="fas fa-search"></i> البحث
+                    </button>
+                    <button class="btn btn-clear" onclick="closeSearchModal()">
+                        <i class="fas fa-times"></i> إغلاق
+                    </button>
+                </div>
+            `;
         }
 
-        // دوال الإحصائيات والمرضى المحمية بالرمز
-        function openPasswordModal(type = 'stats') {
-            passwordModalType = type;
+        // دوال الإحصائيات والمرضى (الإحصائيات محمية، قائمة المرضى مفتوحة)
+        function openPasswordModal() {
             document.getElementById('passwordModal').style.display = 'block';
         }
 
-        function openPasswordModalForPatients() {
-            openPasswordModal('patients');
+        function openPatientsModal() {
+            document.getElementById('patientsModal').style.display = 'block';
+            loadPatientsList();
         }
 
         function closePasswordModal() {
@@ -3628,11 +3778,7 @@
             const input = document.getElementById('passwordInput').value;
             if (input === PASSWORD) {
                 closePasswordModal();
-                if (passwordModalType === 'stats') {
-                    openStatsModal();
-                } else if (passwordModalType === 'patients') {
-                    openPatientsModal();
-                }
+                openStatsModal();
             } else {
                 alert('رمز خاطئ!');
                 document.getElementById('passwordInput').value = '';
@@ -3747,11 +3893,6 @@
             printWindow.print();
         }
 
-        function openPatientsModal() {
-            document.getElementById('patientsModal').style.display = 'block';
-            loadPatientsList();
-        }
-
         function closePatientsModal() {
             document.getElementById('patientsModal').style.display = 'none';
         }
@@ -3761,38 +3902,115 @@
 
             const transaction = db.transaction([STORE_NAME], 'readonly');
             const store = transaction.objectStore(STORE_NAME);
-            const request = store.getAll();
+            const index = store.index('patientName');
+            const request = index.getAll();
 
             request.onsuccess = (event) => {
-                const patients = event.target.result;
+                const allVisits = event.target.result;
+                const patientsMap = {};
+
+                allVisits.forEach(visit => {
+                    if (!patientsMap[visit.patientName]) {
+                        patientsMap[visit.patientName] = {
+                            age: visit.patientAge,
+                            gender: visit.patientGender,
+                            doctor: visit.doctorName,
+                            visits: []
+                        };
+                    }
+                    patientsMap[visit.patientName].visits.push(visit);
+                });
+
                 const tbody = document.querySelector('#patientsTable tbody');
                 tbody.innerHTML = '';
 
-                patients.forEach(patient => {
-                    const totalTests = Object.values(patient.tests).reduce((acc, section) => acc + Object.keys(section).length, 0);
+                Object.entries(patientsMap).forEach(([patientName, data]) => {
+                    const totalVisits = data.visits.length;
+                    const totalTests = data.visits.reduce((acc, visit) => {
+                        return acc + Object.values(visit.tests).reduce((sAcc, sec) => sAcc + Object.keys(sec).length, 0);
+                    }, 0);
+
                     const row = tbody.insertRow();
                     row.innerHTML = `
-                        <td>${patient.patientName || ''}</td>
-                        <td>${patient.patientAge || ''}</td>
-                        <td>${patient.patientGender || ''}</td>
-                        <td>${patient.currentDate || ''}</td>
-                        <td>${patient.doctorName || ''}</td>
-                        <td>${totalTests}</td>
-                        <td><button class="delete-btn" onclick="deletePatient('${patient.patientName}')">حذف</button></td>
+                        <td>${patientName}</td>
+                        <td>${data.age || ''}</td>
+                        <td>${data.gender || ''}</td>
+                        <td>${data.doctor || ''}</td>
+                        <td>${totalVisits}</td>
+                        <td>
+                            <div class="patient-visits-dropdown">
+                                <button class="visits-button" onclick="toggleVisitsDropdown(this)">
+                                    <i class="fas fa-list"></i> عرض التحاليل (${totalTests} إجمالي)
+                                </button>
+                                <div class="visits-dropdown-content" id="visits-${patientName}">
+                                    ${data.visits.map(visit => {
+                                        const visitTestsSummary = Object.entries(visit.tests).map(([secId, tests]) => 
+                                            Object.entries(tests).map(([test, result]) => `${test}: ${result}`).join(', ')
+                                        ).join('; ');
+                                        return `
+                                            <div class="visit-item">
+                                                <div>
+                                                    <div class="visit-date">${visit.visitDate}</div>
+                                                    <div class="visit-tests">${visitTestsSummary || 'لا توجد نتائج'}</div>
+                                                </div>
+                                                <div>
+                                                    <button class="visit-load-btn" onclick="loadVisitData(${visit.id})">تحميل</button>
+                                                    <button class="visit-delete-btn" onclick="deleteVisit(${visit.id}, '${patientName}')">حذف</button>
+                                                </div>
+                                            </div>
+                                        `;
+                                    }).join('')}
+                                </div>
+                            </div>
+                        </td>
+                        <td><button class="delete-btn" onclick="deletePatient('${patientName}')">حذف جميع مراجعات</button></td>
                     `;
                 });
             };
         }
 
-        function deletePatient(patientName) {
-            if (confirm(`هل تريد حذف بيانات المريض "${patientName}"؟`)) {
+        function toggleVisitsDropdown(button) {
+            const dropdown = button.nextElementSibling;
+            dropdown.classList.toggle('show');
+        }
+
+        // إغلاق الـ dropdown عند النقر خارجها
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.patient-visits-dropdown')) {
+                document.querySelectorAll('.visits-dropdown-content').forEach(dd => dd.classList.remove('show'));
+            }
+        });
+
+        function deleteVisit(visitId, patientName) {
+            if (confirm(`هل تريد حذف هذه المراجعة للمريض ${patientName}؟`)) {
                 const transaction = db.transaction([STORE_NAME], 'readwrite');
                 const store = transaction.objectStore(STORE_NAME);
-                const request = store.delete(patientName);
+                const request = store.delete(visitId);
 
                 request.onsuccess = () => {
                     loadPatientsList();
-                    alert('تم الحذف بنجاح!');
+                    alert('تم حذف المراجعة بنجاح!');
+                };
+            }
+        }
+
+        function deletePatient(patientName) {
+            if (confirm(`هل تريد حذف جميع مراجعات المريض "${patientName}"؟`)) {
+                const transaction = db.transaction([STORE_NAME], 'readwrite');
+                const store = transaction.objectStore(STORE_NAME);
+                const index = store.index('patientName');
+                const range = IDBKeyRange.only(patientName);
+                const request = index.openCursor(range);
+
+                request.onsuccess = (event) => {
+                    const cursor = event.target.result;
+                    if (cursor) {
+                        store.delete(cursor.value.id);
+                        cursor.continue();
+                    } else {
+                        loadPatientsList();
+                        alert('تم حذف جميع المراجعات بنجاح!');
+                    }
                 };
             }
         }
@@ -3807,6 +4025,7 @@
                     table { width: 100%; border-collapse: collapse; }
                     th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
                     th { background-color: #f2f2f2; }
+                    .visits-dropdown-content { display: block !important; position: static; box-shadow: none; }
                 </style></head><body>
                 <h2 style="text-align: center;">قائمة المرضى المحفوظين</h2>
                 ${document.getElementById('patientsTable').outerHTML}
