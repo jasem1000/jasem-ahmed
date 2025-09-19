@@ -774,802 +774,222 @@
             border: 1px solid #ddd;
             padding: 10px;
             border-radius: 5px;
-            margin: 10px 0;
+            background-color: #f9f9f9;
         }
 
         .test-item {
             display: flex;
-            justify-content: space-between;
-            padding: 8px;
-            border-bottom: 1px solid #eee;
-            background: #f9f9f9;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
+            gap: 10px;
+            margin-bottom: 8px;
+            align-items: center;
         }
 
-        .test-item:last-child {
-            border-bottom: none;
-        }
-
-        .test-name-input, .test-range-input {
-            margin-bottom: 5px;
-        }
-
-        .settings-panel {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            z-index: 10000;
-            width: 300px;
-            max-height: 80vh;
-            overflow-y: auto;
+        .filled-tests {
+            text-align: center;
+            margin: 10px 0;
+            font-weight: bold;
+            color: var(--header-color);
+            font-family: var(--main-font);
             display: none;
         }
 
-        .settings-toggle {
+        .settings-panel {
+            display: none;
             position: fixed;
-            top: 20px;
-            left: 20px;
-            background: var(--button-color);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10001;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            top: 0;
+            right: 0;
+            width: 400px;
+            height: 100%;
+            background-color: #fff;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+            padding: 20px;
+            overflow-y: auto;
+            z-index: 1000;
+            direction: rtl;
+        }
+
+        .settings-panel h2 {
+            margin-bottom: 15px;
+            color: var(--header-color);
+            font-family: var(--title-font);
         }
 
         .settings-group {
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
         }
 
         .settings-group h3 {
             margin-bottom: 10px;
             color: var(--header-color);
-            font-family: var(--title-font);
+            font-family: var(--subtitle-font);
         }
 
-        .color-picker {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 10px;
-            align-items: center;
+        .settings-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-family: var(--main-font);
         }
 
-        .color-picker label {
-            min-width: 100px;
-        }
-
-        .color-input {
-            width: 40px;
-            height: 40px;
-            padding: 0;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .settings-input {
+        .settings-group input,
+        .settings-group select {
             width: 100%;
             padding: 8px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            margin-bottom: 8px;
             font-family: var(--main-font);
         }
 
-        .settings-select {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-bottom: 8px;
-            font-family: var(--main-font);
+        .settings-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
         }
 
-        .settings-btn {
-            background: var(--button-color);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-            font-family: var(--main-font);
-        }
-
-        .font-size-picker {
-            display: flex;
-            gap: 10px;
+        .settings-group .form-group {
             margin-bottom: 10px;
-            align-items: center;
-        }
-
-        .font-size-picker label {
-            min-width: 120px;
-        }
-
-        .font-size-input {
-            width: 60px;
-            padding: 5px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            text-align: center;
-        }
-
-        .border-picker {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 10px;
-            align-items: center;
-        }
-
-        .border-picker label {
-            min-width: 120px;
-        }
-
-        .border-width-input, .border-radius-input {
-            width: 60px;
-            padding: 5px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            text-align: center;
         }
 
         .logo-preview {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 10px auto;
-            display: block;
-            border: 2px dashed var(--button-color);
-        }
-
-        .logo-upload-btn {
-            background: #2196F3;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 5px;
-            font-family: var(--main-font);
-        }
-
-        .filled-tests {
-            font-size: 12px;
-            color: #666;
-            margin-bottom: 10px;
-            text-align: center;
             display: none;
-            padding: 10px;
-            background-color: #e8f5e8;
+            max-width: 100px;
+            margin-top: 10px;
             border-radius: 5px;
-            border-left: 4px solid var(--button-color);
-            font-family: var(--main-font);
         }
 
-        .no-print-row, .no-print-item, .no-print-section {
-            display: none !important;
-        }
-
-        .range-table .btn {
-            padding: 5px 10px;
-            font-size: 12px;
-            border-radius: 4px;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        /* New styles for statistics and patients list */
-        .stats-table, .patients-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
-        }
-
-        .stats-table th, .stats-table td, .patients-table th, .patients-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
-
-        .stats-table th, .patients-table th {
-            background-color: #f2f2f2;
-            font-weight: bold;
-        }
-
-        .delete-btn {
-            background: #f44336;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .print-btn {
-            background: var(--button-color);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 30px;
-            cursor: pointer;
-            margin: 10px;
-        }
-
-        .password-input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        .stats-summary {
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-            margin: 10px 0;
-            color: var(--header-color);
-        }
-
-        /* Styles for patient visits dropdown */
-        .patient-visits-dropdown {
-            position: relative;
-        }
-
-        .visits-button {
-            background: #2196F3;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 12px;
-        }
-
-        .visits-dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: white;
-            min-width: 300px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-            border-radius: 5px;
-            overflow: hidden;
-            right: 0;
-            max-height: 300px;
-            overflow-y: auto;
-        }
-
-        .visits-dropdown-content.show {
-            display: block;
-        }
-
-        .visit-item {
-            padding: 10px;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .visit-item:last-child {
-            border-bottom: none;
-        }
-
-        .visit-date {
-            font-weight: bold;
-            color: var(--header-color);
-        }
-
-        .visit-tests {
-            font-size: 12px;
-            color: #666;
-            text-align: left;
-        }
-
-        .visit-load-btn {
-            background: var(--button-color);
-            color: white;
-            border: none;
-            padding: 3px 6px;
-            border-radius: 3px;
-            cursor: pointer;
-            font-size: 10px;
-            margin-left: 5px;
-        }
-
-        .visit-delete-btn {
-            background: #f44336;
-            color: white;
-            border: none;
-            padding: 3px 6px;
-            border-radius: 3px;
-            cursor: pointer;
-            font-size: 10px;
+        .no-print {
+            display: table-cell;
         }
 
         @media print {
-            @page {
-                size: portrait;
-                margin: 0.5cm 0.5cm 2cm 0.5cm;
-            }
-
-            body, html {
-                width: 100%;
-                height: auto;
-                margin: 0;
+            body {
+                background-color: white;
                 padding: 0;
-                background: white;
-                font-size: 12px;
-                display: flex;
-                flex-direction: column;
-                min-height: 100vh;
-            }
-
-            body * {
-                visibility: visible;
             }
 
             .container {
-                width: 100%;
-                max-width: 100%;
-                margin: 0;
-                padding: 10px;
                 box-shadow: none;
-                border-radius: 0;
-                flex-grow: 1;
-                display: table;
-                border-collapse: collapse;
+                border: none;
+                padding: 0;
+                margin: 0;
+                width: 100%;
             }
 
-            .no-print, .action-buttons, .test-selection, .settings-toggle, .filled-tests {
+            .action-buttons,
+            .test-selection,
+            .no-print,
+            .settings-panel,
+            .modal,
+            .test-controls,
+            .remove-test,
+            .filled-tests {
                 display: none !important;
             }
 
             .section {
-                display: block;
-                page-break-inside: avoid;
-                border: var(--table-border-width) solid #ddd;
-                margin-bottom: 10px;
-            }
-
-            .header {
-                border-bottom: 2px solid #000;
-                margin-bottom: 10px;
-                padding-bottom: 10px;
-                display: table-header-group;
-                background-color: var(--header-bg);
-            }
-
-            .patient-info {
-                border: 1px solid #000;
-                margin-bottom: 10px;
-                padding: 10px;
-                background-color: var(--patient-info-bg);
-            }
-
-            .logo {
-                background: white;
-                color: var(--button-color);
-                border: 2px solid var(--button-color);
+                display: block !important;
+                border: none;
             }
 
             .section-title {
-                background: #f2f2f2;
-                color: #000;
-                border-bottom: 1px solid #ddd;
-                padding: 8px 12px;
-                font-size: 14px;
-            }
-
-            .editable-field, .signature-input {
-                border: none;
-                background-color: transparent;
-                padding: 0;
-                min-width: unset;
-                text-align: right !important;
-            }
-
-            .result-input, .result-select {
-                border: none;
-                background-color: transparent;
-                padding: 0;
-                min-width: unset;
-                text-align: center !important;
-                width: 100%;
-            }
-
-            .multiple-choice-container {
-                display: flex;
-                flex-direction: column;
-                gap: 0;
-                font-size: 11px;
-            }
-
-            .choice-option {
-                margin: 0;
-                padding: 1px 4px;
-                font-size: 11px;
-            }
-
-            .choice-radio {
-                transform: scale(1);
-                margin: 0;
+                background: none;
+                color: var(--header-color);
+                border-bottom: 2px solid var(--button-color);
             }
 
             .results-container {
-                gap: 10px;
-                display: table-row-group;
+                page-break-inside: auto;
             }
 
-            table {
-                font-size: 12px;
-                direction: ltr;
+            .section {
+                page-break-inside: avoid;
+                page-break-after: auto;
             }
 
-            th, td {
-                padding: 5px 4px;
-                border: var(--table-border-width) solid var(--table-border-color);
-            }
-
-            .test-name {
-                text-align: left;
-            }
-
-            .normal-range {
-                text-align: center;
+            .watermark {
+                display: none;
             }
 
             .footer {
-                margin-top: 15px;
-                padding-top: 10px;
-                font-size: 12px;
-            }
-
-            .signature-area {
-                margin-top: 20px;
-                gap: 15px;
-            }
-
-            .signature-box {
-                width: 180px;
-                font-size: 12px;
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                margin: 0;
+                padding: 10px 0;
+                border-top: 2px solid var(--button-color);
             }
 
             .lab-footer {
-                display: table-footer-group;
-                border-top: 2px solid #000;
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                margin: 0;
                 padding: 10px;
-                font-size: 12px;
-                color: #000;
-                background-color: #f9f9f9;
-            }
-
-            .lab-footer-content {
-                max-width: 100%;
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .lab-footer-item {
-                text-align: center;
-            }
-
-            .lab-footer-title {
-                color: #000;
-            }
-
-            .stats-table, .patients-table {
-                font-size: 12px;
-            }
-
-            .visits-dropdown-content {
-                display: none !important;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .results-container {
-                grid-template-columns: 1fr;
             }
 
             .patient-info {
-                grid-template-columns: 1fr;
+                margin-bottom: 10px;
             }
 
-            .lab-footer-content {
-                grid-template-columns: 1fr;
-                gap: 5px;
+            .editable-field,
+            .result-input,
+            .result-select,
+            .examiner-input,
+            .signature-input {
+                border: none !important;
+                background: none !important;
+                padding: 0 !important;
+                font-size: inherit !important;
+                width: auto !important;
+                display: inline-block;
+                text-align: center;
             }
 
-            .settings-panel {
-                width: 90%;
-                left: 5%;
-            }
-
-            .modal-tabs {
-                flex-direction: column;
-            }
-
-            .modal-tab {
-                border-right: none;
-                border-bottom: 1px solid #ddd;
+            .result-select option:not(:checked) {
+                display: none;
             }
 
             .multiple-choice-container {
-                gap: 1px;
+                display: inline-block;
+                text-align: center;
             }
 
             .choice-option {
-                padding: 2px 4px;
-                font-size: 11px;
+                display: none;
             }
 
-            .visits-dropdown-content {
-                min-width: 250px;
-                right: -50px;
+            .choice-option:has(.choice-radio:checked) {
+                display: inline-block;
+                background: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .choice-radio {
+                display: none;
+            }
+
+            .choice-text {
+                font-size: var(--result-font-size);
+                color: var(--result-font-color);
+                font-family: var(--result-font);
+                text-align: center;
+            }
+
+            .examiner-name {
+                background: none;
+                border: none;
             }
         }
     </style>
 </head>
 <body>
-    <div class="settings-toggle no-print" onclick="toggleSettings()">
-        <i class="fas fa-cog"></i>
-    </div>
-
-    <div class="settings-panel no-print" id="settingsPanel">
-        <h2 style="text-align: center; margin-bottom: 15px;">إعدادات المختبر</h2>
-        
-        <div class="settings-group">
-            <h3>بيانات المختبر</h3>
-            <input type="text" id="labAddressInput" class="settings-input" placeholder="العنوان">
-            <input type="text" id="labPhoneInput" class="settings-input" placeholder="رقم الهاتف">
-            <input type="text" id="biologistNameInput" class="settings-input" placeholder="اسم البايلوجي">
-            <input type="text" id="doctor1Name" class="settings-input" placeholder="اسم الدكتور الأول">
-            <input type="text" id="doctor2Name" class="settings-input" placeholder="اسم الدكتور الثاني">
-        </div>
-        
-        <div class="settings-group">
-            <h3>تغيير اللوغو</h3>
-            <img id="logoPreview" class="logo-preview" src="" alt="معاينة اللوغو" style="display: none;">
-            <input type="file" id="logoUpload" accept="image/*" style="display: none;" onchange="handleLogoUpload(event)">
-            <button class="logo-upload-btn" onclick="document.getElementById('logoUpload').click()">
-                <i class="fas fa-upload"></i> تحميل صورة للوغو
-            </button>
-            <button class="logo-upload-btn" onclick="resetLogo()" style="background: #f44336;">
-                <i class="fas fa-trash"></i> إعادة اللوغو الافتراضي
-            </button>
-        </div>
-        
-        <div class="settings-group">
-            <h3>تغيير الألوان</h3>
-            <div class="color-picker">
-                <label>لون الهيدر:</label>
-                <input type="color" id="headerColor" class="color-input" value="#2c7da0">
-            </div>
-            <div class="color-picker">
-                <label>لون الخلفية:</label>
-                <input type="color" id="backgroundColor" class="color-input" value="#f5f7fa">
-            </div>
-            <div class="color-picker">
-                <label>لون الأزرار:</label>
-                <input type="color" id="buttonColor" class="color-input" value="#4CAF50">
-            </div>
-            <div class="color-picker">
-                <label>لون خلفية معلومات المريض:</label>
-                <input type="color" id="patientInfoBg" class="color-input" value="#eeeeee">
-            </div>
-            <div class="color-picker">
-                <label>لون خلفية الرأس:</label>
-                <input type="color" id="headerBg" class="color-input" value="#ffffff">
-            </div>
-            <div class="color-picker">
-                <label>لون حدود الجدول:</label>
-                <input type="color" id="tableBorderColor" class="color-input" value="#ddd">
-            </div>
-        </div>
-        
-        <div class="settings-group">
-            <h3>تغيير إعدادات العنوان الرئيسي</h3>
-            <div class="color-picker">
-                <label>لون خط العنوان:</label>
-                <input type="color" id="titleFontColor" class="color-input" value="#2c7da0">
-            </div>
-            <div class="font-size-picker">
-                <label>حجم خط العنوان:</label>
-                <input type="number" id="titleFontSize" class="font-size-input" value="28" min="20" max="50"> px
-            </div>
-            <div class="font-picker">
-                <label>نوع خط العنوان:</label>
-                <select id="titleFont" class="settings-select">
-                    <option value="'Amiri', serif">Amiri</option>
-                    <option value="'Cairo', sans-serif">Cairo</option>
-                    <option value="'Tajawal', sans-serif">Tajawal</option>
-                    <option value="'Scheherazade', serif">Scheherazade</option>
-                    <option value="'Noto Naskh Arabic', serif">Noto Naskh Arabic</option>
-                </select>
-            </div>
-        </div>
-        
-        <div class="settings-group">
-            <h3>تغيير أحجام الخطوط</h3>
-            <div class="font-size-picker">
-                <label>حجم اسم التحليل:</label>
-                <input type="number" id="testNameFontSize" class="font-size-input" value="16" min="10" max="30"> px
-            </div>
-            <div class="font-size-picker">
-                <label>حجم النتيجة:</label>
-                <input type="number" id="resultFontSize" class="font-size-input" value="16" min="10" max="30"> px
-            </div>
-            <div class="font-size-picker">
-                <label>حجم النطاق الطبيعي:</label>
-                <input type="number" id="rangeFontSize" class="font-size-input" value="16" min="10" max="30"> px
-            </div>
-            <div class="font-size-picker">
-                <label>حجم التذييل:</label>
-                <input type="number" id="footerFontSize" class="font-size-input" value="14" min="10" max="30"> px
-            </div>
-            <div class="font-size-picker">
-                <label>حجم أسماء الأطباء:</label>
-                <input type="number" id="doctorFontSize" class="font-size-input" value="14" min="10" max="30"> px
-            </div>
-        </div>
-        
-        <div class="settings-group">
-            <h3>تغيير ألوان الخطوط</h3>
-            <div class="color-picker">
-                <label>لون اسم التحليل:</label>
-                <input type="color" id="testNameFontColor" class="color-input" value="#333333">
-            </div>
-            <div class="color-picker">
-                <label>لون النتيجة:</label>
-                <input type="color" id="resultFontColor" class="color-input" value="#333333">
-            </div>
-            <div class="color-picker">
-                <label>لون النطاق الطبيعي:</label>
-                <input type="color" id="rangeFontColor" class="color-input" value="#b90f0f">
-            </div>
-            <div class="color-picker">
-                <label>لون التذييل:</label>
-                <input type="color" id="footerFontColor" class="color-input" value="#ffffff">
-            </div>
-            <div class="color-picker">
-                <label>لون أسماء الأطباء:</label>
-                <input type="color" id="doctorFontColor" class="color-input" value="#11be65">
-            </div>
-        </div>
-        
-        <div class="settings-group">
-            <h3>تغيير أنواع الخطوط</h3>
-            <div class="font-picker">
-                <label>الخط الرئيسي:</label>
-                <select id="mainFont" class="settings-select">
-                    <option value="'Cairo', sans-serif">Cairo</option>
-                    <option value="'Amiri', serif">Amiri</option>
-                    <option value="'Tajawal', sans-serif">Tajawal</option>
-                    <option value="'Scheherazade', serif">Scheherazade</option>
-                    <option value="'Noto Naskh Arabic', serif">Noto Naskh Arabic</option>
-                </select>
-            </div>
-            <div class="font-picker">
-                <label>خط العناوين الفرعية:</label>
-                <select id="subtitleFont" class="settings-select">
-                    <option value="'Cairo', sans-serif">Cairo</option>
-                    <option value="'Amiri', serif">Amiri</option>
-                    <option value="'Tajawal', sans-serif">Tajawal</option>
-                    <option value="'Scheherazade', serif">Scheherazade</option>
-                    <option value="'Noto Naskh Arabic', serif">Noto Naskh Arabic</option>
-                </select>
-            </div>
-            <div class="font-picker">
-                <label>خط أسماء التحاليل:</label>
-                <select id="testFont" class="settings-select">
-                    <option value="'Cairo', sans-serif">Cairo</option>
-                    <option value="'Amiri', serif">Amiri</option>
-                    <option value="'Tajawal', sans-serif">Tajawal</option>
-                    <option value="'Scheherazade', serif">Scheherazade</option>
-                    <option value="'Noto Naskh Arabic', serif">Noto Naskh Arabic</option>
-                </select>
-            </div>
-            <div class="font-picker">
-                <label>خط النتائج:</label>
-                <select id="resultFont" class="settings-select">
-                    <option value="'Cairo', sans-serif">Cairo</option>
-                    <option value="'Amiri', serif">Amiri</option>
-                    <option value="'Tajawal', sans-serif">Tajawal</option>
-                    <option value="'Scheherazade', serif">Scheherazade</option>
-                    <option value="'Noto Naskh Arabic', serif">Noto Naskh Arabic</option>
-                </select>
-            </div>
-            <div class="font-picker">
-                <label>خط النطاقات:</label>
-                <select id="rangeFont" class="settings-select">
-                    <option value="'Cairo', sans-serif">Cairo</option>
-                    <option value="'Amiri', serif">Amiri</option>
-                    <option value="'Tajawal', sans-serif">Tajawal</option>
-                    <option value="'Scheherazade', serif">Scheherazade</option>
-                    <option value="'Noto Naskh Arabic', serif">Noto Naskh Arabic</option>
-                </select>
-            </div>
-            <div class="font-picker">
-                <label>خط التذييل:</label>
-                <select id="footerFont" class="settings-select">
-                    <option value="'Cairo', sans-serif">Cairo</option>
-                    <option value="'Amiri', serif">Amiri</option>
-                    <option value="'Tajawal', sans-serif">Tajawal</option>
-                    <option value="'Scheherazade', serif">Scheherazade</option>
-                    <option value="'Noto Naskh Arabic', serif">Noto Naskh Arabic</option>
-                </select>
-            </div>
-            <div class="font-picker">
-                <label>خط أسماء الأطباء:</label>
-                <select id="doctorFont" class="settings-select">
-                    <option value="'Cairo', sans-serif">Cairo</option>
-                    <option value="'Amiri', serif">Amiri</option>
-                    <option value="'Tajawal', sans-serif">Tajawal</option>
-                    <option value="'Scheherazade', serif">Scheherazade</option>
-                    <option value="'Noto Naskh Arabic', serif">Noto Naskh Arabic</option>
-                </select>
-            </div>
-        </div>
-        
-        <div class="settings-group">
-            <h3>تغيير سمك حدود الجدول</h3>
-            <div class="border-picker">
-                <label>سمك الحدود:</label>
-                <input type="number" id="tableBorderWidth" class="border-width-input" value="1" min="1" max="5"> px
-            </div>
-        </div>
-
-        <div class="settings-group">
-            <h3>إعدادات مربعات الأطباء</h3>
-            <div class="border-picker">
-                <label>نصف قطر الحدود:</label>
-                <input type="number" id="doctorBoxBorderRadius" class="border-radius-input" value="4" min="0" max="50"> px
-            </div>
-            <div style="display: flex; gap: 10px; align-items: center;">
-                <input type="checkbox" id="showDoctor1" checked>
-                <label for="showDoctor1">إظهار الدكتور الأول</label>
-            </div>
-            <div style="display: flex; gap: 10px; align-items: center;">
-                <input type="checkbox" id="showDoctor2" checked>
-                <label for="showDoctor2">إظهار الدكتور الثاني</label>
-            </div>
-        </div>
-        
-        <button class="settings-btn" onclick="saveSettings()">حفظ الإعدادات</button>
-        <button class="settings-btn" onclick="resetSettings()" style="background: #f44336;">إعادة الضبط</button>
-        <button class="settings-btn" onclick="toggleSettings()">إغلاق</button>
-    </div>
-
-    <div class="watermark" id="watermark">برنامج اوسكار</div>
-    
+    <div class="watermark">برنامج اوسكار</div>
     <div class="container">
         <div class="header">
             <div class="logo-container">
-                <div class="logo" id="labLogo">
-                    <i class="fas fa-microscope"></i>
-                </div>
+                <div class="logo" id="labLogo"><i class="fas fa-microscope"></i></div>
                 <div class="header-text">
-                    <h1>برنامج اوسكار</h1>
+                    <h1>مختبر اوسكار الطبي</h1>
                     <div class="doctors-container">
                         <div class="doctor-name" id="doctor1">اسم الدكتور الأول</div>
                         <div class="doctor-name" id="doctor2">اسم الدكتور الثاني</div>
@@ -1577,139 +997,128 @@
                 </div>
             </div>
         </div>
-        
-        <div class="patient-info" id="patientInfoSection">
+
+        <div class="patient-info">
             <div class="info-item">
                 <span class="info-label">اسم المريض:</span>
-                <input type="text" class="editable-field" value="" id="patientName" placeholder="اسم المريض">
+                <input type="text" id="patientName" class="editable-field" placeholder="أدخل اسم المريض">
             </div>
             <div class="info-item">
                 <span class="info-label">العمر:</span>
-                <input type="text" class="editable-field" value="" id="patientAge" placeholder="العمر">
+                <input type="text" id="patientAge" class="editable-field" placeholder="أدخل العمر">
             </div>
             <div class="info-item">
                 <span class="info-label">الجنس:</span>
-                <input type="text" class="editable-field" value="" id="patientGender" placeholder="الجنس">
+                <input type="text" id="patientGender" class="editable-field" placeholder="أدخل الجنس">
             </div>
             <div class="info-item">
-                <span class="info-label">تاريخ الإجراء:</span>
-                <input type="text" class="editable-field" id="currentDate">
+                <span class="info-label">اسم الدكتور:</span>
+                <input type="text" id="doctorName" class="editable-field" placeholder="أدخل اسم الدكتور">
             </div>
             <div class="info-item">
-                <span class="info-label">الطبيب المعالج:</span>
-                <input type="text" class="editable-field" value="" id="doctorName" placeholder="اسم الطبيب">
+                <span class="info-label">التاريخ:</span>
+                <input type="text" id="currentDate" class="editable-field" readonly>
             </div>
         </div>
-        
-        <div class="filled-tests no-print" id="filledTests"></div>
 
-        <div class="test-selection no-print">
+        <div class="test-selection">
             <label for="test-select">اختر قسم التحليل:</label>
             <select id="test-select" onchange="showSelectedSection()">
                 <option value="">اختر قسم...</option>
             </select>
-            <button class="add-section-btn" onclick="openAddSectionModal()">
-                <i class="fas fa-plus"></i> إضافة قسم جديد
-            </button>
         </div>
 
-        <div class="action-buttons no-print">
-            <button class="btn btn-print" onclick="printPage()">
-                <i class="fas fa-print"></i> طباعة التقرير
-            </button>
-            <button class="btn btn-save" onclick="savePatientData()">
-                <i class="fas fa-save"></i> حفظ البيانات
-            </button>
-            <button class="btn btn-load" onclick="loadPatientData()">
-                <i class="fas fa-search"></i> بحث واستعادة
-            </button>
-            <button class="btn btn-clear" onclick="clearAllFields()">
-                <i class="fas fa-trash"></i> مسح الكل
-            </button>
-            <button class="btn btn-manage" onclick="openRangeManager()">
-                <i class="fas fa-cog"></i> إدارة النطاقات
-            </button>
-            <button class="btn" onclick="openPasswordModal()" style="background: linear-gradient(135deg, #FF5722 0%, #E64A19 100%);">
-                <i class="fas fa-chart-bar"></i> الإحصائيات
-            </button>
-            <button class="btn" onclick="openPatientsModal()" style="background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);">
-                <i class="fas fa-users"></i> قائمة المرضى
-            </button>
+        <div class="filled-tests" id="filledTests"></div>
+
+        <div class="results-container" id="resultsContainer"></div>
+
+        <div class="action-buttons">
+            <button class="btn btn-print" onclick="printPage()"><i class="fas fa-print"></i> طباعة</button>
+            <button class="btn btn-clear" onclick="clearAllFields()"><i class="fas fa-trash"></i> مسح الكل</button>
+            <button class="btn btn-save" onclick="savePatientData()"><i class="fas fa-save"></i> حفظ</button>
+            <button class="btn btn-load" onclick="loadPatientData()"><i class="fas fa-folder-open"></i> تحميل</button>
+            <button class="btn btn-manage" onclick="openRangeManager()"><i class="fas fa-cog"></i> إدارة النطاقات</button>
+            <button class="btn btn-manage" onclick="openAddSectionModal()"><i class="fas fa-plus-circle"></i> إضافة قسم/تحليل</button>
+            <button class="btn btn-manage" onclick="openPasswordModal()"><i class="fas fa-chart-bar"></i> الإحصائيات</button>
+            <button class="btn btn-manage" onclick="openPatientsModal()"><i class="fas fa-users"></i> قائمة المرضى</button>
+            <button class="btn btn-manage" onclick="toggleSettings()"><i class="fas fa-tools"></i> إعدادات</button>
         </div>
-        
-        <div class="results-container" id="resultsContainer">
-            <!-- سيتم إضافة الأقسام ديناميكيًا بواسطة JavaScript -->
-        </div>
-        
+
         <div class="footer">
             <div class="signature-area">
                 <div class="signature-box">
-                    <span>التوقيع</span>
-                    <input type="text" class="signature-input" placeholder="اسم الموقّع" id="signature1">
+                    توقيع الفاحص الأول
+                    <input type="text" id="signature1" class="signature-input" placeholder="أدخل التوقيع">
                 </div>
                 <div class="signature-box">
-                    <span>التوقيع</span>
-                    <input type="text" class="signature-input" placeholder="اسم الموقّع" id="signature2">
+                    توقيع الفاحص الثاني
+                    <input type="text" id="signature2" class="signature-input" placeholder="أدخل التوقيع">
+                </div>
+            </div>
+        </div>
+
+        <div class="lab-footer">
+            <div class="lab-footer-content">
+                <div class="lab-footer-item">
+                    <div class="lab-footer-title">العنوان</div>
+                    <div id="labAddress">تواصلوا معنا لشراء البرنامج</div>
+                </div>
+                <div class="lab-footer-item">
+                    <div class="lab-footer-title">رقم الهاتف</div>
+                    <div id="labPhone">07806810264</div>
+                </div>
+                <div class="lab-footer-item">
+                    <div class="lab-footer-title">شكرًا لزيارتكم</div>
+                    <div id="biologistName">شكرًا لزيارتكم</div>
                 </div>
             </div>
         </div>
     </div>
-    
+
+    <div id="rangeModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeRangeManager()">&times;</span>
+            <h2>إدارة النطاقات الطبيعية</h2>
+            <div class="range-management">
+                <label for="sectionSelect">اختر القسم:</label>
+                <select id="sectionSelect" onchange="loadSectionRanges()">
+                    <option value="">اختر قسم...</option>
+                </select>
+                <div id="rangeTableContainer"></div>
+                <button class="btn btn-save" onclick="saveRanges()">حفظ التعديلات</button>
+            </div>
+        </div>
+    </div>
+
     <div id="addSectionModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeAddSectionModal()">&times;</span>
-            <h2 style="text-align: center; margin-bottom: 20px;">إضافة قسم وتحاليل جديدة</h2>
-            
+            <h2>إضافة قسم/تحليل</h2>
             <div class="modal-tabs">
-                <div class="modal-tab active" data-tab="add-section-tab" onclick="switchTab('add-section-tab')">
-                    إضافة قسم جديد
-                </div>
-                <div class="modal-tab" data-tab="add-test-tab" onclick="switchTab('add-test-tab')">
-                    إضافة تحليل لقسم موجود
-                </div>
+                <div class="modal-tab" data-tab="add-section-tab" onclick="switchTab('add-section-tab')">إضافة قسم جديد</div>
+                <div class="modal-tab" data-tab="add-test-tab" onclick="switchTab('add-test-tab')">إضافة تحليل</div>
             </div>
-            
-            <div id="add-section-tab" class="tab-content active">
+            <div id="add-section-tab" class="tab-content">
                 <div class="new-section-form">
                     <div class="form-group">
                         <label>اسم القسم:</label>
                         <input type="text" id="new-section-name" class="form-input" placeholder="أدخل اسم القسم">
                     </div>
                     <div class="form-group">
-                        <label>أيقونة القسم:</label>
-                        <select id="new-section-icon" class="form-input">
-                            <option value="fas fa-vial">أنبوب اختبار</option>
-                            <option value="fas fa-tint">دم</option>
-                            <option value="fas fa-flask">قارورة</option>
-                            <option value="fas fa-microscope">ميكروسكوب</option>
-                            <option value="fas fa-prescription-bottle">زجاجة دواء</option>
-                            <option value="fas fa-chart-pie">رسم بياني</option>
-                            <option value="fas fa-capsules">كبسولات</option>
-                            <option value="fas fa-seedling">سائل منوي</option>
-                            <option value="fas fa-poo">براز</option>
-                            <option value="fas fa-heartbeat">تخثر</option>
-                            <option value="fas fa-virus">فيروسات</option>
-                            <option value="fas fa-lungs">رئتين</option>
-                            <option value="fas fa-brain">دماغ</option>
-                        </select>
+                        <label>رمز الأيقونة:</label>
+                        <input type="text" id="new-section-icon" class="form-input" placeholder="مثال: fas fa-heartbeat">
                     </div>
-                    <h3>تحاليل القسم:</h3>
-                    <div id="new-section-tests">
+                    <div class="test-list" id="new-section-tests">
                         <div class="test-item">
                             <input type="text" class="form-input test-name-input" placeholder="اسم التحليل">
                             <input type="text" class="form-input test-range-input" placeholder="النطاق الطبيعي">
                             <span class="remove-test" onclick="removeNewTest(this)">×</span>
                         </div>
                     </div>
-                    <button class="add-test-btn" onclick="addNewTestField()">
-                        <i class="fas fa-plus"></i> إضافة تحليل
-                    </button>
-                    <button class="btn btn-save" onclick="saveNewSection()">
-                        <i class="fas fa-save"></i> حفظ القسم الجديد
-                    </button>
+                    <button class="add-test-btn" onclick="addNewTestField()"><i class="fas fa-plus"></i> إضافة تحليل آخر</button>
+                    <button class="btn btn-save" onclick="saveNewSection()">حفظ القسم</button>
                 </div>
             </div>
-            
             <div id="add-test-tab" class="tab-content">
                 <div class="new-test-form">
                     <div class="form-group">
@@ -1725,7 +1134,7 @@
                     <div class="form-group">
                         <label>نوع الإجابة:</label>
                         <select id="answer-type" class="form-input" onchange="toggleChoicesContainer()">
-                            <option value="text">نص حر</option>
+                            <option value="text">نص</option>
                             <option value="select">اختيار واحد</option>
                             <option value="multiple">اختيار متعدد</option>
                         </select>
@@ -1734,93 +1143,51 @@
                         <label>النطاق الطبيعي:</label>
                         <input type="text" id="new-test-range" class="form-input" placeholder="أدخل النطاق الطبيعي">
                     </div>
-                    
                     <div id="choices-container" class="choices-container" style="display: none;">
-                        <h4>الخيارات المتاحة:</h4>
                         <div id="choice-items">
                             <div class="choice-item">
-                                <input type="text" class="choice-text-input" placeholder="أدخل الخيار الأول">
+                                <input type="text" class="choice-text-input" placeholder="أدخل الخيار">
                                 <span class="remove-choice" onclick="removeChoice(this)">×</span>
                             </div>
                         </div>
-                        <button type="button" class="add-choice-btn" onclick="addChoice()">
-                            <i class="fas fa-plus"></i> إضافة خيار
-                        </button>
+                        <button class="add-choice-btn" onclick="addChoice()">إضافة خيار آخر</button>
                     </div>
-                    
-                    <button class="btn btn-save" onclick="saveNewTest()">
-                        <i class="fas fa-save"></i> إضافة التحليل
-                    </button>
+                    <button class="btn btn-save" onclick="saveNewTest()">حفظ التحليل</button>
                 </div>
             </div>
         </div>
     </div>
-    
-    <div id="rangeModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeRangeManager()">&times;</span>
-            <h2 style="text-align: center; margin-bottom: 20px;">إدارة النطاقات الطبيعية للتحاليل</h2>
-            
-            <div class="range-management">
-                <div style="margin-bottom: 15px;">
-                    <label for="sectionSelect">اختر قسم التحليل:</label>
-                    <select id="sectionSelect" onchange="loadSectionRanges()" class="form-input" style="width: 100%; margin-top: 5px;">
-                        <option value="">اختر قسم...</option>
-                    </select>
-                </div>
-                
-                <div id="rangeTableContainer">
-                    <p>يرجى اختيار قسم لعرض التحاليل</p>
-                </div>
-                
-                <div style="text-align: left; margin-top: 20px;">
-                    <button class="btn btn-save" onclick="saveRanges()">
-                        <i class="fas fa-save"></i> حفظ التعديلات
-                    </button>
-                    <button class="btn btn-clear" onclick="closeRangeManager()">
-                        <i class="fas fa-times"></i> إغلاق
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
+
     <div id="searchModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeSearchModal()">&times;</span>
-            <h2 style="text-align: center; margin-bottom: 20px;">البحث عن بيانات المريض</h2>
-            
-            <div style="margin-bottom: 20px;">
-                <label for="searchPatientName">اسم المريض:</label>
-                <input type="text" id="searchPatientName" class="form-input" placeholder="أدخل اسم المريض" style="width: 100%; padding: 10px; margin-top: 5px;">
+            <h2>تحميل بيانات المريض</h2>
+            <div class="form-group">
+                <label>اسم المريض:</label>
+                <input type="text" id="searchPatientName" class="form-input" placeholder="أدخل اسم المريض">
             </div>
-            
-            <div style="text-align: left; margin-top: 20px;">
-                <button class="btn btn-load" onclick="searchPatientData()">
-                    <i class="fas fa-search"></i> البحث
-                </button>
-                <button class="btn btn-clear" onclick="closeSearchModal()">
-                    <i class="fas fa-times"></i> إغلاق
-                </button>
-            </div>
+            <button class="btn btn-load" onclick="searchPatientData()">تحميل</button>
         </div>
     </div>
 
     <div id="passwordModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closePasswordModal()">&times;</span>
-            <h2 style="text-align: center; margin-bottom: 20px;">أدخل رمز الوصول</h2>
-            <input type="password" id="passwordInput" class="password-input" placeholder="أدخل الرمز (100200)" maxlength="6">
-            <button class="btn btn-save" onclick="verifyPassword()" style="width: 100%; margin-top: 10px;">تأكيد</button>
+            <h2>إدخال كلمة المرور</h2>
+            <div class="form-group">
+                <label>كلمة المرور:</label>
+                <input type="password" id="passwordInput" class="form-input" placeholder="أدخل كلمة المرور">
+            </div>
+            <button class="btn btn-load" onclick="verifyPassword()">تحقق</button>
         </div>
     </div>
 
     <div id="statsModal" class="modal">
-        <div class="modal-content" style="max-width: 90%; max-height: 80vh; overflow-y: auto;">
+        <div class="modal-content">
             <span class="close" onclick="closeStatsModal()">&times;</span>
-            <h2 style="text-align: center; margin-bottom: 20px;">إحصائيات التحاليل الشهرية</h2>
-            <div id="statsSummary" class="stats-summary"></div>
-            <table id="statsTable" class="stats-table">
+            <h2>إحصائيات التحاليل</h2>
+            <div id="statsSummary"></div>
+            <table id="statsTable" class="range-table">
                 <thead>
                     <tr>
                         <th>اسم التحليل</th>
@@ -1830,497 +1197,326 @@
                 </thead>
                 <tbody></tbody>
             </table>
-            <div style="text-align: center; margin-top: 20px;">
-                <button class="print-btn" onclick="printStats()">طباعة الإحصائيات</button>
-                <button class="btn btn-clear" onclick="clearAllStats()" style="margin-left: 10px;">مسح جميع الإحصائيات</button>
-                <button class="btn btn-clear" onclick="closeStatsModal()" style="margin-left: 10px;">إغلاق</button>
-            </div>
+            <button class="btn btn-clear" onclick="clearAllStats()">مسح جميع الإحصائيات</button>
+            <button class="btn btn-print" onclick="printStats()">طباعة</button>
         </div>
     </div>
 
     <div id="patientsModal" class="modal">
-        <div class="modal-content" style="max-width: 90%; max-height: 80vh; overflow-y: auto;">
+        <div class="modal-content">
             <span class="close" onclick="closePatientsModal()">&times;</span>
-            <h2 style="text-align: center; margin-bottom: 20px;">قائمة المرضى المحفوظين</h2>
-            <table id="patientsTable" class="patients-table">
+            <h2>قائمة المرضى</h2>
+            <table id="patientsTable" class="range-table">
                 <thead>
                     <tr>
                         <th>اسم المريض</th>
                         <th>العمر</th>
                         <th>الجنس</th>
-                        <th>الطبيب</th>
+                        <th>اسم الدكتور</th>
                         <th>عدد المراجعات</th>
-                        <th>التحاليل والنتائج</th>
+                        <th>المراجعات</th>
                         <th>إجراءات</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
             </table>
-            <div style="text-align: center; margin-top: 20px;">
-                <button class="print-btn" onclick="printPatientsList()">طباعة القائمة</button>
-                <button class="btn btn-clear" onclick="closePatientsModal()" style="margin-left: 10px;">إغلاق</button>
-            </div>
-        </div>
-    </div>
-    
-    <div class="lab-footer">
-        <div class="lab-footer-content">
-            <div class="lab-footer-item">
-                <div class="lab-footer-title">برنامج اوسكار</div>
-                <div id="biologistName">شكرًا لزيارتكم</div>
-            </div>
-            <div class="lab-footer-item">
-                <div class="lab-footer-title">العنوان</div>
-                <div id="labAddress">تواصلوا معنا لشراء البرنامج</div>
-            </div>
-            <div class="lab-footer-item">
-                <div class="lab-footer-title">رقم الهاتف</div>
-                <div id="labPhone">07806810264</div>
-            </div>
+            <button class="btn btn-print" onclick="printPatientsList()">طباعة</button>
         </div>
     </div>
 
+    <div id="settingsPanel" class="settings-panel">
+        <h2>إعدادات المختبر</h2>
+        <div class="settings-group">
+            <h3>إعدادات الألوان</h3>
+            <div class="form-group">
+                <label>لون العنوان:</label>
+                <input type="color" id="headerColor" value="#2c7da0">
+            </div>
+            <div class="form-group">
+                <label>لون الخلفية:</label>
+                <input type="color" id="backgroundColor" value="#f5f7fa">
+            </div>
+            <div class="form-group">
+                <label>لون الأزرار:</label>
+                <input type="color" id="buttonColor" value="#4CAF50">
+            </div>
+            <div class="form-group">
+                <label>خلفية معلومات المريض:</label>
+                <input type="color" id="patientInfoBg" value="#eeeeee">
+            </div>
+            <div class="form-group">
+                <label>خلفية العنوان:</label>
+                <input type="color" id="headerBg" value="#ffffff">
+            </div>
+            <div class="form-group">
+                <label>لون حدود الجدول:</label>
+                <input type="color" id="tableBorderColor" value="#ddd">
+            </div>
+            <div class="form-group">
+                <label>لون خط العنوان:</label>
+                <input type="color" id="titleFontColor" value="#2c7da0">
+            </div>
+            <div class="form-group">
+                <label>لون خط اسم التحليل:</label>
+                <input type="color" id="testNameFontColor" value="#333333">
+            </div>
+            <div class="form-group">
+                <label>لون خط النتيجة:</label>
+                <input type="color" id="resultFontColor" value="#333333">
+            </div>
+            <div class="form-group">
+                <label>لون خط النطاق:</label>
+                <input type="color" id="rangeFontColor" value="#b90f0f">
+            </div>
+            <div class="form-group">
+                <label>لون خط التذييل:</label>
+                <input type="color" id="footerFontColor" value="#ffffff">
+            </div>
+            <div class="form-group">
+                <label>لون خط الدكتور:</label>
+                <input type="color" id="doctorFontColor" value="#11be65">
+            </div>
+        </div>
+        <div class="settings-group">
+            <h3>إعدادات الخطوط</h3>
+            <div class="form-group">
+                <label>حجم خط العنوان:</label>
+                <input type="number" id="titleFontSize" value="28">
+            </div>
+            <div class="form-group">
+                <label>حجم خط اسم التحليل:</label>
+                <input type="number" id="testNameFontSize" value="16">
+            </div>
+            <div class="form-group">
+                <label>حجم خط النتيجة:</label>
+                <input type="number" id="resultFontSize" value="16">
+            </div>
+            <div class="form-group">
+                <label>حجم خط النطاق:</label>
+                <input type="number" id="rangeFontSize" value="16">
+            </div>
+            <div class="form-group">
+                <label>حجم خط التذييل:</label>
+                <input type="number" id="footerFontSize" value="14">
+            </div>
+            <div class="form-group">
+                <label>حجم خط الدكتور:</label>
+                <input type="number" id="doctorFontSize" value="14">
+            </div>
+            <div class="form-group">
+                <label>الخط الرئيسي:</label>
+                <select id="mainFont">
+                    <option value="'Cairo', sans-serif">Cairo</option>
+                    <option value="'Amiri', serif">Amiri</option>
+                    <option value="'Tajawal', sans-serif">Tajawal</option>
+                    <option value="'Scheherazade', serif">Scheherazade</option>
+                    <option value="'Noto Naskh Arabic', sans-serif">Noto Naskh Arabic</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>خط العنوان:</label>
+                <select id="titleFont">
+                    <option value="'Amiri', serif">Amiri</option>
+                    <option value="'Cairo', sans-serif">Cairo</option>
+                    <option value="'Tajawal', sans-serif">Tajawal</option>
+                    <option value="'Scheherazade', serif">Scheherazade</option>
+                    <option value="'Noto Naskh Arabic', sans-serif">Noto Naskh Arabic</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>خط العنوان الفرعي:</label>
+                <select id="subtitleFont">
+                    <option value="'Cairo', sans-serif">Cairo</option>
+                    <option value="'Amiri', serif">Amiri</option>
+                    <option value="'Tajawal', sans-serif">Tajawal</option>
+                    <option value="'Scheherazade', serif">Scheherazade</option>
+                    <option value="'Noto Naskh Arabic', sans-serif">Noto Naskh Arabic</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>خط اسم التحليل:</label>
+                <select id="testFont">
+                    <option value="'Cairo', sans-serif">Cairo</option>
+                    <option value="'Amiri', serif">Amiri</option>
+                    <option value="'Tajawal', sans-serif">Tajawal</option>
+                    <option value="'Scheherazade', serif">Scheherazade</option>
+                    <option value="'Noto Naskh Arabic', sans-serif">Noto Naskh Arabic</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>خط النتيجة:</label>
+                <select id="resultFont">
+                    <option value="'Cairo', sans-serif">Cairo</option>
+                    <option value="'Amiri', serif">Amiri</option>
+                    <option value="'Tajawal', sans-serif">Tajawal</option>
+                    <option value="'Scheherazade', serif">Scheherazade</option>
+                    <option value="'Noto Naskh Arabic', sans-serif">Noto Naskh Arabic</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>خط النطاق:</label>
+                <select id="rangeFont">
+                    <option value="'Cairo', sans-serif">Cairo</option>
+                    <option value="'Amiri', serif">Amiri</option>
+                    <option value="'Tajawal', sans-serif">Tajawal</option>
+                    <option value="'Scheherazade', serif">Scheherazade</option>
+                    <option value="'Noto Naskh Arabic', sans-serif">Noto Naskh Arabic</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>خط التذييل:</label>
+                <select id="footerFont">
+                    <option value="'Cairo', sans-serif">Cairo</option>
+                    <option value="'Amiri', serif">Amiri</option>
+                    <option value="'Tajawal', sans-serif">Tajawal</option>
+                    <option value="'Scheherazade', serif">Scheherazade</option>
+                    <option value="'Noto Naskh Arabic', sans-serif">Noto Naskh Arabic</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>خط الدكتور:</label>
+                <select id="doctorFont">
+                    <option value="'Cairo', sans-serif">Cairo</option>
+                    <option value="'Amiri', serif">Amiri</option>
+                    <option value="'Tajawal', sans-serif">Tajawal</option>
+                    <option value="'Scheherazade', serif">Scheherazade</option>
+                    <option value="'Noto Naskh Arabic', sans-serif">Noto Naskh Arabic</option>
+                </select>
+            </div>
+        </div>
+        <div class="settings-group">
+            <h3>إعدادات أخرى</h3>
+            <div class="form-group">
+                <label>عرض حدود الجدول:</label>
+                <input type="number" id="tableBorderWidth" value="1">
+            </div>
+            <div class="form-group">
+                <label>انحناء صندوق الدكتور:</label>
+                <input type="number" id="doctorBoxBorderRadius" value="4">
+            </div>
+            <div class="form-group">
+                <label>عنوان المختبر:</label>
+                <input type="text" id="labAddressInput" placeholder="أدخل عنوان المختبر">
+            </div>
+            <div class="form-group">
+                <label>رقم الهاتف:</label>
+                <input type="text" id="labPhoneInput" placeholder="أدخل رقم الهاتف">
+            </div>
+            <div class="form-group">
+                <label>اسم الأحيائي:</label>
+                <input type="text" id="biologistNameInput" placeholder="أدخل اسم الأحيائي">
+            </div>
+            <div class="form-group">
+                <label>اسم الدكتور الأول:</label>
+                <input type="text" id="doctor1Name" placeholder="أدخل اسم الدكتور الأول">
+            </div>
+            <div class="form-group">
+                <label>اسم الدكتور الثاني:</label>
+                <input type="text" id="doctor2Name" placeholder="أدخل اسم الدكتور الثاني">
+            </div>
+            <div class="form-group">
+                <label>إظهار الدكتور الأول:</label>
+                <input type="checkbox" id="showDoctor1" checked>
+            </div>
+            <div class="form-group">
+                <label>إظهار الدكتور الثاني:</label>
+                <input type="checkbox" id="showDoctor2" checked>
+            </div>
+            <div class="form-group">
+                <label>شعار المختبر:</label>
+                <input type="file" id="logoUpload" accept="image/*" onchange="handleLogoUpload(event)">
+            </div>
+            <img id="logoPreview" class="logo-preview" src="" alt="معاينة الشعار">
+            <button class="btn btn-clear" onclick="resetLogo()">إعادة تعيين الشعار</button>
+        </div>
+        <button class="btn btn-save" onclick="saveSettings()">حفظ الإعدادات</button>
+        <button class="btn btn-clear" onclick="resetSettings()">إعادة تعيين</button>
+        <button class="btn btn-clear" onclick="toggleSettings()">إغلاق</button>
+    </div>
     <script>
-        // متغيرات قاعدة البيانات
-        const DB_NAME = 'LabDatabase';
-        const DB_VERSION = 3;
-        const STORE_NAME = 'patientVisits';
-        const STATS_STORE_NAME = 'statistics';
-        let db;
+    const DB_NAME = 'LabDatabase';
+    const DB_VERSION = 1;
+    const STORE_NAME = 'patients';
+    const STATS_STORE_NAME = 'statistics';
+    let db;
 
-        // هيكل المختبر الافتراضي
-        const defaultLabStructure = [
-            { 
-                id: 'chemicalSection', 
-                title: 'Chemical Tests', 
-                icon: 'fas fa-prescription-bottle', 
-                tests: {
-                    "F.B.S": { type: "text", range: "mg/dl (60-120)" }, 
-                    "R.B.S": { type: "text", range: "mg/dl (110-170)" }, 
-                    "HbA1C": { type: "text", range: "4.8-6.0 %" },
-                    "Na+": { type: "text", range: "mmol/L (135-155)" }, 
-                    "K+": { type: "text", range: "mmol/L (3.6-5.5)" },
-                    "B. Urea": { type: "text", range: "mg/dl (15-45)" }, 
-                    "S. Creatinine": { type: "text", range: "mg/dl (0.4-1.1)" }, 
-                    "eGFR": { type: "text", range: ">90 ml/min/1.73m²" },
-                    "Uric acid": { type: "text", range: "mg/dl (3-6)" }, 
-                    "S. Calcium": { type: "text", range: "mg/dl (8.5-10.3)" }, 
-                    "S. Total Protein": { type: "text", range: "g/dl (6.6-8.0)" },
-                    "S. Albumin": { type: "text", range: "g/dl (3.5-5.5)" }, 
-                    "Total Bilirubin": { type: "text", range: "mg/dl (0.2-1.2)" }, 
-                    "Direct Bilirubin": { type: "text", range: "mg/dl (0-0.3)" },
-                    "Indirect Bilirubin": { type: "text", range: "mg/dl (0.2-0.9)" }, 
-                    "ALT (GPT)": { type: "text", range: "U/L (<46)" }, 
-                    "AST (GOT)": { type: "text", range: "U/L (<46)" },
-                    "ALP": { type: "text", range: "U/L (40-150)" }, 
-                    "Amylase": { type: "text", range: "U/L (30-110)" }, 
-                    "Lipase": { type: "text", range: "U/L (10-140)" }, 
-                    "CK": { type: "text", range: "U/L (20-200)" },
-                    "CK-MB": { type: "text", range: "U/L (<25)" }, 
-                    "LDH": { type: "text", range: "U/L (140-280)" }, 
-                    "A.S.O Titer": { type: "text", range: "IU/ml (<200)" }
-                }
-            },
-            { 
-                id: 'lipidSection', 
-                title: 'Lipid Profile', 
-                icon: 'fas fa-chart-pie', 
-                tests: {
-                    "S. Cholesterol": { type: "text", range: "mg/dl (150-200)" }, 
-                    "S. Triglyceride": { type: "text", range: "mg/dl (35-165)" }, 
-                    "VLDL": { type: "text", range: "mg/dl (5-30)" },
-                    "S. LDL": { type: "text", range: "mg/dl (130-160)" }, 
-                    "S. HDL": { type: "text", range: "mg/dl (35-65)" }, 
-                    "Chol/HDL Ratio": { type: "text", range: "<5.0" },
-                    "LDL/HDL Ratio": { type: "text", range: "<3.5" }
-                }
-            },
-            { 
-                id: 'cbcSection', 
-                title: 'CBC (Complete Blood Count)', 
-                icon: 'fas fa-microscope', 
-                tests: {
-                    "WBC": { type: "text", range: "4.5 - 11.0 x 10³/µL" }, 
-                    "RBC": { type: "text", range: "4.5 - 5.5 x 10⁶/µL" }, 
-                    "Hb": { type: "text", range: "13.5 - 17.5 g/dL (M), 12.0 - 15.5 g/dL (F)" },
-                    "HCT": { type: "text", range: "41 - 53% (M), 36 - 46% (F)" }, 
-                    "MCV": { type: "text", range: "80 - 100 fL" }, 
-                    "MCH": { type: "text", range: "27 - 33 pg" }, 
-                    "MCHC": { type: "text", range: "32 - 36 g/dL" },
-                    "RDW": { type: "text", range: "11.5 - 14.5%" }, 
-                    "Platelets": { type: "text", range: "150 - 450 x 10³/µL" }, 
-                    "Neutrophils": { type: "text", range: "40 - 70 %" }, 
-                    "Lymphocytes": { type: "text", range: "20 - 40 %" },
-                    "Monocytes": { type: "text", range: "2 - 8 %" }, 
-                    "Eosinophils": { type: "text", range: "1 - 4 %" }, 
-                    "Basophils": { type: "text", range: "0.5 - 1 %" }
-                }
-            },
-            {
-                id: 'liverSection',
-                title: 'Liver Function Tests',
-                icon: 'fas fa-vial',
-                tests: {
-                    "ALT (SGPT)": { type: "text", range: "// إكمال هيكل المختبر الافتراضي
-                    text", range: "U/L (<46)" },
-                    "AST (SGOT)": { type: "text", range: "U/L (<46)" },
-                    "ALP": { type: "text", range: "U/L (40-150)" },
-                    "Total Bilirubin": { type: "text", range: "mg/dl (0.2-1.2)" },
-                    "Direct Bilirubin": { type: "text", range: "mg/dl (0-0.3)" },
-                    "Indirect Bilirubin": { type: "text", range: "mg/dl (0.2-0.9)" }
-                }
-            },
-            { 
-                id: 'thyroidSection', 
-                title: 'Thyroid Function Tests', 
-                icon: 'fas fa-heartbeat', 
-                tests: {
-                    "TSH": { type: "text", range: "µIU/mL (0.4-4.0)" },
-                    "T3": { type: "text", range: "ng/dL (80-200)" },
-                    "T4": { type: "text", range: "µg/dL (4.5-11.2)" },
-                    "Free T3": { type: "text", range: "pg/mL (2.3-4.2)" },
-                    "Free T4": { type: "text", range: "ng/dL (0.8-1.8)" }
-                }
+    const defaultLabStructure = [
+        { 
+            id: 'liverSection', 
+            title: 'Liver Function Tests', 
+            icon: 'fas fa-liver', 
+            tests: {
+                "ALT (SGPT)": { type: "text", range: "U/L (<46)" },
+                "AST (SGOT)": { type: "text", range: "U/L (<46)" },
+                "ALP": { type: "text", range: "U/L (40-150)" },
+                "Total Bilirubin": { type: "text", range: "mg/dl (0.2-1.2)" },
+                "Direct Bilirubin": { type: "text", range: "mg/dl (0-0.3)" },
+                "Indirect Bilirubin": { type: "text", range: "mg/dl (0.2-0.9)" }
             }
-        ];
-
-        // تهيئة قاعدة البيانات
-        function initDB() {
-            return new Promise((resolve, reject) => {
-                const request = indexedDB.open(DB_NAME, DB_VERSION);
-                
-                request.onupgradeneeded = function(event) {
-                    db = event.target.result;
-                    if (!db.objectStoreNames.contains(STORE_NAME)) {
-                        db.createObjectStore(STORE_NAME, { keyPath: 'id', autoIncrement: true });
-                    }
-                    if (!db.objectStoreNames.contains(STATS_STORE_NAME)) {
-                        db.createObjectStore(STATS_STORE_NAME, { keyPath: 'testName' });
-                    }
-                };
-                
-                request.onsuccess = function(event) {
-                    db = event.target.result;
-                    resolve();
-                };
-                
-                request.onerror = function(event) {
-                    console.error('خطأ في فتح قاعدة البيانات:', event.target.error);
-                    reject(event.target.error);
-                };
-            });
-        }
-
-        // تحميل هيكل المختبر عند بدء التشغيل
-        async function loadLabStructure() {
-            await initDB();
-            const select = document.getElementById('test-select');
-            const existingSectionsSelect = document.getElementById('existing-sections');
-            const sectionSelect = document.getElementById('sectionSelect');
-            
-            select.innerHTML = '<option value="">اختر قسم...</option>';
-            existingSectionsSelect.innerHTML = '<option value="">اختر قسم...</option>';
-            sectionSelect.innerHTML = '<option value="">اختر قسم...</option>';
-            
-            defaultLabStructure.forEach(section => {
-                const option = document.createElement('option');
-                option.value = section.id;
-                option.textContent = section.title;
-                select.appendChild(option);
-                existingSectionsSelect.appendChild(option.cloneNode(true));
-                sectionSelect.appendChild(option.cloneNode(true));
-                
-                const sectionDiv = document.createElement('div');
-                sectionDiv.className = 'section';
-                sectionDiv.id = section.id;
-                sectionDiv.innerHTML = `
-                    <div class="section-title"><i class="${section.icon}"></i> ${section.title}</div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>اسم التحليل</th>
-                                <th>النتيجة</th>
-                                <th>النطاق الطبيعي</th>
-                                <th class="no-print">إجراءات</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${Object.entries(section.tests).map(([testName, testData]) => `
-                                <tr>
-                                    <td class="test-name">${testName}</td>
-                                    <td>
-                                        ${testData.type === 'text' ? 
-                                            `<input type="text" class="result-input" data-test="${testName}" oninput="updateFilledTests()">` :
-                                            testData.type === 'select' || testData.type === 'multiple' ? 
-                                            `<select class="result-select" data-test="${testName}" onchange="updateFilledTests()">
-                                                <option value="">اختر...</option>
-                                                ${testData.options.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
-                                            </select>` : 
-                                            `<div class="multiple-choice-container">
-                                                ${testData.options.map(opt => `
-                                                    <div class="choice-option">
-                                                        <input type="${testData.type === 'select' ? 'radio' : 'checkbox'}" class="choice-radio" name="${testName}" value="${opt}" onchange="updateFilledTests()">
-                                                        <span class="choice-text">${opt}</span>
-                                                    </div>
-                                                `).join('')}
-                                            </div>`
-                                        }
-                                    </td>
-                                    <td class="normal-range">${testData.range}</td>
-                                    <td class="no-print">
-                                        <span class="remove-test" onclick="removeTest('${section.id}', '${testName}')">×</span>
-                                    </td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
-                    <div class="examiner-name">
-                        <span>اسم الفاحص:</span>
-                        <input type="text" class="examiner-input" placeholder="أدخل اسم الفاحص">
-                    </div>
-                `;
-                document.getElementById('resultsContainer').appendChild(sectionDiv);
-            });
-            
-            showSelectedSection();
-            updateFilledTests();
-        }
-
-        // إظهار القسم المختار
-        function showSelectedSection() {
-            const select = document.getElementById('test-select');
-            const selectedSection = select.value;
-            document.querySelectorAll('.section').forEach(section => {
-                section.classList.toggle('active', section.id === selectedSection);
-            });
-            updateFilledTests();
-        }
-
-        // تحديث عدد التحاليل المعبأة
-        function updateFilledTests() {
-            const filledTestsDiv = document.getElementById('filledTests');
-            let filledCount = 0;
-            let totalCount = 0;
-            
-            document.querySelectorAll('.result-input, .result-select').forEach(input => {
-                totalCount++;
-                if (input.value) filledCount++;
-            });
-            
-            document.querySelectorAll('.choice-radio').forEach(radio => {
-                totalCount++;
-                if (radio.checked) filledCount++;
-            });
-            
-            if (totalCount > 0) {
-                filledTestsDiv.style.display = 'block';
-                filledTestsDiv.textContent = `عدد التحاليل المعبأة: ${filledCount} من ${totalCount}`;
-            } else {
-                filledTestsDiv.style.display = 'none';
+        },
+        { 
+            id: 'thyroidSection', 
+            title: 'Thyroid Function Tests', 
+            icon: 'fas fa-heartbeat', 
+            tests: {
+                "TSH": { type: "text", range: "µIU/mL (0.4-4.0)" },
+                "T3": { type: "text", range: "ng/dL (80-200)" },
+                "T4": { type: "text", range: "µg/dL (4.5-11.2)" },
+                "Free T3": { type: "text", range: "pg/mL (2.3-4.2)" },
+                "Free T4": { type: "text", range: "ng/dL (0.8-1.8)" }
             }
         }
+    ];
 
-        // فتح نافذة إدارة النطاقات
-        function openRangeManager() {
-            document.getElementById('rangeModal').style.display = 'block';
-            loadSectionRanges();
-        }
-
-        // إغلاق نافذة إدارة النطاقات
-        function closeRangeManager() {
-            document.getElementById('rangeModal').style.display = 'none';
-        }
-
-        // تحميل نطاقات القسم المحدد
-        function loadSectionRanges() {
-            const sectionSelect = document.getElementById('sectionSelect');
-            const selectedSectionId = sectionSelect.value;
-            const tableContainer = document.getElementById('rangeTableContainer');
+    function initDB() {
+        return new Promise((resolve, reject) => {
+            const request = indexedDB.open(DB_NAME, DB_VERSION);
             
-            if (!selectedSectionId) {
-                tableContainer.innerHTML = '<p>يرجى اختيار قسم لعرض التحاليل</p>';
-                return;
-            }
-            
-            const section = defaultLabStructure.find(s => s.id === selectedSectionId);
-            if (section) {
-                tableContainer.innerHTML = `
-                    <table class="range-table">
-                        <thead>
-                            <tr>
-                                <th>اسم التحليل</th>
-                                <th>النطاق الطبيعي</th>
-                                <th>إجراءات</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${Object.entries(section.tests).map(([testName, testData]) => `
-                                <tr>
-                                    <td>${testName}</td>
-                                    <td><input type="text" class="normal-range-input" value="${testData.range}" data-test="${testName}"></td>
-                                    <td><button class="btn btn-clear" onclick="removeTest('${section.id}', '${testName}')">حذف</button></td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
-                `;
-            }
-        }
-
-        // حفظ تعديلات النطاقات
-        function saveRanges() {
-            const sectionSelect = document.getElementById('sectionSelect');
-            const selectedSectionId = sectionSelect.value;
-            const section = defaultLabStructure.find(s => s.id === selectedSectionId);
-            
-            if (section) {
-                document.querySelectorAll('.normal-range-input').forEach(input => {
-                    const testName = input.dataset.test;
-                    section.tests[testName].range = input.value;
-                });
-                
-                // تحديث النطاقات في واجهة المستخدم
-                const sectionDiv = document.getElementById(selectedSectionId);
-                if (sectionDiv) {
-                    Object.entries(section.tests).forEach(([testName, testData]) => {
-                        const rangeCell = sectionDiv.querySelector(`tr td:nth-child(3)`);
-                        if (rangeCell) rangeCell.textContent = testData.range;
-                    });
+            request.onupgradeneeded = function(event) {
+                db = event.target.result;
+                if (!db.objectStoreNames.contains(STORE_NAME)) {
+                    db.createObjectStore(STORE_NAME, { keyPath: 'id', autoIncrement: true });
                 }
-                
-                alert('تم حفظ التعديلات بنجاح!');
-                closeRangeManager();
-            }
-        }
-
-        // فتح نافذة إضافة قسم جديد
-        function openAddSectionModal() {
-            document.getElementById('addSectionModal').style.display = 'block';
-            document.getElementById('new-section-name').value = '';
-            document.getElementById('new-section-tests').innerHTML = `
-                <div class="test-item">
-                    <input type="text" class="form-input test-name-input" placeholder="اسم التحليل">
-                    <input type="text" class="form-input test-range-input" placeholder="النطاق الطبيعي">
-                    <span class="remove-test" onclick="removeNewTest(this)">×</span>
-                </div>
-            `;
-            switchTab('add-section-tab');
-        }
-
-        // إغلاق نافذة إضافة القسم
-        function closeAddSectionModal() {
-            document.getElementById('addSectionModal').style.display = 'none';
-        }
-
-        // تبديل علامات التبويب في نافذة إضافة القسم
-        function switchTab(tabId) {
-            document.querySelectorAll('.modal-tab').forEach(tab => {
-                tab.classList.toggle('active', tab.dataset.tab === tabId);
-            });
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.toggle('active', content.id === tabId);
-            });
-            if (tabId === 'add-test-tab') {
-                populateExistingSections();
-            }
-        }
-
-        // ملء قائمة الأقسام الموجودة
-        function populateExistingSections() {
-            const existingSectionsSelect = document.getElementById('existing-sections');
-            existingSectionsSelect.innerHTML = '<option value="">اختر قسم...</option>';
-            defaultLabStructure.forEach(section => {
-                const option = document.createElement('option');
-                option.value = section.id;
-                option.textContent = section.title;
-                existingSectionsSelect.appendChild(option);
-            });
-        }
-
-        // إضافة حقل تحليل جديد
-        function addNewTestField() {
-            const testContainer = document.getElementById('new-section-tests');
-            const newTest = document.createElement('div');
-            newTest.className = 'test-item';
-            newTest.innerHTML = `
-                <input type="text" class="form-input test-name-input" placeholder="اسم التحليل">
-                <input type="text" class="form-input test-range-input" placeholder="النطاق الطبيعي">
-                <span class="remove-test" onclick="removeNewTest(this)">×</span>
-            `;
-            testContainer.appendChild(newTest);
-        }
-
-        // إزالة حقل تحليل جديد
-        function removeNewTest(element) {
-            element.parentElement.remove();
-        }
-
-        // إضافة خيار جديد للتحليل
-        function addChoice() {
-            const choiceContainer = document.getElementById('choice-items');
-            const newChoice = document.createElement('div');
-            newChoice.className = 'choice-item';
-            newChoice.innerHTML = `
-                <input type="text" class="choice-text-input" placeholder="أدخل الخيار">
-                <span class="remove-choice" onclick="removeChoice(this)">×</span>
-            `;
-            choiceContainer.appendChild(newChoice);
-        }
-
-        // إزالة خيار
-        function removeChoice(element) {
-            element.parentElement.remove();
-        }
-
-        // تبديل إظهار حاوية الخيارات
-        function toggleChoicesContainer() {
-            const answerType = document.getElementById('answer-type').value;
-            const choicesContainer = document.getElementById('choices-container');
-            choicesContainer.style.display = (answerType === 'select' || answerType === 'multiple') ? 'block' : 'none';
-        }
-
-        // حفظ قسم جديد
-        function saveNewSection() {
-            const sectionName = document.getElementById('new-section-name').value;
-            const sectionIcon = document.getElementById('new-section-icon').value;
-            const tests = [];
-            document.querySelectorAll('#new-section-tests .test-item').forEach(item => {
-                const testName = item.querySelector('.test-name-input').value;
-                const testRange = item.querySelector('.test-range-input').value;
-                if (testName && testRange) {
-                    tests.push({ name: testName, range: testRange });
+                if (!db.objectStoreNames.contains(STATS_STORE_NAME)) {
+                    db.createObjectStore(STATS_STORE_NAME, { keyPath: 'testName' });
                 }
-            });
-            
-            if (!sectionName || tests.length === 0) {
-                alert('يرجى إدخال اسم القسم وتحليل واحد على الأقل.');
-                return;
-            }
-            
-            const newSection = {
-                id: `section${Date.now()}`,
-                title: sectionName,
-                icon: sectionIcon,
-                tests: {}
             };
             
-            tests.forEach(test => {
-                newSection.tests[test.name] = { type: 'text', range: test.range };
-            });
+            request.onsuccess = function(event) {
+                db = event.target.result;
+                resolve();
+            };
             
-            defaultLabStructure.push(newSection);
-            
-            const select = document.getElementById('test-select');
+            request.onerror = function(event) {
+                console.error('خطأ في فتح قاعدة البيانات:', event.target.error);
+                reject(event.target.error);
+            };
+        });
+    }
+
+    async function loadLabStructure() {
+        await initDB();
+        const select = document.getElementById('test-select');
+        const existingSectionsSelect = document.getElementById('existing-sections');
+        const sectionSelect = document.getElementById('sectionSelect');
+        
+        select.innerHTML = '<option value="">اختر قسم...</option>';
+        existingSectionsSelect.innerHTML = '<option value="">اختر قسم...</option>';
+        sectionSelect.innerHTML = '<option value="">اختر قسم...</option>';
+        
+        defaultLabStructure.forEach(section => {
             const option = document.createElement('option');
-            option.value = newSection.id;
-            option.textContent = newSection.title;
+            option.value = section.id;
+            option.textContent = section.title;
             select.appendChild(option);
+            existingSectionsSelect.appendChild(option.cloneNode(true));
+            sectionSelect.appendChild(option.cloneNode(true));
             
             const sectionDiv = document.createElement('div');
             sectionDiv.className = 'section';
-            sectionDiv.id = newSection.id;
+            sectionDiv.id = section.id;
             sectionDiv.innerHTML = `
-                <div class="section-title"><i class="${newSection.icon}"></i> ${newSection.title}</div>
+                <div class="section-title"><i class="${section.icon}"></i> ${section.title}</div>
                 <table>
                     <thead>
                         <tr>
@@ -2331,12 +1527,31 @@
                         </tr>
                     </thead>
                     <tbody>
-                        ${tests.map(test => `
+                        ${Object.entries(section.tests).map(([testName, testData]) => `
                             <tr>
-                                <td class="test-name">${test.name}</td>
-                                <td><input type="text" class="result-input" data-test="${test.name}" oninput="updateFilledTests()"></td>
-                                <td class="normal-range">${test.range}</td>
-                                <td class="no-print"><span class="remove-test" onclick="removeTest('${newSection.id}', '${test.name}')">×</span></td>
+                                <td class="test-name">${testName}</td>
+                                <td>
+                                    ${testData.type === 'text' ? 
+                                        `<input type="text" class="result-input" data-test="${testName}" oninput="updateFilledTests()">` :
+                                        testData.type === 'select' || testData.type === 'multiple' ? 
+                                        `<select class="result-select" data-test="${testName}" onchange="updateFilledTests()">
+                                            <option value="">اختر...</option>
+                                            ${testData.options.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+                                        </select>` : 
+                                        `<div class="multiple-choice-container">
+                                            ${testData.options.map(opt => `
+                                                <div class="choice-option">
+                                                    <input type="${testData.type === 'select' ? 'radio' : 'checkbox'}" class="choice-radio" name="${testName}" value="${opt}" onchange="updateFilledTests()">
+                                                    <span class="choice-text">${opt}</span>
+                                                </div>
+                                            `).join('')}
+                                        </div>`
+                                    }
+                                </td>
+                                <td class="normal-range">${testData.range}</td>
+                                <td class="no-print">
+                                    <span class="remove-test" onclick="removeTest('${section.id}', '${testName}')">×</span>
+                                </td>
                             </tr>
                         `).join('')}
                     </tbody>
@@ -2347,173 +1562,444 @@
                 </div>
             `;
             document.getElementById('resultsContainer').appendChild(sectionDiv);
-            
-            closeAddSectionModal();
-            select.value = newSection.id;
-            showSelectedSection();
-        }
+        });
+        
+        showSelectedSection();
+        updateFilledTests();
+        setCurrentDate();
+        loadSettings();
+    }
 
-        // حفظ تحليل جديد
-        function saveNewTest() {
-            const sectionId = document.getElementById('existing-sections').value;
-            const testName = document.getElementById('new-test-name').value;
-            const answerType = document.getElementById('answer-type').value;
-            const testRange = document.getElementById('new-test-range').value;
-            const choices = [];
-            
-            if (answerType !== 'text') {
-                document.querySelectorAll('#choice-items .choice-text-input').forEach(input => {
-                    if (input.value) choices.push(input.value);
-                });
-            }
-            
-            if (!sectionId || !testName || (!testRange && answerType === 'text') || (choices.length === 0 && answerType !== 'text')) {
-                alert('يرجى ملء جميع الحقول المطلوبة.');
-                return;
-            }
-            
-            const section = defaultLabStructure.find(s => s.id === sectionId);
-            if (section) {
-                section.tests[testName] = {
-                    type: answerType,
-                    range: testRange,
-                    options: answerType !== 'text' ? choices : undefined
-                };
-                
-                const sectionDiv = document.getElementById(sectionId);
-                const tbody = sectionDiv.querySelector('tbody');
-                const newRow = document.createElement('tr');
-                newRow.innerHTML = `
-                    <td class="test-name">${testName}</td>
-                    <td>
-                        ${answerType === 'text' ? 
-                            `<input type="text" class="result-input" data-test="${testName}" oninput="updateFilledTests()">` :
-                            `<select class="result-select" data-test="${testName}" onchange="updateFilledTests()">
-                                <option value="">اختر...</option>
-                                ${choices.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
-                            </select>`
-                        }
-                    </td>
-                    <td class="normal-range">${testRange}</td>
-                    <td class="no-print"><span class="remove-test" onclick="removeTest('${sectionId}', '${testName}')">×</span></td>
-                `;
-                tbody.appendChild(newRow);
-                
-                closeAddSectionModal();
-            }
-        }
+    function setCurrentDate() {
+        const dateInput = document.getElementById('currentDate');
+        const today = new Date();
+        dateInput.value = today.toISOString().split('T')[0];
+    }
 
-        // إزالة تحليل
-        function removeTest(sectionId, testName) {
-            if (confirm(`هل أنت متأكد من حذف التحليل "${testName}"؟`)) {
-                const section = defaultLabStructure.find(s => s.id === sectionId);
-                if (section) {
-                    delete section.tests[testName];
-                    const sectionDiv = document.getElementById(sectionId);
-                    const row = sectionDiv.querySelector(`tr td.test-name:not(:empty)`).parentElement;
-                    if (row) row.remove();
-                    updateFilledTests();
-                }
-            }
-        }
+    function showSelectedSection() {
+        const select = document.getElementById('test-select');
+        const selectedSection = select.value;
+        document.querySelectorAll('.section').forEach(section => {
+            section.classList.toggle('active', section.id === selectedSection);
+        });
+        updateFilledTests();
+    }
 
-        // حفظ بيانات المريض
-        async function savePatientData() {
-            const patientData = {
-                name: document.getElementById('patientName').value,
-                age: document.getElementById('patientAge').value,
-                gender: document.getElementById('patientGender').value,
-                doctor: document.getElementById('doctorName').value,
-                date: document.getElementById('currentDate').value,
-                signature1: document.getElementById('signature1').value,
-                signature2: document.getElementById('signature2').value,
-                tests: {},
-                timestamp: new Date().toISOString()
-            };
-            
-            document.querySelectorAll('.section').forEach(section => {
-                const sectionId = section.id;
-                const tests = {};
-                section.querySelectorAll('.result-input, .result-select').forEach(input => {
-                    if (input.value) {
-                        tests[input.dataset.test] = input.value;
-                    }
-                });
-                section.querySelectorAll('.multiple-choice-container').forEach(container => {
-                    const testName = container.querySelector('.choice-radio').name;
-                    const selected = [];
-                    container.querySelectorAll('.choice-radio:checked').forEach(radio => {
-                        selected.push(radio.value);
-                    });
-                    if (selected.length > 0) tests[testName] = selected;
-                });
-                if (Object.keys(tests).length > 0) {
-                    patientData.tests[sectionId] = {
-                        tests,
-                        examiner: section.querySelector('.examiner-input').value
-                    };
-                }
+    function updateFilledTests() {
+        const filledTestsDiv = document.getElementById('filledTests');
+        let filledCount = 0;
+        let totalCount = 0;
+        
+        document.querySelectorAll('.result-input, .result-select').forEach(input => {
+            totalCount++;
+            if (input.value) filledCount++;
+        });
+        
+        document.querySelectorAll('.choice-radio').forEach(radio => {
+            totalCount++;
+            if (radio.checked) filledCount++;
+        });
+        
+        if (totalCount > 0) {
+            filledTestsDiv.style.display = 'block';
+            filledTestsDiv.textContent = `عدد التحاليل المعبأة: ${filledCount} من ${totalCount}`;
+        } else {
+            filledTestsDiv.style.display = 'none';
+        }
+    }
+
+    function openRangeManager() {
+        document.getElementById('rangeModal').style.display = 'block';
+        loadSectionRanges();
+    }
+
+    function closeRangeManager() {
+        document.getElementById('rangeModal').style.display = 'none';
+    }
+
+    function loadSectionRanges() {
+        const sectionSelect = document.getElementById('sectionSelect');
+        const selectedSectionId = sectionSelect.value;
+        const tableContainer = document.getElementById('rangeTableContainer');
+        
+        if (!selectedSectionId) {
+            tableContainer.innerHTML = '<p>يرجى اختيار قسم لعرض التحاليل</p>';
+            return;
+        }
+        
+        const section = defaultLabStructure.find(s => s.id === selectedSectionId);
+        if (section) {
+            tableContainer.innerHTML = `
+                <table class="range-table">
+                    <thead>
+                        <tr>
+                            <th>اسم التحليل</th>
+                            <th>النطاق الطبيعي</th>
+                            <th>إجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${Object.entries(section.tests).map(([testName, testData]) => `
+                            <tr>
+                                <td>${testName}</td>
+                                <td><input type="text" class="normal-range-input" value="${testData.range}" data-test="${testName}"></td>
+                                <td><button class="btn btn-clear" onclick="removeTest('${section.id}', '${testName}')">حذف</button></td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+        }
+    }
+
+    function saveRanges() {
+        const sectionSelect = document.getElementById('sectionSelect');
+        const selectedSectionId = sectionSelect.value;
+        const section = defaultLabStructure.find(s => s.id === selectedSectionId);
+        
+        if (section) {
+            document.querySelectorAll('.normal-range-input').forEach(input => {
+                const testName = input.dataset.test;
+                section.tests[testName].range = input.value;
             });
             
-            if (!patientData.name || Object.keys(patientData.tests).length === 0) {
-                alert('يرجى إدخال اسم المريض وتعبئة تحليل واحد على الأقل.');
-                return;
-            }
-            
-            try {
-                const transaction = db.transaction([STORE_NAME], 'readwrite');
-                const store = transaction.objectStore(STORE_NAME);
-                await store.add(patientData);
-                
-                // تحديث الإحصائيات
-                const statsTransaction = db.transaction([STATS_STORE_NAME], 'readwrite');
-                const statsStore = statsTransaction.objectStore(STATS_STORE_NAME);
-                
-                Object.values(patientData.tests).forEach(section => {
-                    Object.keys(section.tests).forEach(testName => {
-                        statsStore.get(testName).onsuccess = function(event) {
-                            const record = event.target.result;
-                            if (record) {
-                                statsStore.put({ testName, count: record.count + 1 });
-                            } else {
-                                statsStore.add({ testName, count: 1 });
-                            }
-                        };
-                    });
+            const sectionDiv = document.getElementById(selectedSectionId);
+            if (sectionDiv) {
+                sectionDiv.querySelectorAll('tr').forEach(row => {
+                    const testNameCell = row.querySelector('.test-name');
+                    if (testNameCell) {
+                        const testName = testNameCell.textContent;
+                        const rangeCell = row.querySelector('.normal-range');
+                        if (rangeCell && section.tests[testName]) {
+                            rangeCell.textContent = section.tests[testName].range;
+                        }
+                    }
                 });
-                
-                alert('تم حفظ بيانات المريض بنجاح!');
-            } catch (error) {
-                console.error('خطأ في حفظ البيانات:', error);
-                alert('حدث خطأ أثناء حفظ البيانات.');
-            }
-        }
-
-        // فتح نافذة البحث
-        function loadPatientData() {
-            document.getElementById('searchModal').style.display = 'block';
-        }
-
-        // إغلاق نافذة البحث
-        function closeSearchModal() {
-            document.getElementById('searchModal').style.display = 'none';
-        }
-
-        // البحث عن بيانات المريض
-        async function searchPatientData() {
-            const searchName = document.getElementById('searchPatientName').value.trim();
-            if (!searchName) {
-                alert('يرجى إدخال اسم المريض.');
-                return;
             }
             
+            alert('تم حفظ التعديلات بنجاح!');
+            closeRangeManager();
+        }
+    }
+
+    function openAddSectionModal() {
+        document.getElementById('addSectionModal').style.display = 'block';
+        document.getElementById('new-section-name').value = '';
+        document.getElementById('new-section-icon').value = 'fas fa-flask';
+        document.getElementById('new-section-tests').innerHTML = `
+            <div class="test-item">
+                <input type="text" class="form-input test-name-input" placeholder="اسم التحليل">
+                <input type="text" class="form-input test-range-input" placeholder="النطاق الطبيعي">
+                <span class="remove-test" onclick="removeNewTest(this)">×</span>
+            </div>
+        `;
+        switchTab('add-section-tab');
+    }
+
+    function closeAddSectionModal() {
+        document.getElementById('addSectionModal').style.display = 'none';
+    }
+
+    function switchTab(tabId) {
+        document.querySelectorAll('.modal-tab').forEach(tab => {
+            tab.classList.toggle('active', tab.dataset.tab === tabId);
+        });
+        document.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.toggle('active', content.id === tabId);
+        });
+        if (tabId === 'add-test-tab') {
+            populateExistingSections();
+            toggleChoicesContainer();
+        }
+    }
+
+    function populateExistingSections() {
+        const existingSectionsSelect = document.getElementById('existing-sections');
+        existingSectionsSelect.innerHTML = '<option value="">اختر قسم...</option>';
+        defaultLabStructure.forEach(section => {
+            const option = document.createElement('option');
+            option.value = section.id;
+            option.textContent = section.title;
+            existingSectionsSelect.appendChild(option);
+        });
+    }
+
+    function addNewTestField() {
+        const testContainer = document.getElementById('new-section-tests');
+        const newTest = document.createElement('div');
+        newTest.className = 'test-item';
+        newTest.innerHTML = `
+            <input type="text" class="form-input test-name-input" placeholder="اسم التحليل">
+            <input type="text" class="form-input test-range-input" placeholder="النطاق الطبيعي">
+            <span class="remove-test" onclick="removeNewTest(this)">×</span>
+        `;
+        testContainer.appendChild(newTest);
+    }
+
+    function removeNewTest(element) {
+        element.parentElement.remove();
+    }
+
+    function addChoice() {
+        const choiceContainer = document.getElementById('choice-items');
+        const newChoice = document.createElement('div');
+        newChoice.className = 'choice-item';
+        newChoice.innerHTML = `
+            <input type="text" class="choice-text-input" placeholder="أدخل الخيار">
+            <span class="remove-choice" onclick="removeChoice(this)">×</span>
+        `;
+        choiceContainer.appendChild(newChoice);
+    }
+
+    function removeChoice(element) {
+        element.parentElement.remove();
+    }
+
+    function toggleChoicesContainer() {
+        const answerType = document.getElementById('answer-type').value;
+        const choicesContainer = document.getElementById('choices-container');
+        choicesContainer.style.display = (answerType === 'select' || answerType === 'multiple') ? 'block' : 'none';
+    }
+
+    function saveNewSection() {
+        const sectionName = document.getElementById('new-section-name').value;
+        const sectionIcon = document.getElementById('new-section-icon').value;
+        const tests = [];
+        document.querySelectorAll('#new-section-tests .test-item').forEach(item => {
+            const testName = item.querySelector('.test-name-input').value;
+            const testRange = item.querySelector('.test-range-input').value;
+            if (testName && testRange) {
+                tests.push({ name: testName, range: testRange });
+            }
+        });
+        
+        if (!sectionName || tests.length === 0) {
+            alert('يرجى إدخال اسم القسم وتحليل واحد على الأقل.');
+            return;
+        }
+        
+        const newSection = {
+            id: `section${Date.now()}`,
+            title: sectionName,
+            icon: sectionIcon,
+            tests: {}
+        };
+        
+        tests.forEach(test => {
+            newSection.tests[test.name] = { type: 'text', range: test.range };
+        });
+        
+        defaultLabStructure.push(newSection);
+        
+        const select = document.getElementById('test-select');
+        const option = document.createElement('option');
+        option.value = newSection.id;
+        option.textContent = newSection.title;
+        select.appendChild(option);
+        
+        const existingSectionsSelect = document.getElementById('existing-sections');
+        existingSectionsSelect.appendChild(option.cloneNode(true));
+        
+        const sectionSelect = document.getElementById('sectionSelect');
+        sectionSelect.appendChild(option.cloneNode(true));
+        
+        const sectionDiv = document.createElement('div');
+        sectionDiv.className = 'section';
+        sectionDiv.id = newSection.id;
+        sectionDiv.innerHTML = `
+            <div class="section-title"><i class="${newSection.icon}"></i> ${newSection.title}</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>اسم التحليل</th>
+                        <th>النتيجة</th>
+                        <th>النطاق الطبيعي</th>
+                        <th class="no-print">إجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${tests.map(test => `
+                        <tr>
+                            <td class="test-name">${test.name}</td>
+                            <td><input type="text" class="result-input" data-test="${test.name}" oninput="updateFilledTests()"></td>
+                            <td class="normal-range">${test.range}</td>
+                            <td class="no-print"><span class="remove-test" onclick="removeTest('${newSection.id}', '${test.name}')">×</span></td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+            <div class="examiner-name">
+                <span>اسم الفاحص:</span>
+                <input type="text" class="examiner-input" placeholder="أدخل اسم الفاحص">
+            </div>
+        `;
+        document.getElementById('resultsContainer').appendChild(sectionDiv);
+        
+        closeAddSectionModal();
+        select.value = newSection.id;
+        showSelectedSection();
+    }
+
+    function saveNewTest() {
+        const sectionId = document.getElementById('existing-sections').value;
+        const testName = document.getElementById('new-test-name').value;
+        const answerType = document.getElementById('answer-type').value;
+        const testRange = document.getElementById('new-test-range').value;
+        const choices = [];
+        
+        if (answerType !== 'text') {
+            document.querySelectorAll('#choice-items .choice-text-input').forEach(input => {
+                if (input.value) choices.push(input.value);
+            });
+        }
+        
+        if (!sectionId || !testName || (!testRange && answerType === 'text') || (choices.length === 0 && answerType !== 'text')) {
+            alert('يرجى ملء جميع الحقول المطلوبة.');
+            return;
+        }
+        
+        const section = defaultLabStructure.find(s => s.id === sectionId);
+        if (section) {
+            section.tests[testName] = {
+                type: answerType,
+                range: testRange,
+                options: answerType !== 'text' ? choices : undefined
+            };
+            
+            const sectionDiv = document.getElementById(sectionId);
+            const tbody = sectionDiv.querySelector('tbody');
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td class="test-name">${testName}</td>
+                <td>
+                    ${answerType === 'text' ? 
+                        `<input type="text" class="result-input" data-test="${testName}" oninput="updateFilledTests()">` :
+                        `<select class="result-select" data-test="${testName}" onchange="updateFilledTests()">
+                            <option value="">اختر...</option>
+                            ${choices.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+                        </select>`
+                    }
+                </td>
+                <td class="normal-range">${testRange}</td>
+                <td class="no-print"><span class="remove-test" onclick="removeTest('${sectionId}', '${testName}')">×</span></td>
+            `;
+            tbody.appendChild(newRow);
+            
+            closeAddSectionModal();
+            showSelectedSection();
+        }
+    }
+
+    function removeTest(sectionId, testName) {
+        if (confirm(`هل أنت متأكد من حذف التحليل "${testName}"؟`)) {
+            const section = defaultLabStructure.find(s => s.id === sectionId);
+            if (section) {
+                delete section.tests[testName];
+                const sectionDiv = document.getElementById(sectionId);
+                const row = Array.from(sectionDiv.querySelectorAll('tr')).find(r => r.querySelector('.test-name')?.textContent === testName);
+                if (row) row.remove();
+                updateFilledTests();
+            }
+        }
+    }
+
+    async function savePatientData() {
+        const patientData = {
+            name: document.getElementById('patientName').value,
+            age: document.getElementById('patientAge').value,
+            gender: document.getElementById('patientGender').value,
+            doctor: document.getElementById('doctorName').value,
+            date: document.getElementById('currentDate').value,
+            signature1: document.getElementById('signature1').value,
+            signature2: document.getElementById('signature2').value,
+            tests: {},
+            timestamp: new Date().toISOString()
+        };
+        
+        document.querySelectorAll('.section').forEach(section => {
+            const sectionId = section.id;
+            const tests = {};
+            section.querySelectorAll('.result-input, .result-select').forEach(input => {
+                if (input.value) {
+                    tests[input.dataset.test] = input.value;
+                }
+            });
+            section.querySelectorAll('.multiple-choice-container').forEach(container => {
+                const testName = container.querySelector('.choice-radio').name;
+                const selected = [];
+                container.querySelectorAll('.choice-radio:checked').forEach(radio => {
+                    selected.push(radio.value);
+                });
+                if (selected.length > 0) tests[testName] = selected;
+            });
+            if (Object.keys(tests).length > 0) {
+                patientData.tests[sectionId] = {
+                    tests,
+                    examiner: section.querySelector('.examiner-input').value
+                };
+            }
+        });
+        
+        if (!patientData.name || Object.keys(patientData.tests).length === 0) {
+            alert('يرجى إدخال اسم المريض وتعبئة تحليل واحد على الأقل.');
+            return;
+        }
+        
+        try {
+            const transaction = db.transaction([STORE_NAME, STATS_STORE_NAME], 'readwrite');
+            const store = transaction.objectStore(STORE_NAME);
+            const statsStore = transaction.objectStore(STATS_STORE_NAME);
+            
+            await new Promise((resolve, reject) => {
+                const request = store.add(patientData);
+                request.onsuccess = () => resolve();
+                request.onerror = () => reject(request.error);
+            });
+            
+            for (const section of Object.values(patientData.tests)) {
+                for (const testName of Object.keys(section.tests)) {
+                    const request = statsStore.get(testName);
+                    request.onsuccess = function(event) {
+                        const record = event.target.result;
+                        if (record) {
+                            statsStore.put({ testName, count: record.count + 1 });
+                        } else {
+                            statsStore.add({ testName, count: 1 });
+                        }
+                    };
+                }
+            }
+            
+            alert('تم حفظ بيانات المريض بنجاح!');
+        } catch (error) {
+            console.error('خطأ في حفظ البيانات:', error);
+            alert('حدث خطأ أثناء حفظ البيانات.');
+        }
+    }
+
+    function loadPatientData() {
+        document.getElementById('searchModal').style.display = 'block';
+    }
+
+    function closeSearchModal() {
+        document.getElementById('searchModal').style.display = 'none';
+    }
+
+    async function searchPatientData() {
+        const searchName = document.getElementById('searchPatientName').value.trim();
+        if (!searchName) {
+            alert('يرجى إدخال اسم المريض.');
+            return;
+        }
+        
+        try {
             const transaction = db.transaction([STORE_NAME], 'readonly');
             const store = transaction.objectStore(STORE_NAME);
             const request = store.getAll();
             
             request.onsuccess = function(event) {
                 const patients = event.target.result;
-                const patient = patients.reverse().find(p => p.name.toLowerCase() === searchName.toLowerCase());
+                const patient = patients.find(p => p.name.toLowerCase() === searchName.toLowerCase());
                 
                 if (patient) {
                     document.getElementById('patientName').value = patient.name;
@@ -2524,9 +2010,15 @@
                     document.getElementById('signature1').value = patient.signature1 || '';
                     document.getElementById('signature2').value = patient.signature2 || '';
                     
-                    document.querySelectorAll('.result-input, .result-select, .choice-radio').forEach(input => {
-                        input.value = '';
-                        if (input.type === 'checkbox' || input.type === 'radio') input.checked = false;
+                    document.querySelectorAll('.section').forEach(section => {
+                        const sectionId = section.id;
+                        section.querySelectorAll('.result-input, .result-select').forEach(input => {
+                            input.value = '';
+                        });
+                        section.querySelectorAll('.choice-radio').forEach(radio => {
+                            radio.checked = false;
+                        });
+                        section.querySelector('.examiner-input').value = '';
                     });
                     
                     Object.entries(patient.tests).forEach(([sectionId, sectionData]) => {
@@ -2535,616 +2027,478 @@
                             Object.entries(sectionData.tests).forEach(([testName, result]) => {
                                 const input = sectionDiv.querySelector(`[data-test="${testName}"]`);
                                 if (input) {
-                                    if (Array.isArray(result)) {
-                                        result.forEach(val => {
-                                            const radio = sectionDiv.querySelector(`input[name="${testName}"][value="${val}"]`);
-                                            if (radio) radio.checked = true;
-                                        });
-                                    } else {
+                                    if (input.classList.contains('result-input') || input.classList.contains('result-select')) {
                                         input.value = result;
+                                    } else {
+                                        if (Array.isArray(result)) {
+                                            result.forEach(val => {
+                                                const radio = sectionDiv.querySelector(`input[name="${testName}"][value="${val}"]`);
+                                                if (radio) radio.checked = true;
+                                            });
+                                        } else {
+                                            const radio = sectionDiv.querySelector(`input[name="${testName}"][value="${result}"]`);
+                                            if (radio) radio.checked = true;
+                                        }
                                     }
                                 }
                             });
-                            const examinerInput = sectionDiv.querySelector('.examiner-input');
-                            if (examinerInput) examinerInput.value = sectionData.examiner || '';
+                            sectionDiv.querySelector('.examiner-input').value = sectionData.examiner || '';
                         }
                     });
                     
-                    closeSearchModal();
                     updateFilledTests();
+                    closeSearchModal();
+                    alert('تم تحميل بيانات المريض بنجاح!');
                 } else {
                     alert('لم يتم العثور على مريض بهذا الاسم.');
                 }
             };
+            
+            request.onerror = function() {
+                alert('حدث خطأ أثناء تحميل البيانات.');
+            };
+        } catch (error) {
+            console.error('خطأ في البحث:', error);
+            alert('حدث خطأ أثناء البحث عن البيانات.');
         }
+    }
 
-        // مسح جميع الحقول
-        function clearAllFields() {
-            if (confirm('هل أنت متأكد من مسح جميع البيانات؟')) {
-                document.getElementById('patientName').value = '';
-                document.getElementById('patientAge').value = '';
-                document.getElementById('patientGender').value = '';
-                document.getElementById('doctorName').value = '';
-                document.getElementById('currentDate').value = new Date().toLocaleDateString('ar-EG');
-                document.getElementById('signature1').value = '';
-                document.getElementById('signature2').value = '';
-                document.querySelectorAll('.result-input, .result-select, .examiner-input').forEach(input => {
-                    input.value = '';
-                });
-                document.querySelectorAll('.choice-radio').forEach(radio => {
-                    radio.checked = false;
-                });
-                updateFilledTests();
-            }
+    function clearAllFields() {
+        if (confirm('هل أنت متأكد من مسح جميع الحقول؟')) {
+            document.getElementById('patientName').value = '';
+            document.getElementById('patientAge').value = '';
+            document.getElementById('patientGender').value = '';
+            document.getElementById('doctorName').value = '';
+            document.getElementById('signature1').value = '';
+            document.getElementById('signature2').value = '';
+            document.querySelectorAll('.result-input, .result-select').forEach(input => {
+                input.value = '';
+            });
+            document.querySelectorAll('.choice-radio').forEach(radio => {
+                radio.checked = false;
+            });
+            document.querySelectorAll('.examiner-input').forEach(input => {
+                input.value = '';
+            });
+            updateFilledTests();
         }
+    }
 
-        // طباعة التقرير
-        function printPage() {
-            window.print();
+    function printPage() {
+        window.print();
+    }
+
+    function openPasswordModal() {
+        document.getElementById('passwordModal').style.display = 'block';
+    }
+
+    function closePasswordModal() {
+        document.getElementById('passwordModal').style.display = 'none';
+    }
+
+    function verifyPassword() {
+        const password = document.getElementById('passwordInput').value;
+        if (password === 'admin123') {
+            closePasswordModal();
+            openStatsModal();
+        } else {
+            alert('كلمة المرور غير صحيحة.');
         }
+    }
 
-        // فتح نافذة الإحصائيات
-        function openPasswordModal() {
-            document.getElementById('passwordModal').style.display = 'block';
-        }
+    async function openStatsModal() {
+        document.getElementById('statsModal').style.display = 'block';
+        const transaction = db.transaction([STATS_STORE_NAME], 'readonly');
+        const store = transaction.objectStore(STATS_STORE_NAME);
+        const request = store.getAll();
+        
+        request.onsuccess = function(event) {
+            const stats = event.target.result;
+            const statsTable = document.getElementById('statsTable').querySelector('tbody');
+            statsTable.innerHTML = '';
+            
+            let totalTests = 0;
+            stats.forEach(stat => {
+                totalTests += stat.count;
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${stat.testName}</td>
+                    <td>${stat.count}</td>
+                    <td><button class="btn btn-clear" onclick="deleteStat('${stat.testName}')">حذف</button></td>
+                `;
+                statsTable.appendChild(row);
+            });
+            
+            document.getElementById('statsSummary').textContent = `إجمالي عدد التحاليل: ${totalTests}`;
+        };
+    }
 
-        // إغلاق نافذة كلمة المرور
-        function closePasswordModal() {
-            document.getElementById('passwordModal').style.display = 'none';
-            document.getElementById('passwordInput').value = '';
-        }
+    function closeStatsModal() {
+        document.getElementById('statsModal').style.display = 'none';
+    }
 
-        // التحقق من كلمة المرور
-        function verifyPassword() {
-            const password = document.getElementById('passwordInput').value;
-            if (password === '100200') {
-                closePasswordModal();
-                loadStatistics();
-                document.getElementById('statsModal').style.display = 'block';
-            } else {
-                alert('كلمة المرور غير صحيحة.');
-            }
-        }
-
-        // تحميل الإحصائيات
-        async function loadStatistics() {
-            const transaction = db.transaction([STATS_STORE_NAME], 'readonly');
+    async function deleteStat(testName) {
+        if (confirm(`هل أنت متأكد من حذف إحصائيات "${testName}"؟`)) {
+            const transaction = db.transaction([STATS_STORE_NAME], 'readwrite');
             const store = transaction.objectStore(STATS_STORE_NAME);
-            const request = store.getAll();
+            await store.delete(testName);
+            openStatsModal();
+        }
+    }
+
+    async function clearAllStats() {
+        if (confirm('هل أنت متأكد من مسح جميع الإحصائيات؟')) {
+            const transaction = db.transaction([STATS_STORE_NAME], 'readwrite');
+            const store = transaction.objectStore(STATS_STORE_NAME);
+            await store.clear();
+            openStatsModal();
+        }
+    }
+
+    function printStats() {
+        const statsContent = document.getElementById('statsModal').querySelector('.modal-content').cloneNode(true);
+        statsContent.querySelector('.close').style.display = 'none';
+        statsContent.querySelectorAll('button').forEach(btn => btn.style.display = 'none');
+        const printWindow = window.open('', '_blank');
+        printWindow.document.write(`
+            <html dir="rtl">
+            <head>
+                <title>إحصائيات التحاليل</title>
+                <style>
+                    body { font-family: 'Cairo', sans-serif; margin: 20px; }
+                    table { width: 100%; border-collapse: collapse; }
+                    th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+                    th { background-color: #f2f2f2; }
+                    h2 { text-align: center; color: #2c7da0; }
+                </style>
+            </head>
+            <body>${statsContent.outerHTML}</body>
+            </html>
+        `);
+        printWindow.document.close();
+        printWindow.print();
+    }
+
+    function openPatientsModal() {
+        document.getElementById('patientsModal').style.display = 'block';
+        loadPatientsList();
+    }
+
+    function closePatientsModal() {
+        document.getElementById('patientsModal').style.display = 'none';
+    }
+
+    async function loadPatientsList() {
+        const transaction = db.transaction([STORE_NAME], 'readonly');
+        const store = transaction.objectStore(STORE_NAME);
+        const request = store.getAll();
+        
+        request.onsuccess = function(event) {
+            const patients = event.target.result;
+            const patientsTable = document.getElementById('patientsTable').querySelector('tbody');
+            patientsTable.innerHTML = '';
             
-            request.onsuccess = function(event) {
-                const stats = event.target.result;
-                const tbody = document.querySelector('#statsTable tbody');
-                tbody.innerHTML = '';
-                let totalTests = 0;
-                
-                stats.forEach(stat => {
-                    totalTests += stat.count;
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${stat.testName}</td>
-                        <td>${stat.count}</td>
-                        <td><button class="delete-btn" onclick="deleteStat('${stat.testName}')">حذف</button></td>
-                    `;
-                    tbody.appendChild(row);
-                });
-                
-                document.getElementById('statsSummary').textContent = `إجمالي عدد التحاليل: ${totalTests}`;
-            };
-        }
-
-        // حذف إحصائية
-        async function deleteStat(testName) {
-            if (confirm(`هل أنت متأكد من حذف إحصائية "${testName}"؟`)) {
-                const transaction = db.transaction([STATS_STORE_NAME], 'readwrite');
-                const store = transaction.objectStore(STATS_STORE_NAME);
-                await store.delete(testName);
-                loadStatistics();
-            }
-        }
-
-        // مسح جميع الإحصائيات
-        async function clearAllStats() {
-            if (confirm('هل أنت متأكد من مسح جميع الإحصائيات؟')) {
-                const transaction = db.transaction([STATS_STORE_NAME], 'readwrite');
-                const store = transaction.objectStore(STATS_STORE_NAME);
-                await store.clear();
-                loadStatistics();
-            }
-        }
-
-        // إغلاق نافذة الإحصائيات
-        function closeStatsModal() {
-            document.getElementById('statsModal').style.display = 'none';
-        }
-
-        // طباعة الإحصائيات
-        function printStats() {
-            const statsModal = document.getElementById('statsModal');
-            statsModal.style.display = 'block';
-            window.print();
-            statsModal.style.display = 'none';
-        }
-
-        // فتح نافذة قائمة المرضى
-        async function openPatientsModal() {
-            document.getElementById('patientsModal').style.display = 'block';
-            const transaction = db.transaction([STORE_NAME], 'readonly');
-            const store = transaction.objectStore(STORE_NAME);
-            const request = store.getAll();
+            const groupedPatients = {};
+            patients.forEach(patient => {
+                if (!groupedPatients[patient.name]) {
+                    groupedPatients[patient.name] = {
+                        age: patient.age,
+                        gender: patient.gender,
+                        doctor: patient.doctor,
+                        visits: []
+                    };
+                }
+                groupedPatients[patient.name].visits.push(patient);
+            });
             
-            request.onsuccess = function(event) {
-                const patients = event.target.result;
-                const tbody = document.querySelector('#patientsTable tbody');
-                tbody.innerHTML = '';
-                
-                const groupedPatients = {};
-                patients.forEach(patient => {
-                    if (!groupedPatients[patient.name]) {
-                        groupedPatients[patient.name] = {
-                            name: patient.name,
-                            age: patient.age,
-                            gender: patient.gender,
-                            doctor: patient.doctor,
-                            visits: []
-                        };
-                    }
-                    groupedPatients[patient.name].visits.push({
-                        id: patient.id,
-                        date: patient.date,
-                        tests: patient.tests
-                    });
-                });
-                
-                Object.values(groupedPatients).forEach(patient => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${patient.name}</td>
-                        <td>${patient.age}</td>
-                        <td>${patient.gender}</td>
-                        <td>${patient.doctor}</td>
-                        <td>${patient.visits.length}</td>
-                        <td>
-                            <div class="patient-visits-dropdown">
-                                <button class="visits-button" onclick="toggleVisitsDropdown(this)">عرض المراجعات</button>
-                                <div class="visits-dropdown-content">
-                                    ${patient.visits.map(visit => `
-                                        <div class="visit-item">
-                                            <div>
-                                                <div class="visit-date">${visit.date}</div>
-                                                <div class="visit-tests">
-                                                    ${Object.entries(visit.tests).map(([sectionId, sectionData]) => `
-                                                        ${Object.entries(sectionData.tests).map(([testName, result]) => `
-                                                            ${testName}: ${Array.isArray(result) ? result.join(', ') : result}<br>
-                                                        `).join('')}
-                                                    `).join('')}
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <button class="visit-load-btn" onclick="loadVisit(${visit.id})">تحميل</button>
-                                                <button class="visit-delete-btn" onclick="deleteVisit(${visit.id})">حذف</button>
-                                            </div>
-                                        </div>
-                                    `).join('')}
-                                </div>
-                            </div>
-                        </td>
-                        <td><button class="delete-btn" onclick="deletePatient('${patient.name}')">حذف</button></td>
-                    `;
-                    tbody.appendChild(row);
-                });
-            };
-        }
+            Object.entries(groupedPatients).forEach(([name, data]) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${name}</td>
+                    <td>${data.age}</td>
+                    <td>${data.gender}</td>
+                    <td>${data.doctor}</td>
+                    <td>${data.visits.length}</td>
+                    <td>
+                        <select onchange="loadPatientVisit(this, '${name}')">
+                            <option value="">اختر زيارة...</option>
+                            ${data.visits.map((visit, index) => `<option value="${visit.id}">${new Date(visit.timestamp).toLocaleString()}</option>`).join('')}
+                        </select>
+                    </td>
+                    <td><button class="btn btn-clear" onclick="deletePatient('${name}')">حذف</button></td>
+                `;
+                patientsTable.appendChild(row);
+            });
+        };
+    }
 
-        // تبديل إظهار قائمة المراجعات
-        function toggleVisitsDropdown(button) {
-            const dropdown = button.nextElementSibling;
-            dropdown.classList.toggle('show');
-        }
-
-        // تحميل زيارة
-        async function loadVisit(visitId) {
-            const transaction = db.transaction([STORE_NAME], 'readonly');
-            const store = transaction.objectStore(STORE_NAME);
-            const request = store.get(visitId);
-            
-            request.onsuccess = function(event) {
-                const patient = event.target.result;
-                if (patient) {
-                    document.getElementById('patientName').value = patient.name;
-                    document.getElementById('patientAge').value = patient.age;
-                    document.getElementById('patientGender').value = patient.gender;
-                    document.getElementById('doctorName').value = patient.doctor;
-                    document.getElementById('currentDate').value = patient.date;
-                    document.getElementById('signature1').value = patient.signature1 || '';
-                    document.getElementById('signature2').value = patient.signature2 || '';
-                    
-                    document.querySelectorAll('.result-input, .result-select, .choice-radio').forEach(input => {
+    async function loadPatientVisit(selectElement, patientName) {
+        const visitId = selectElement.value;
+        if (!visitId) return;
+        
+        const transaction = db.transaction([STORE_NAME], 'readonly');
+        const store = transaction.objectStore(STORE_NAME);
+        const request = store.get(Number(visitId));
+        
+        request.onsuccess = function(event) {
+            const patient = event.target.result;
+            if (patient) {
+                document.getElementById('patientName').value = patient.name;
+                document.getElementById('patientAge').value = patient.age;
+                document.getElementById('patientGender').value = patient.gender;
+                document.getElementById('doctorName').value = patient.doctor;
+                document.getElementById('currentDate').value = patient.date;
+                document.getElementById('signature1').value = patient.signature1 || '';
+                document.getElementById('signature2').value = patient.signature2 || '';
+                
+                document.querySelectorAll('.section').forEach(section => {
+                    section.querySelectorAll('.result-input, .result-select').forEach(input => {
                         input.value = '';
-                        if (input.type === 'checkbox' || input.type === 'radio') input.checked = false;
                     });
-                    
-                    Object.entries(patient.tests).forEach(([sectionId, sectionData]) => {
-                        const sectionDiv = document.getElementById(sectionId);
-                        if (sectionDiv) {
-                            Object.entries(sectionData.tests).forEach(([testName, result]) => {
-                                const input = sectionDiv.querySelector(`[data-test="${testName}"]`);
-                                if (input) {
+                    section.querySelectorAll('.choice-radio').forEach(radio => {
+                        radio.checked = false;
+                    });
+                    section.querySelector('.examiner-input').value = '';
+                });
+                
+                Object.entries(patient.tests).forEach(([sectionId, sectionData]) => {
+                    const sectionDiv = document.getElementById(sectionId);
+                    if (sectionDiv) {
+                        Object.entries(sectionData.tests).forEach(([testName, result]) => {
+                            const input = sectionDiv.querySelector(`[data-test="${testName}"]`);
+                            if (input) {
+                                if (input.classList.contains('result-input') || input.classList.contains('result-select')) {
+                                    input.value = result;
+                                } else {
                                     if (Array.isArray(result)) {
                                         result.forEach(val => {
                                             const radio = sectionDiv.querySelector(`input[name="${testName}"][value="${val}"]`);
                                             if (radio) radio.checked = true;
                                         });
                                     } else {
-                                        input.value = result;
+                                        const radio = sectionDiv.querySelector(`input[name="${testName}"][value="${result}"]`);
+                                        if (radio) radio.checked = true;
                                     }
                                 }
-                            });
-                            const examinerInput = sectionDiv.querySelector('.examiner-input');
-                            if (examinerInput) examinerInput.value = sectionData.examiner || '';
-                        }
-                    });
-                    
-                    updateFilledTests();
-                    document.getElementById('patientsModal').style.display = 'none';
+                            }
+                        });
+                        sectionDiv.querySelector('.examiner-input').value = sectionData.examiner || '';
+                    }
+                });
+                
+                updateFilledTests();
+                closePatientsModal();
+            }
+        };
+    }
+
+    async function deletePatient(patientName) {
+        if (confirm(`هل أنت متأكد من حذف جميع سجلات "${patientName}"؟`)) {
+            const transaction = db.transaction([STORE_NAME], 'readwrite');
+            const store = transaction.objectStore(STORE_NAME);
+            const request = store.getAll();
+            
+            request.onsuccess = async function(event) {
+                const patients = event.target.result;
+                const patientIds = patients.filter(p => p.name.toLowerCase() === patientName.toLowerCase()).map(p => p.id);
+                
+                for (const id of patientIds) {
+                    await store.delete(id);
                 }
+                
+                loadPatientsList();
             };
         }
+    }
 
-        // حذف زيارة
-        async function deleteVisit(visitId) {
-            if (confirm('هل أنت متأكد من حذف هذه الزيارة؟')) {
-                const transaction = db.transaction([STORE_NAME], 'readwrite');
-                const store = transaction.objectStore(STORE_NAME);
-                await store.delete(visitId);
-                openPatientsModal();
-            }
-        }
+    function printPatientsList() {
+        const patientsContent = document.getElementById('patientsModal').querySelector('.modal-content').cloneNode(true);
+        patientsContent.querySelector('.close').style.display = 'none';
+        patientsContent.querySelectorAll('button, select').forEach(el => el.style.display = 'none');
+        const printWindow = window.open('', '_blank');
+        printWindow.document.write(`
+            <html dir="rtl">
+            <head>
+                <title>قائمة المرضى</title>
+                <style>
+                    body { font-family: 'Cairo', sans-serif; margin: 20px; }
+                    table { width: 100%; border-collapse: collapse; }
+                    th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+                    th { background-color: #f2f2f2; }
+                    h2 { text-align: center; color: #2c7da0; }
+                </style>
+            </head>
+            <body>${patientsContent.outerHTML}</body>
+            </html>
+        `);
+        printWindow.document.close();
+        printWindow.print();
+    }
 
-        // حذف مريض
-        async function deletePatient(patientName) {
-            if (confirm(`هل أنت متأكد من حذف جميع بيانات المريض "${patientName}"؟`)) {
-                const transaction = db.transaction([STORE_NAME], 'readwrite');
-                const store = transaction.objectStore(STORE_NAME);
-                const request = store.getAll();
-                
-                request.onsuccess = async function(event) {
-                    const patients = event.target.result;
-                    for (const patient of patients) {
-                        if (patient.name.toLowerCase() === patientName.toLowerCase()) {
-                            await store.delete(patient.id);
-                        }
-                    }
-                    openPatientsModal();
-                };
-            }
-        }
+    function toggleSettings() {
+        const panel = document.getElementById('settingsPanel');
+        panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+    }
 
-        // إغلاق نافذة قائمة المرضى
-        function closePatientsModal() {
-            document.getElementById('patientsModal').style.display = 'none';
-        }
-
-        // طباعة قائمة المرضى
-        function printPatientsList() {
-            const patientsModal = document.getElementById('patientsModal');
-            patientsModal.style.display = 'block';
-            window.print();
-            patientsModal.style.display = 'none';
-        }
-
-        // إعدادات المختبر
-        function toggleSettings() {
-            const panel = document.getElementById('settingsPanel');
-            panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
-        }
-
-        function saveSettings() {
-            document.documentElement.style.setProperty('--header-color', document.getElementById('headerColor').value);
-            document.documentElement.style.setProperty('--background-color', document.getElementById('backgroundColor').value);
-            document.documentElement.style.setProperty('--button-color', document.getElementById('buttonColor').value);
-            document.documentElement.style.setProperty('--patient-info-bg', document.getElementById('patientInfoBg').value);
-            document.documentElement.style.setProperty('--header-bg', document.getElementById('headerBg').value);
-            document.documentElement.style.setProperty('--table-border-color', document.getElementById('tableBorderColor').value);
-            
-            document.documentElement.style.setProperty('--title-font-size', `${document.getElementById('titleFontSize').value}px`);
-            document.documentElement.style.setProperty('--test-name-font-size', `${document.getElementById('testNameFontSize').value}px`);
-            document.documentElement.style.setProperty('--result-font-size', `${document.getElementById('resultFontSize').value}px`);
-            document.documentElement.style.setProperty('--range-font-size', `${document.getElementById('rangeFontSize').value}px`);
-            document.documentElement.style.setProperty('--footer-font-size', `${document.getElementById('footerFontSize').value}px`);
-            document.documentElement.style.setProperty('--doctor-font-size', `${document.getElementById('doctorFontSize').value}px`);
-            
-            document.documentElement.style.setProperty('--title-font-color', document.getElementById('titleFontColor').value);
-            document.documentElement.style.setProperty('--test-name-font-color', document.getElementById('testNameFontColor').value);
-            document.documentElement.style.setProperty('--result-font-color', document.getElementById('resultFontColor').value);
-            document.documentElement.style.setProperty('--range-font-color', document.getElementById('rangeFontColor').value);
-            document.documentElement.style.setProperty('--footer-font-color', document.getElementById('footerFontColor').value);
-            document.documentElement.style.setProperty('--doctor-font-color', document.getElementById('doctorFontColor').value);
-            
-            document.documentElement.style.setProperty('--main-font', document.getElementById('mainFont').value);
-            document.documentElement.style.setProperty('--title-font', document.getElementById('titleFont').value);
-            document.documentElement.style.setProperty('--subtitle-font', document.getElementById('subtitleFont').value);
-            document.documentElement.style.setProperty('--test-font', document.getElementById('testFont').value);
-            document.documentElement.style.setProperty('--result-font', document.getElementById('resultFont').value);
-            document.documentElement.style.setProperty('--range-font', document.getElementById('rangeFont').value);
-            document.documentElement.style.setProperty('--footer-font', document.getElementById('footerFont').value);
-            document.documentElement.style.setProperty('--doctor-font', document.getElementById('doctorFont').value);
-            
-            document.documentElement.style.setProperty('--table-border-width', `${document.getElementById('tableBorderWidth').value}px`);
-            document.documentElement.style.setProperty('--doctor-box-border-radius', `${document.getElementById('doctorBoxBorderRadius').value}px`);
-            
-            document.getElementById('labAddress').textContent = document.getElementById('labAddressInput').value || 'تواصلوا معنا لشراء البرنامج';
-            document.getElementById('labPhone').textContent = document.getElementById('labPhoneInput').value || '07806810264';
-            document.getElementById('biologistName').textContent = document.getElementById('biologistNameInput').value || 'شكرًا لزيارتكم';
-            document.getElementById('doctor1').textContent = document.getElementById('doctor1Name').value || 'اسم الدكتور الأول';
-            document.getElementById('doctor2').textContent = document.getElementById('doctor2Name').value || 'اسم الدكتور الثاني';
-            
-            document.getElementById('doctor1').style.display = document.getElementById('showDoctor1').checked ? 'block' : 'none';
-            document.getElementById('doctor2').style.display = document.getElementById('showDoctor2').checked ? 'block' : 'none';
-            
-            localStorage.setItem('labSettings', JSON.stringify({
-                headerColor: document.getElementById('headerColor').value,
-                backgroundColor: document.getElementById('backgroundColor').value,
-                buttonColor: document.getElementById('buttonColor').value,
-                patientInfoBg: document.getElementById('patientInfoBg').value,
-                headerBg: document.getElementById('headerBg').value,
-                tableBorderColor: document.getElementById('tableBorderColor').value,
-                titleFontSize: document.getElementById('titleFontSize').value,
-                testNameFontSize: document.getElementById('testNameFontSize').value,
-                resultFontSize: document.getElementById('resultFontSize').value,
-                rangeFontSize: document.getElementById('rangeFontSize').value,
-                footerFontSize: document.getElementById('footerFontSize').value,
-                doctorFontSize: document.getElementById('doctorFontSize').value,
-                titleFontColor: document.getElementById('titleFontColor').value,
-                testNameFontColor: document.getElementById('testNameFontColor').value,
-                resultFontColor: document.getElementById('resultFontColor').value,
-                rangeFontColor: document.getElementById('rangeFontColor').value,
-                footerFontColor: document.getElementById('footerFontColor').value,
-                doctorFontColor: document.getElementById('doctorFontColor').value,
-                mainFont: document.getElementById('mainFont').value,
-                titleFont: document.getElementById('titleFont').value,
-                subtitleFont: document.getElementById('subtitleFont').value,
-                testFont: document.getElementById('testFont').value,
-                resultFont: document.getElementById('resultFont').value,
-                rangeFont: document.getElementById('rangeFont').value,
-                footerFont: document.getElementById('footerFont').value,
-                doctorFont: document.getElementById('doctorFont').value,
-                tableBorderWidth: document.getElementById('tableBorderWidth').value,
-                doctorBoxBorderRadius: document.getElementById('doctorBoxBorderRadius').value,
-                labAddress: document.getElementById('labAddressInput').value,
-                labPhone: document.getElementById('labPhoneInput').value,
-                biologistName: document.getElementById('biologistNameInput').value,
-                doctor1Name: document.getElementById('doctor1Name').value,
-                doctor2Name: document.getElementById('doctor2Name').value,
-                showDoctor1: document.getElementById('showDoctor1').checked,
-                showDoctor2: document.getElementById('showDoctor2').checked
-            }));
-            
-            alert('تم حفظ الإعدادات بنجاح!');
-            toggleSettings();
-        }
-
-        function resetSettings() {
-            if (confirm('هل أنت متأكد من إعادة تعيين جميع الإعدادات؟')) {
-                document.documentElement.style.setProperty('--header-color', '#2c7da0');
-                document.documentElement.style.setProperty('--background-color', '#f5f7fa');
-                document.documentElement.style.setProperty('--button-color', '#4CAF50');
-                document.documentElement.style.setProperty('--patient-info-bg', '#eeeeee');
-                document.documentElement.style.setProperty('--header-bg', '#ffffff');
-                document.documentElement.style.setProperty('--table-border-color', '#ddd');
-                
-                document.documentElement.style.setProperty('--title-font-size', '28px');
-                document.documentElement.style.setProperty('--test-name-font-size', '16px');
-                document.documentElement.style.setProperty('--result-font-size', '16px');
-                document.documentElement.style.setProperty('--range-font-size', '16px');
-                document.documentElement.style.setProperty('--footer-font-size', '14px');
-                document.documentElement.style.setProperty('--doctor-font-size', '14px');
-                
-                document.documentElement.style.setProperty('--title-font-color', '#2c7da0');
-                document.documentElement.style.setProperty('--test-name-font-color', '#333333');
-                document.documentElement.style.setProperty('--result-font-color', '#333333');
-                document.documentElement.style.setProperty('--range-font-color', '#b90f0f');
-                document.documentElement.style.setProperty('--footer-font-color', '#ffffff');
-                document.documentElement.style.setProperty('--doctor-font-color', '#11be65');
-                
-                document.documentElement.style.setProperty('--main-font', "'Cairo', sans-serif");
-                document.documentElement.style.setProperty('--title-font', "'Amiri', serif");
-                document.documentElement.style.setProperty('--subtitle-font', "'Cairo', sans-serif");
-                document.documentElement.style.setProperty('--test-font', "'Cairo', sans-serif");
-                document.documentElement.style.setProperty('--result-font', "'Cairo', sans-serif");
-                document.documentElement.style.setProperty('--range-font', "'Cairo', sans-serif");
-                document.documentElement.style.setProperty('--footer-font', "'Cairo', sans-serif");
-                document.documentElement.style.setProperty('--doctor-font', "'Cairo', sans-serif");
-                
-                document.documentElement.style.setProperty('--table-border-width', '1px');
-                document.documentElement.style.setProperty('--doctor-box-border-radius', '4px');
-                
-                document.getElementById('headerColor').value = '#2c7da0';
-                document.getElementById('backgroundColor').value = '#f5f7fa';
-                document.getElementById('buttonColor').value = '#4CAF50';
-                document.getElementById('patientInfoBg').value = '#eeeeee';
-                document.getElementById('headerBg').value = '#ffffff';
-                document.getElementById('tableBorderColor').value = '#ddd';
-                
-                document.getElementById('titleFontSize').value = '28';
-                document.getElementById('testNameFontSize').value = '16';
-                document.getElementById('resultFontSize').value = '16';
-                document.getElementById('rangeFontSize').value = '16';
-                document.getElementById('footerFontSize').value = '14';
-                document.getElementById('doctorFontSize').value = '14';
-                
-                document.getElementById('titleFontColor').value = '#2c7da0';
-                document.getElementById('testNameFontColor').value = '#333333';
-                document.getElementById('resultFontColor').value = '#333333';
-                document.getElementById('rangeFontColor').value = '#b90f0f';
-                document.getElementById('footerFontColor').value = '#ffffff';
-                document.getElementById('doctorFontColor').value = '#11be65';
-                
-                document.getElementById('mainFont').value = "'Cairo', sans-serif";
-                document.getElementById('titleFont').value = "'Amiri', serif";
-                document.getElementById('subtitleFont').value = "'Cairo', sans-serif";
-                document.getElementById('testFont').value = "'Cairo', sans-serif";
-                document.getElementById('resultFont').value = "'Cairo', sans-serif";
-                document.getElementById('rangeFont').value = "'Cairo', sans-serif";
-                document.getElementById('footerFont').value = "'Cairo', sans-serif";
-                document.getElementById('doctorFont').value = "'Cairo', sans-serif";
-                
-                document.getElementById('tableBorderWidth').value = '1';
-                document.getElementById('doctorBoxBorderRadius').value = '4';
-                
-                document.getElementById('labAddressInput').value = '';
-                document.getElementById('labPhoneInput').value = '';
-                document.getElementById('biologistNameInput').value = '';
-                document.getElementById('doctor1Name').value = '';
-                document.getElementById('doctor2Name').value = '';
-                
-                document.getElementById('labAddress').textContent = 'تواصلوا معنا لشراء البرنامج';
-                document.getElementById('labPhone').textContent = '07806810264';
-                document.getElementById('biologistName').textContent = 'شكرًا لزيارتكم';
-                document.getElementById('doctor1').textContent = 'اسم الدكتور الأول';
-                document.getElementById('doctor2').textContent = 'اسم الدكتور الثاني';
-                
-                document.getElementById('showDoctor1').checked = true;
-                document.getElementById('showDoctor2').checked = true;
-                document.getElementById('doctor1').style.display = 'block';
-                document.getElementById('doctor2').style.display = 'block';
-                
-                localStorage.removeItem('labSettings');
-                localStorage.removeItem('labLogo');
-                resetLogo();
-                
-                alert('تم إعادة تعيين الإعدادات بنجاح!');
-            }
-        }
-
-        // تحميل إعدادات المختبر
-        function loadSettings() {
-            const settings = JSON.parse(localStorage.getItem('labSettings'));
-            if (settings) {
-                document.documentElement.style.setProperty('--header-color', settings.headerColor);
-                document.documentElement.style.setProperty('--background-color', settings.backgroundColor);
-                document.documentElement.style.setProperty('--button-color', settings.buttonColor);
-                document.documentElement.style.setProperty('--patient-info-bg', settings.patientInfoBg);
-                document.documentElement.style.setProperty('--header-bg', settings.headerBg);
-                document.documentElement.style.setProperty('--table-border-color', settings.tableBorderColor);
-                
-                document.documentElement.style.setProperty('--title-font-size', `${settings.titleFontSize}px`);
-                document.documentElement.style.setProperty('--test-name-font-size', `${settings.testNameFontSize}px`);
-                document.documentElement.style.setProperty('--result-font-size', `${settings.resultFontSize}px`);
-                document.documentElement.style.setProperty('--range-font-size', `${settings.rangeFontSize}px`);
-                document.documentElement.style.setProperty('--footer-font-size', `${settings.footerFontSize}px`);
-                document.documentElement.style.setProperty('--doctor-font-size', `${settings.doctorFontSize}px`);
-                
-                document.documentElement.style.setProperty('--title-font-color', settings.titleFontColor);
-                document.documentElement.style.setProperty('--test-name-font-color', settings.testNameFontColor);
-                document.documentElement.style.setProperty('--result-font-color', settings.resultFontColor);
-                document.documentElement.style.setProperty('--range-font-color', settings.rangeFontColor);
-                document.documentElement.style.setProperty('--footer-font-color', settings.footerFontColor);
-                document.documentElement.style.setProperty('--doctor-font-color', settings.doctorFontColor);
-                
-                document.documentElement.style.setProperty('--main-font', settings.mainFont);
-                document.documentElement.style.setProperty('--title-font', settings.titleFont);
-                document.documentElement.style.setProperty('--subtitle-font', settings.subtitleFont);
-                document.documentElement.style.setProperty('--test-font', settings.testFont);
-                document.documentElement.style.setProperty('--result-font', settings.resultFont);
-                document.documentElement.style.setProperty('--range-font', settings.rangeFont);
-                document.documentElement.style.setProperty('--footer-font', settings.footerFont);
-                document.documentElement.style.setProperty('--doctor-font', settings.doctorFont);
-                
-                document.documentElement.style.setProperty('--table-border-width', `${settings.tableBorderWidth}px`);
-                document.documentElement.style.setProperty('--doctor-box-border-radius', `${settings.doctorBoxBorderRadius}px`);
-                
-                document.getElementById('headerColor').value = settings.headerColor;
-                document.getElementById('backgroundColor').value = settings.backgroundColor;
-                document.getElementById('buttonColor').value = settings.buttonColor;
-                document.getElementById('patientInfoBg').value = settings.patientInfoBg;
-                document.getElementById('headerBg').value = settings.headerBg;
-                document.getElementById('tableBorderColor').value = settings.tableBorderColor;
-                
-                document.getElementById('titleFontSize').value = settings.titleFontSize;
-                document.getElementById('testNameFontSize').value = settings.testNameFontSize;
-                document.getElementById('resultFontSize').value = settings.resultFontSize;
-                document.getElementById('rangeFontSize').value = settings.rangeFontSize;
-                document.getElementById('footerFontSize').value = settings.footerFontSize;
-                document.getElementById('doctorFontSize').value = settings.doctorFontSize;
-                
-                document.getElementById('titleFontColor').value = settings.titleFontColor;
-                document.getElementById('testNameFontColor').value = settings.testNameFontColor;
-                document.getElementById('resultFontColor').value = settings.resultFontColor;
-                document.getElementById('rangeFontColor').value = settings.rangeFontColor;
-                document.getElementById('footerFontColor').value = settings.footerFontColor;
-                document.getElementById('doctorFontColor').value = settings.doctorFontColor;
-                
-                document.getElementById('mainFont').value = settings.mainFont;
-                document.getElementById('titleFont').value = settings.titleFont;
-                document.getElementById('subtitleFont').value = settings.subtitleFont;
-                document.getElementById('testFont').value = settings.testFont;
-                document.getElementById('resultFont').value = settings.resultFont;
-                document.getElementById('rangeFont').value = settings.rangeFont;
-                document.getElementById('footerFont').value = settings.footerFont;
-                document.getElementById('doctorFont').value = settings.doctorFont;
-                
-                document.getElementById('tableBorderWidth').value = settings.tableBorderWidth;
-                document.getElementById('doctorBoxBorderRadius').value = settings.doctorBoxBorderRadius;
-                
-                document.getElementById('labAddressInput').value = settings.labAddress || '';
-                document.getElementById('labPhoneInput').value = settings.labPhone || '';
-                document.getElementById('biologistNameInput').value = settings.biologistName || '';
-                document.getElementById('doctor1Name').value = settings.doctor1Name || '';
-                document.getElementById('doctor2Name').value = settings.doctor2Name || '';
-                
-                document.getElementById('labAddress').textContent = settings.labAddress || 'تواصلوا معنا لشراء البرنامج';
-                document.getElementById('labPhone').textContent = settings.labPhone || '07806810264';
-                document.getElementById('biologistName').textContent = settings.biologistName || 'شكرًا لزيارتكم';
-                document.getElementById('doctor1').textContent = settings.doctor1Name || 'اسم الدكتور الأول';
-                document.getElementById('doctor2').textContent = settings.doctor2Name || 'اسم الدكتور الثاني';
-                
-                document.getElementById('showDoctor1').checked = settings.showDoctor1 !== false;
-                document.getElementById('showDoctor2').checked = settings.showDoctor2 !== false;
-                document.getElementById('doctor1').style.display = settings.showDoctor1 !== false ? 'block' : 'none';
-                document.getElementById('doctor2').style.display = settings.showDoctor2 !== false ? 'block' : 'none';
-            }
-            
-            const logo = localStorage.getItem('labLogo');
-            if (logo) {
-                document.getElementById('labLogo').innerHTML = `<img src="${logo}" style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover;">`;
-                document.getElementById('logoPreview').src = logo;
-                document.getElementById('logoPreview').style.display = 'block';
-            }
-        }
-
-        // تحميل صورة اللوغو
-        function handleLogoUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const logoData = e.target.result;
-                    localStorage.setItem('labLogo', logoData);
-                    document.getElementById('labLogo').innerHTML = `<img src="${logoData}" style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover;">`;
-                    document.getElementById('logoPreview').src = logoData;
-                    document.getElementById('logoPreview').style.display = 'block';
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        // إعادة تعيين اللوغو
-        function resetLogo() {
-            localStorage.removeItem('labLogo');
-            document.getElementById('labLogo').innerHTML = '<i class="fas fa-microscope"></i>';
-            document.getElementById('logoPreview').style.display = 'none';
-            document.getElementById('logoPreview').src = '';
-        }
-
-        // تهيئة التاريخ الحالي
-        document.getElementById('currentDate').value = new Date().toLocaleDateString('ar-EG');
-
-        // تحميل هيكل المختبر وإعدادات المختبر عند بدء التشغيل
-        window.onload = function() {
-            loadLabStructure();
-            loadSettings();
+    function saveSettings() {
+        const settings = {
+            headerColor: document.getElementById('headerColor').value,
+            backgroundColor: document.getElementById('backgroundColor').value,
+            buttonColor: document.getElementById('buttonColor').value,
+            patientInfoBg: document.getElementById('patientInfoBg').value,
+            headerBg: document.getElementById('headerBg').value,
+            tableBorderColor: document.getElementById('tableBorderColor').value,
+            titleFontColor: document.getElementById('titleFontColor').value,
+            testNameFontColor: document.getElementById('testNameFontColor').value,
+            resultFontColor: document.getElementById('resultFontColor').value,
+            rangeFontColor: document.getElementById('rangeFontColor').value,
+            footerFontColor: document.getElementById('footerFontColor').value,
+            doctorFontColor: document.getElementById('doctorFontColor').value,
+            titleFontSize: document.getElementById('titleFontSize').value + 'px',
+            testNameFontSize: document.getElementById('testNameFontSize').value + 'px',
+            resultFontSize: document.getElementById('resultFontSize').value + 'px',
+            rangeFontSize: document.getElementById('rangeFontSize').value + 'px',
+            footerFontSize: document.getElementById('footerFontSize').value + 'px',
+            doctorFontSize: document.getElementById('doctorFontSize').value + 'px',
+            mainFont: document.getElementById('mainFont').value,
+            titleFont: document.getElementById('titleFont').value,
+            subtitleFont: document.getElementById('subtitleFont').value,
+            testFont: document.getElementById('testFont').value,
+            resultFont: document.getElementById('resultFont').value,
+            rangeFont: document.getElementById('rangeFont').value,
+            footerFont: document.getElementById('footerFont').value,
+            doctorFont: document.getElementById('doctorFont').value,
+            tableBorderWidth: document.getElementById('tableBorderWidth').value + 'px',
+            doctorBoxBorderRadius: document.getElementById('doctorBoxBorderRadius').value + 'px',
+            labAddress: document.getElementById('labAddressInput').value,
+            labPhone: document.getElementById('labPhoneInput').value,
+            biologistName: document.getElementById('biologistNameInput').value,
+            doctor1Name: document.getElementById('doctor1Name').value,
+            doctor2Name: document.getElementById('doctor2Name').value,
+            showDoctor1: document.getElementById('showDoctor1').checked,
+            showDoctor2: document.getElementById('showDoctor2').checked,
+            logo: document.getElementById('logoPreview').src
         };
-    </script>
-</body>
-</html>
+        
+        localStorage.setItem('labSettings', JSON.stringify(settings));
+        applySettings(settings);
+        alert('تم حفظ الإعدادات بنجاح!');
+    }
+
+    function loadSettings() {
+        const settings = JSON.parse(localStorage.getItem('labSettings')) || {};
+        applySettings(settings);
+    }
+
+    function applySettings(settings) {
+        const root = document.documentElement;
+        root.style.setProperty('--header-color', settings.headerColor || '#2c7da0');
+        root.style.setProperty('--background-color', settings.backgroundColor || '#f5f7fa');
+        root.style.setProperty('--button-color', settings.buttonColor || '#4CAF50');
+        root.style.setProperty('--patient-info-bg', settings.patientInfoBg || '#eeeeee');
+        root.style.setProperty('--header-bg', settings.headerBg || '#ffffff');
+        root.style.setProperty('--table-border-color', settings.tableBorderColor || '#ddd');
+        root.style.setProperty('--title-font-color', settings.titleFontColor || '#2c7da0');
+        root.style.setProperty('--test-name-font-color', settings.testNameFontColor || '#333333');
+        root.style.setProperty('--result-font-color', settings.resultFontColor || '#333333');
+        root.style.setProperty('--range-font-color', settings.rangeFontColor || '#b90f0f');
+        root.style.setProperty('--footer-font-color', settings.footerFontColor || '#ffffff');
+        root.style.setProperty('--doctor-font-color', settings.doctorFontColor || '#11be65');
+        root.style.setProperty('--title-font-size', settings.titleFontSize || '28px');
+        root.style.setProperty('--test-name-font-size', settings.testNameFontSize || '16px');
+        root.style.setProperty('--result-font-size', settings.resultFontSize || '16px');
+        root.style.setProperty('--range-font-size', settings.rangeFontSize || '16px');
+        root.style.setProperty('--footer-font-size', settings.footerFontSize || '14px');
+        root.style.setProperty('--doctor-font-size', settings.doctorFontSize || '14px');
+        root.style.setProperty('--main-font', settings.mainFont || "'Cairo', sans-serif");
+        root.style.setProperty('--title-font', settings.titleFont || "'Amiri', serif");
+        root.style.setProperty('--subtitle-font', settings.subtitleFont || "'Cairo', sans-serif");
+        root.style.setProperty('--test-font', settings.testFont || "'Cairo', sans-serif");
+        root.style.setProperty('--result-font', settings.resultFont || "'Cairo', sans-serif");
+        root.style.setProperty('--range-font', settings.rangeFont || "'Cairo', sans-serif");
+        root.style.setProperty('--footer-font', settings.footerFont || "'Cairo', sans-serif");
+        root.style.setProperty('--doctor-font', settings.doctorFont || "'Cairo', sans-serif");
+        root.style.setProperty('--table-border-width', settings.tableBorderWidth || '1px');
+        root.style.setProperty('--doctor-box-border-radius', settings.doctorBoxBorderRadius || '4px');
+        
+        document.getElementById('labAddress').textContent = settings.labAddress || 'تواصلوا معنا لشراء البرنامج';
+        document.getElementById('labPhone').textContent = settings.labPhone || '07806810264';
+        document.getElementById('biologistName').textContent = settings.biologistName || 'شكرًا لزيارتكم';
+        document.getElementById('doctor1').textContent = settings.doctor1Name || 'اسم الدكتور الأول';
+        document.getElementById('doctor2').textContent = settings.doctor2Name || 'اسم الدكتور الثاني';
+        document.getElementById('doctor1').style.display = settings.showDoctor1 === false ? 'none' : 'block';
+        document.getElementById('doctor2').style.display = settings.showDoctor2 === false ? 'none' : 'block';
+        
+        const logoElement = document.getElementById('labLogo');
+        if (settings.logo) {
+            logoElement.innerHTML = `<img src="${settings.logo}" style="width: 90px; height: 90px; border-radius: 50%;">`;
+        } else {
+            logoElement.innerHTML = '<i class="fas fa-microscope"></i>';
+        }
+    }
+
+    function resetSettings() {
+        if (confirm('هل أنت متأكد من إعادة تعيين الإعدادات؟')) {
+            localStorage.removeItem('labSettings');
+            document.getElementById('headerColor').value = '#2c7da0';
+            document.getElementById('backgroundColor').value = '#f5f7fa';
+            document.getElementById('buttonColor').value = '#4CAF50';
+            document.getElementById('patientInfoBg').value = '#eeeeee';
+            document.getElementById('headerBg').value = '#ffffff';
+            document.getElementById('tableBorderColor').value = '#ddd';
+            document.getElementById('titleFontColor').value = '#2c7da0';
+            document.getElementById('testNameFontColor').value = '#333333';
+            document.getElementById('resultFontColor').value = '#333333';
+            document.getElementById('rangeFontColor').value = '#b90f0f';
+            document.getElementById('footerFontColor').value = '#ffffff';
+            document.getElementById('doctorFontColor').value = '#11be65';
+            document.getElementById('titleFontSize').value = '28';
+            document.getElementById('testNameFontSize').value = '16';
+            document.getElementById('resultFontSize').value = '16';
+            document.getElementById('rangeFontSize').value = '16';
+            document.getElementById('footerFontSize').value = '14';
+            document.getElementById('doctorFontSize').value = '14';
+            document.getElementById('mainFont').value = "'Cairo', sans-serif";
+            document.getElementById('titleFont').value = "'Amiri', serif";
+            document.getElementById('subtitleFont').value = "'Cairo', sans-serif";
+            document.getElementById('testFont').value = "'Cairo', sans-serif";
+            document.getElementById('resultFont').value = "'Cairo', sans-serif";
+            document.getElementById('rangeFont').value = "'Cairo', sans-serif";
+            document.getElementById('footerFont').value = "'Cairo', sans-serif";
+            document.getElementById('doctorFont').value = "'Cairo', sans-serif";
+            document.getElementById('tableBorderWidth').value = '1';
+            document.getElementById('doctorBoxBorderRadius').value = '4';
+            document.getElementById('labAddressInput').value = '';
+            document.getElementById('labPhoneInput').value = '';
+            document.getElementById('biologistNameInput').value = '';
+            document.getElementById('doctor1Name').value = '';
+            document.getElementById('doctor2Name').value = '';
+            document.getElementById('showDoctor1').checked = true;
+            document.getElementById('showDoctor2').checked = true;
+            document.getElementById('logoPreview').src = '';
+            document.getElementById('logoPreview').style.display = 'none';
+            applySettings({});
+        }
+    }
+
+    function handleLogoUpload(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('logoPreview').src = e.target.result;
+                document.getElementById('logoPreview').style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+    function resetLogo() {
+        document.getElementById('logoUpload').value = '';
+        document.getElementById('logoPreview').src = '';
+        document.getElementById('logoPreview').style.display = 'none';
+        document.getElementById('labLogo').innerHTML = '<i class="fas fa-microscope"></i>';
+    }
+
+    window.onload = loadLabStructure;
+</script>
