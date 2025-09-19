@@ -20,18 +20,18 @@
             --result-font-size: 16px;
             --range-font-size: 16px;
             --footer-font-size: 14px;
-            --doctor-font-size: 14px; /* New: Doctor font size */
+            --doctor-font-size: 14px;
             --title-font-color: #2c7da0;
             --test-name-font-color: #333333;
             --result-font-color: #333333;
             --range-font-color: #b90f0f;
             --footer-font-color: #ffffff;
-            --doctor-font-color: #11be65; /* New: Doctor font color */
+            --doctor-font-color: #11be65;
             --patient-info-bg: #eeeeee;
             --header-bg: #ffffff;
             --table-border-width: 1px;
             --table-border-color: #ddd;
-            --doctor-box-border-radius: 4px; /* New: Doctor box border radius */
+            --doctor-box-border-radius: 4px;
             --main-font: 'Cairo', sans-serif;
             --title-font: 'Amiri', serif;
             --subtitle-font: 'Cairo', sans-serif;
@@ -39,7 +39,7 @@
             --result-font: 'Cairo', sans-serif;
             --range-font: 'Cairo', sans-serif;
             --footer-font: 'Cairo', sans-serif;
-            --doctor-font: 'Cairo', sans-serif; /* New: Doctor font family */
+            --doctor-font: 'Cairo', sans-serif;
         }
 
         * {
@@ -114,19 +114,18 @@
             font-family: var(--title-font);
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
             letter-spacing: 2px;
-            /* Removed background-color to use header-bg */
         }
 
         .doctors-container {
             display: flex;
-            justify-content: center; /* Center if only one */
+            justify-content: center;
             width: 100%;
             gap: 10px;
         }
 
         .header .doctor-name {
-            flex: 0 1 45%; /* Flexible width */
-            max-width: 45%; /* Limit max width */
+            flex: 0 1 45%;
+            max-width: 45%;
             text-align: center;
             color: var(--doctor-font-color);
             font-size: var(--doctor-font-size);
@@ -138,13 +137,13 @@
             padding: 5px;
             border-radius: var(--doctor-box-border-radius);
             font-family: var(--doctor-font);
-            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(240,255,240,0.9) 100%); /* Beautiful gradient */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Soft shadow for beauty */
-            transition: all 0.3s ease; /* Smooth hover */
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(240,255,240,0.9) 100%);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
         }
 
         .header .doctor-name:hover {
-            transform: scale(1.02); /* Slight zoom on hover */
+            transform: scale(1.02);
         }
 
         .patient-info {
@@ -301,6 +300,47 @@
             outline: none;
             border: 1px solid #2E7D32;
             background-color: #f0fff0;
+        }
+
+        /* New: Multiple choice options */
+        .multiple-choice-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            align-items: center;
+        }
+
+        .choice-option {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin: 1px 0;
+            padding: 2px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 12px;
+            font-family: var(--result-font);
+            direction: ltr;
+        }
+
+        .choice-option:hover {
+            background-color: #f0f0f0;
+        }
+
+        .choice-option.selected {
+            background-color: var(--button-color);
+            color: white;
+        }
+
+        .choice-radio {
+            margin: 0;
+            transform: scale(1.2);
+        }
+
+        .choice-text {
+            flex: 1;
+            text-align: left;
         }
 
         .footer {
@@ -677,6 +717,59 @@
             font-family: var(--main-font);
         }
 
+        /* New: Multiple choice form styles */
+        .choices-container {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .choice-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            padding: 5px;
+            background-color: white;
+            border-radius: 4px;
+            border: 1px solid #eee;
+        }
+
+        .choice-text-input {
+            flex: 1;
+            padding: 6px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: var(--main-font);
+        }
+
+        .remove-choice {
+            color: #f44336;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 5px;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+        }
+
+        .remove-choice:hover {
+            background-color: #ffebee;
+        }
+
+        .add-choice-btn {
+            background: var(--button-color);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            font-family: var(--main-font);
+            margin-top: 5px;
+        }
+
         .test-list {
             max-height: 300px;
             overflow-y: auto;
@@ -977,6 +1070,25 @@
                 width: 100%;
             }
 
+            /* Print styles for multiple choice */
+            .multiple-choice-container {
+                display: flex;
+                flex-direction: column;
+                gap: 0;
+                font-size: 11px;
+            }
+
+            .choice-option {
+                margin: 0;
+                padding: 1px 4px;
+                font-size: 11px;
+            }
+
+            .choice-radio {
+                transform: scale(1);
+                margin: 0;
+            }
+
             .results-container {
                 gap: 10px;
                 display: table-row-group;
@@ -1066,6 +1178,15 @@
                 border-right: none;
                 border-bottom: 1px solid #ddd;
             }
+
+            .multiple-choice-container {
+                gap: 1px;
+            }
+
+            .choice-option {
+                padding: 2px 4px;
+                font-size: 11px;
+            }
         }
     </style>
 </head>
@@ -1079,7 +1200,6 @@
         
         <div class="settings-group">
             <h3>بيانات المختبر</h3>
-            <input type="text" id="labNameInput" class="settings-input" placeholder="اسم المختبر">
             <input type="text" id="labAddressInput" class="settings-input" placeholder="العنوان">
             <input type="text" id="labPhoneInput" class="settings-input" placeholder="رقم الهاتف">
             <input type="text" id="biologistNameInput" class="settings-input" placeholder="اسم البايلوجي">
@@ -1130,10 +1250,6 @@
         <div class="settings-group">
             <h3>تغيير أحجام الخطوط</h3>
             <div class="font-size-picker">
-                <label>حجم عنوان التقرير:</label>
-                <input type="number" id="titleFontSize" class="font-size-input" value="28" min="10" max="50"> px
-            </div>
-            <div class="font-size-picker">
                 <label>حجم اسم التحليل:</label>
                 <input type="number" id="testNameFontSize" class="font-size-input" value="16" min="10" max="30"> px
             </div>
@@ -1157,10 +1273,6 @@
         
         <div class="settings-group">
             <h3>تغيير ألوان الخطوط</h3>
-            <div class="color-picker">
-                <label>لون عنوان التقرير:</label>
-                <input type="color" id="titleFontColor" class="color-input" value="#2c7da0">
-            </div>
             <div class="color-picker">
                 <label>لون اسم التحليل:</label>
                 <input type="color" id="testNameFontColor" class="color-input" value="#333333">
@@ -1190,16 +1302,6 @@
                 <select id="mainFont" class="settings-select">
                     <option value="'Cairo', sans-serif">Cairo</option>
                     <option value="'Amiri', serif">Amiri</option>
-                    <option value="'Tajawal', sans-serif">Tajawal</option>
-                    <option value="'Scheherazade', serif">Scheherazade</option>
-                    <option value="'Noto Naskh Arabic', serif">Noto Naskh Arabic</option>
-                </select>
-            </div>
-            <div class="font-picker">
-                <label>خط العنوان:</label>
-                <select id="titleFont" class="settings-select">
-                    <option value="'Amiri', serif">Amiri</option>
-                    <option value="'Cairo', sans-serif">Cairo</option>
                     <option value="'Tajawal', sans-serif">Tajawal</option>
                     <option value="'Scheherazade', serif">Scheherazade</option>
                     <option value="'Noto Naskh Arabic', serif">Noto Naskh Arabic</option>
@@ -1305,7 +1407,7 @@
                     <i class="fas fa-microscope"></i>
                 </div>
                 <div class="header-text">
-                    <h1 id="labTitle">  برنامج اوسكار</h1>
+                    <h1>برنامج اوسكار</h1>
                     <div class="doctors-container">
                         <div class="doctor-name" id="doctor1">  الاول اسم الطبيب او التقني او البايلوجي  </div>
                         <div class="doctor-name" id="doctor2">   الثاني اسم الطبيب او التقني او البايلوجي    </div>
@@ -1371,8 +1473,6 @@
             <!-- سيتم إضافة الأقسام ديناميكيًا بواسطة JavaScript -->
         </div>
         
-       
-    
     <div id="addSectionModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeAddSectionModal()">&times;</span>
@@ -1441,9 +1541,32 @@
                         <input type="text" id="new-test-name" class="form-input" placeholder="أدخل اسم التحليل">
                     </div>
                     <div class="form-group">
+                        <label>نوع الإجابة:</label>
+                        <select id="answer-type" class="form-input" onchange="toggleChoicesContainer()">
+                            <option value="text">نص حر</option>
+                            <option value="select">اختيار واحد</option>
+                            <option value="multiple">اختيار متعدد</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label>النطاق الطبيعي:</label>
                         <input type="text" id="new-test-range" class="form-input" placeholder="أدخل النطاق الطبيعي">
                     </div>
+                    
+                    <!-- Multiple choice options -->
+                    <div id="choices-container" class="choices-container" style="display: none;">
+                        <h4>الخيارات المتاحة:</h4>
+                        <div id="choice-items">
+                            <div class="choice-item">
+                                <input type="text" class="choice-text-input" placeholder="أدخل الخيار الأول">
+                                <span class="remove-choice" onclick="removeChoice(this)">×</span>
+                            </div>
+                        </div>
+                        <button type="button" class="add-choice-btn" onclick="addChoice()">
+                            <i class="fas fa-plus"></i> إضافة خيار
+                        </button>
+                    </div>
+                    
                     <button class="btn btn-save" onclick="saveNewTest()">
                         <i class="fas fa-save"></i> إضافة التحليل
                     </button>
@@ -1505,7 +1628,7 @@
     <div class="lab-footer">
         <div class="lab-footer-content">
             <div class="lab-footer-item">
-                <div class="lab-footer-title" id="footerLabName">برنامج اوسكار  </div>
+                <div class="lab-footer-title">برنامج اوسكار  </div>
                 <div id="biologistName">شكراً للشراء البرنامج</div>
             </div>
             <div class="lab-footer-item">
@@ -1514,7 +1637,7 @@
             </div>
             <div class="lab-footer-item">
                 <div class="lab-footer-title">رقم الهاتف</div>
-                <div id="labPhone">07806810202</div>
+                <div id="labPhone">07806810264</div>
             </div>
         </div>
     </div>
@@ -1533,30 +1656,30 @@
                 title: 'Chemical Tests', 
                 icon: 'fas fa-prescription-bottle', 
                 tests: {
-                    "F.B.S": "mg/dl (60-120)", 
-                    "R.B.S": "mg/dl (110-170)", 
-                    "HbA1C": "4.8-6.0 %",
-                    "Na+": "mmol/L (135-155)", 
-                    "K+": "mmol/L (3.6-5.5)",
-                    "B. Urea": "mg/dl (15-45)", 
-                    "S. Creatinine": "mg/dl (0.4-1.1)", 
-                    "eGFR": ">90 ml/min/1.73m²",
-                    "Uric acid": "mg/dl (3-6)", 
-                    "S. Calcium": "mg/dl (8.5-10.3)", 
-                    "S. Total Protein": "g/dl (6.6-8.0)",
-                    "S. Albumin": "g/dl (3.5-5.5)", 
-                    "Total Bilirubin": "mg/dl (0.2-1.2)", 
-                    "Direct Bilirubin": "mg/dl (0-0.3)",
-                    "Indirect Bilirubin": "mg/dl (0.2-0.9)", 
-                    "ALT (GPT)": "U/L (<46)", 
-                    "AST (GOT)": "U/L (<46)",
-                    "ALP": "U/L (40-150)", 
-                    "Amylase": "U/L (30-110)", 
-                    "Lipase": "U/L (10-140)", 
-                    "CK": "U/L (20-200)",
-                    "CK-MB": "U/L (<25)", 
-                    "LDH": "U/L (140-280)", 
-                    "A.S.O Titer": "IU/ml (<200)"
+                    "F.B.S": { type: "text", range: "mg/dl (60-120)" }, 
+                    "R.B.S": { type: "text", range: "mg/dl (110-170)" }, 
+                    "HbA1C": { type: "text", range: "4.8-6.0 %" },
+                    "Na+": { type: "text", range: "mmol/L (135-155)" }, 
+                    "K+": { type: "text", range: "mmol/L (3.6-5.5)" },
+                    "B. Urea": { type: "text", range: "mg/dl (15-45)" }, 
+                    "S. Creatinine": { type: "text", range: "mg/dl (0.4-1.1)" }, 
+                    "eGFR": { type: "text", range: ">90 ml/min/1.73m²" },
+                    "Uric acid": { type: "text", range: "mg/dl (3-6)" }, 
+                    "S. Calcium": { type: "text", range: "mg/dl (8.5-10.3)" }, 
+                    "S. Total Protein": { type: "text", range: "g/dl (6.6-8.0)" },
+                    "S. Albumin": { type: "text", range: "g/dl (3.5-5.5)" }, 
+                    "Total Bilirubin": { type: "text", range: "mg/dl (0.2-1.2)" }, 
+                    "Direct Bilirubin": { type: "text", range: "mg/dl (0-0.3)" },
+                    "Indirect Bilirubin": { type: "text", range: "mg/dl (0.2-0.9)" }, 
+                    "ALT (GPT)": { type: "text", range: "U/L (<46)" }, 
+                    "AST (GOT)": { type: "text", range: "U/L (<46)" },
+                    "ALP": { type: "text", range: "U/L (40-150)" }, 
+                    "Amylase": { type: "text", range: "U/L (30-110)" }, 
+                    "Lipase": { type: "text", range: "U/L (10-140)" }, 
+                    "CK": { type: "text", range: "U/L (20-200)" },
+                    "CK-MB": { type: "text", range: "U/L (<25)" }, 
+                    "LDH": { type: "text", range: "U/L (140-280)" }, 
+                    "A.S.O Titer": { type: "text", range: "IU/ml (<200)" }
                 }
             },
             { 
@@ -1564,13 +1687,13 @@
                 title: 'Lipid Profile', 
                 icon: 'fas fa-chart-pie', 
                 tests: {
-                    "S. Cholesterol": "mg/dl (150-200)", 
-                    "S. Triglyceride": "mg/dl (35-165)", 
-                    "VLDL": "mg/dl (5-30)",
-                    "S. LDL": "mg/dl (130-160)", 
-                    "S. HDL": "mg/dl (35-65)", 
-                    "Chol/HDL Ratio": "<5.0",
-                    "LDL/HDL Ratio": "<3.5"
+                    "S. Cholesterol": { type: "text", range: "mg/dl (150-200)" }, 
+                    "S. Triglyceride": { type: "text", range: "mg/dl (35-165)" }, 
+                    "VLDL": { type: "text", range: "mg/dl (5-30)" },
+                    "S. LDL": { type: "text", range: "mg/dl (130-160)" }, 
+                    "S. HDL": { type: "text", range: "mg/dl (35-65)" }, 
+                    "Chol/HDL Ratio": { type: "text", range: "<5.0" },
+                    "LDL/HDL Ratio": { type: "text", range: "<3.5" }
                 }
             },
             { 
@@ -1578,56 +1701,35 @@
                 title: 'CBC (Complete Blood Count)', 
                 icon: 'fas fa-microscope', 
                 tests: {
-                    "WBC": "4.5 - 11.0 x 10³/µL", 
-                    "RBC": "4.5 - 5.5 x 10⁶/µL", 
-                    "Hb": "13.5 - 17.5 g/dL (M), 12.0 - 15.5 g/dL (F)",
-                    "HCT": "41 - 53% (M), 36 - 46% (F)", 
-                    "MCV": "80 - 100 fL", 
-                    "MCH": "27 - 33 pg", 
-                    "MCHC": "32 - 36 g/dL",
-                    "RDW": "11.5 - 14.5%", 
-                    "Platelets": "150 - 450 x 10³/µL", 
-                    "Neutrophils": "40 - 70 %", 
-                    "Lymphocytes": "20 - 40 %",
-                    "Monocytes": "2 - 8 %", 
-                    "Eosinophils": "1 - 4 %", 
-                    "Basophils": "0.5 - 1 %"
+                    "WBC": { type: "text", range: "4.5 - 11.0 x 10³/µL" }, 
+                    "RBC": { type: "text", range: "4.5 - 5.5 x 10⁶/µL" }, 
+                    "Hb": { type: "text", range: "13.5 - 17.5 g/dL (M), 12.0 - 15.5 g/dL (F)" },
+                    "HCT": { type: "text", range: "41 - 53% (M), 36 - 46% (F)" }, 
+                    "MCV": { type: "text", range: "80 - 100 fL" }, 
+                    "MCH": { type: "text", range: "27 - 33 pg" }, 
+                    "MCHC": { type: "text", range: "32 - 36 g/dL" },
+                    "RDW": { type: "text", range: "11.5 - 14.5%" }, 
+                    "Platelets": { type: "text", range: "150 - 450 x 10³/µL" }, 
+                    "Neutrophils": { type: "text", range: "40 - 70 %" }, 
+                    "Lymphocytes": { type: "text", range: "20 - 40 %" },
+                    "Monocytes": { type: "text", range: "2 - 8 %" }, 
+                    "Eosinophils": { type: "text", range: "1 - 4 %" }, 
+                    "Basophils": { type: "text", range: "0.5 - 1 %" }
                 }
             },
-            { 
-                id: 'hematologySection', 
-                title: 'Hematology', 
-                icon: 'fas fa-tint', 
-                tests: {
-                    "HbA1c": "4.8 - 6.0 %",
-                    "Hemoglobin (Hb)": "13 - 17 g/dl (M), 12 - 15 g/dl (F)",
-                    "Hematocrit (Hct)": "40 - 54 % (M), 36 - 47 % (F)",
-                    "RBC Count": "4.5 - 5.9 M/µL (M), 4.1 - 5.1 M/µL (F)",
-                    "WBC Count": "4,000 - 11,000 /µL",
-                    "Platelet Count": "150,000 - 450,000 /µL",
-                    "MCV": "80 - 100 fL",
-                    "MCH": "27 - 33 pg",
-                    "MCHC": "32 - 36 g/dL",
-                    "Reticulocyte Count": "0.5 - 1.5 %",
-                    "ESR": "0 - 15 mm/hr (M), 0 - 20 mm/hr (F)",
-                    "Blood Group": "ABO + Rh",
-                    "Bleeding Time": "2 - 7 min",
-                    "Clotting Time": "5 - 15 min",
-                    "Ferritin": "30 - 400 ng/ml (M), 13 - 150 ng/ml (F)"
-                }
-            },
+            // ... باقي الأقسام مع نفس التعديل
             {
                 id: 'liverSection',
                 title: 'Liver Function Tests',
                 icon: 'fas fa-vial',
                 tests: {
-                    "ALT (SGPT)": "7 - 56 U/L",
-                    "AST (SGOT)": "5 - 40 U/L",
-                    "Alkaline Phosphatase": "44 - 147 U/L",
-                    "Total Bilirubin": "0.3 - 1.2 mg/dL",
-                    "Direct Bilirubin": "0.0 - 0.3 mg/dL",
-                    "Total Protein": "6.0 - 8.3 g/dL",
-                    "Albumin": "3.4 - 5.4 g/dL"
+                    "ALT (SGPT)": { type: "text", range: "7 - 56 U/L" },
+                    "AST (SGOT)": { type: "text", range: "5 - 40 U/L" },
+                    "Alkaline Phosphatase": { type: "text", range: "44 - 147 U/L" },
+                    "Total Bilirubin": { type: "text", range: "0.3 - 1.2 mg/dL" },
+                    "Direct Bilirubin": { type: "text", range: "0.0 - 0.3 mg/dL" },
+                    "Total Protein": { type: "text", range: "6.0 - 8.3 g/dL" },
+                    "Albumin": { type: "text", range: "3.4 - 5.4 g/dL" }
                 }
             },
             {
@@ -1635,13 +1737,13 @@
                 title: 'Thyroid Function Tests',
                 icon: 'fas fa-dna',
                 tests: {
-                    "T3": "0.8 - 2.0 nmol/L",
-                    "T4": "60 - 120 nmol/L",
-                    "TSH": "0.4 - 4.0 µIU/ml",
-                    "FT3": "2.0 - 4.4 pg/ml",
-                    "FT4": "0.9 - 1.7 ng/dl",
-                    "TPO Ab": "< 34 IU/ml",
-                    "Tg Ab": "< 20 IU/ml"
+                    "T3": { type: "text", range: "0.8 - 2.0 nmol/L" },
+                    "T4": { type: "text", range: "60 - 120 nmol/L" },
+                    "TSH": { type: "text", range: "0.4 - 4.0 µIU/ml" },
+                    "FT3": { type: "text", range: "2.0 - 4.4 pg/ml" },
+                    "FT4": { type: "text", range: "0.9 - 1.7 ng/dl" },
+                    "TPO Ab": { type: "text", range: "< 34 IU/ml" },
+                    "Tg Ab": { type: "text", range: "< 20 IU/ml" }
                 }
             },
             {
@@ -1649,14 +1751,14 @@
                 title: 'Renal Function Tests',
                 icon: 'fas fa-vial',
                 tests: {
-                    "Creatinine": "0.6 - 1.2 mg/dL (M), 0.5 - 1.1 mg/dL (F)",
-                    "Urea (BUN)": "7 - 20 mg/dL",
-                    "Uric Acid": "3.5 - 7.2 mg/dL (M), 2.6 - 6.0 mg/dL (F)",
-                    "GFR": "90+ mL/min/1.73m² (Normal)",
-                    "Sodium (Na)": "135 - 145 mEq/L",
-                    "Potassium (K)": "3.5 - 5.0 mEq/L",
-                    "Chloride (Cl)": "96 - 106 mEq/L",
-                    "Bicarbonate (HCO3)": "22 - 29 mEq/L"
+                    "Creatinine": { type: "text", range: "0.6 - 1.2 mg/dL (M), 0.5 - 1.1 mg/dL (F)" },
+                    "Urea (BUN)": { type: "text", range: "7 - 20 mg/dL" },
+                    "Uric Acid": { type: "text", range: "3.5 - 7.2 mg/dL (M), 2.6 - 6.0 mg/dL (F)" },
+                    "GFR": { type: "text", range: "90+ mL/min/1.73m² (Normal)" },
+                    "Sodium (Na)": { type: "text", range: "135 - 145 mEq/L" },
+                    "Potassium (K)": { type: "text", range: "3.5 - 5.0 mEq/L" },
+                    "Chloride (Cl)": { type: "text", range: "96 - 106 mEq/L" },
+                    "Bicarbonate (HCO3)": { type: "text", range: "22 - 29 mEq/L" }
                 }
             },
             {
@@ -1664,11 +1766,11 @@
                 title: 'Iron Profile',
                 icon: 'fas fa-vial',
                 tests: {
-                    "Serum Iron": "60 - 170 µg/dL (M), 50 - 170 µg/dL (F)",
-                    "TIBC (Total Iron Binding Capacity)": "250 - 450 µg/dL",
-                    "Transferrin Saturation": "20 - 50 %",
-                    "Ferritin": "20 - 250 ng/mL (M), 10 - 120 ng/mL (F)",
-                    "Transferrin": "200 - 360 mg/dL"
+                    "Serum Iron": { type: "text", range: "60 - 170 µg/dL (M), 50 - 170 µg/dL (F)" },
+                    "TIBC (Total Iron Binding Capacity)": { type: "text", range: "250 - 450 µg/dL" },
+                    "Transferrin Saturation": { type: "text", range: "20 - 50 %" },
+                    "Ferritin": { type: "text", range: "20 - 250 ng/mL (M), 10 - 120 ng/mL (F)" },
+                    "Transferrin": { type: "text", range: "200 - 360 mg/dL" }
                 }
             },
             { 
@@ -1676,20 +1778,20 @@
                 title: 'Hormone Tests', 
                 icon: 'fas fa-microscope', 
                 tests: {
-                    "Cortisol": "µg/dl (Morning 6-23)", 
-                    "LH": "IU/L", 
-                    "FSH": "IU/L", 
-                    "Prolactin": "ng/ml (M: 2-18, F: 3-29)",
-                    "Testosterone": "ng/dl (M: 300-1000, F: 15-70)", 
-                    "Estradiol (E2)": "pg/ml (F: varies by cycle phase, M: 10-50)",
-                    "Progesterone": "ng/ml (F: varies by cycle phase)", 
-                    "hCG": "mIU/ml (Negative in non-pregnant)",
-                    "Insulin": "µIU/ml (2-25)", 
-                    "C-Peptide": "ng/ml (0.5-2.0)", 
-                    "DHEA-S": "µg/dl (M: 80-560, F: 35-430)",
-                    "Growth Hormone (GH)": "ng/ml (0-10)", 
-                    "IGF-1": "ng/ml (varies by age)", 
-                    "Parathyroid Hormone (PTH)": "pg/ml (10-65)"
+                    "Cortisol": { type: "text", range: "µg/dl (Morning 6-23)" }, 
+                    "LH": { type: "text", range: "IU/L" }, 
+                    "FSH": { type: "text", range: "IU/L" }, 
+                    "Prolactin": { type: "text", range: "ng/ml (M: 2-18, F: 3-29)" },
+                    "Testosterone": { type: "text", range: "ng/dl (M: 300-1000, F: 15-70)" }, 
+                    "Estradiol (E2)": { type: "text", range: "pg/ml (F: varies by cycle phase, M: 10-50)" },
+                    "Progesterone": { type: "text", range: "ng/ml (F: varies by cycle phase)" }, 
+                    "hCG": { type: "text", range: "mIU/ml (Negative in non-pregnant)" },
+                    "Insulin": { type: "text", range: "µIU/ml (2-25)" }, 
+                    "C-Peptide": { type: "text", range: "ng/ml (0.5-2.0)" }, 
+                    "DHEA-S": { type: "text", range: "µg/dl (M: 80-560, F: 35-430)" },
+                    "Growth Hormone (GH)": { type: "text", range: "ng/ml (0-10)" }, 
+                    "IGF-1": { type: "text", range: "ng/ml (varies by age)" }, 
+                    "Parathyroid Hormone (PTH)": { type: "text", range: "pg/ml (10-65)" }
                 }
             },
             { 
@@ -1697,35 +1799,35 @@
                 title: 'Serology & Immunology', 
                 icon: 'fas fa-vial', 
                 tests: {
-                    "Salmonella typhi": "Negative", 
-                    "Salmonella typhi IgG": "Negative", 
-                    "Salmonella typhi IgM": "Negative", 
-                    "Rose Bengal (Brucella)": "Negative",
-                    "H.pylori Ab": "Negative", 
-                    "CRP": "mg/L (<5)", 
-                    "Rheumatoid Factor": "IU/ml (<20)", 
-                    "A.S.O Titer": "IU/ml (<200)",
-                    "Toxoplasma IgG": "Negative", 
-                    "Toxoplasma IgM": "Negative", 
-                    "Pregnancy Test": "", 
-                    "CMV IgG": "Negative", 
-                    "CMV IgM": "Negative",
-                    "EBV (VCA IgG)": "Negative", 
-                    "EBV (VCA IgM)": "Negative", 
-                    "HBsAg": "Negative", 
-                    "HBsAb": "Negative",
-                    "Anti-HCV (HCV-Ab)": "Negative", 
-                    "HIV AB": "Negative", 
-                    "HIV (ELISA)": "Negative",
-                    "VDRL / RPR (Syphilis)": "Negative", 
-                    "ANA": "Negative", 
-                    "Anti-dsDNA": "Negative",
-                    "IgG": "700-1600 mg/dl", 
-                    "IgA": "70-400 mg/dl", 
-                    "IgM": "40-230 mg/dl", 
-                    "IgE": "<100 IU/ml",
-                    "C3 Complement": "90-180 mg/dl", 
-                    "C4 Complement": "10-40 mg/dl"
+                    "Salmonella typhi": { type: "select", range: "Negative", choices: ["Positive", "Negative"] }, 
+                    "Salmonella typhi IgG": { type: "select", range: "Negative", choices: ["Positive", "Negative"] }, 
+                    "Salmonella typhi IgM": { type: "select", range: "Negative", choices: ["Positive", "Negative"] }, 
+                    "Rose Bengal (Brucella)": { type: "select", range: "Negative", choices: ["Positive", "Negative"] },
+                    "H.pylori Ab": { type: "select", range: "Negative", choices: ["Positive", "Negative"] }, 
+                    "CRP": { type: "text", range: "mg/L (<5)" }, 
+                    "Rheumatoid Factor": { type: "text", range: "IU/ml (<20)" }, 
+                    "A.S.O Titer": { type: "text", range: "IU/ml (<200)" },
+                    "Toxoplasma IgG": { type: "select", range: "Negative", choices: ["Positive", "Negative"] }, 
+                    "Toxoplasma IgM": { type: "select", range: "Negative", choices: ["Positive", "Negative"] }, 
+                    "Pregnancy Test": { type: "select", range: "", choices: ["Positive", "Negative"] }, 
+                    "CMV IgG": { type: "select", range: "Negative", choices: ["Positive", "Negative"] }, 
+                    "CMV IgM": { type: "select", range: "Negative", choices: ["Positive", "Negative"] },
+                    "EBV (VCA IgG)": { type: "select", range: "Negative", choices: ["Positive", "Negative"] }, 
+                    "EBV (VCA IgM)": { type: "select", range: "Negative", choices: ["Positive", "Negative"] }, 
+                    "HBsAg": { type: "select", range: "Negative", choices: ["Positive", "Negative"] }, 
+                    "HBsAb": { type: "select", range: "Negative", choices: ["Positive", "Negative"] },
+                    "Anti-HCV (HCV-Ab)": { type: "select", range: "Negative", choices: ["Positive", "Negative"] }, 
+                    "HIV AB": { type: "select", range: "Negative", choices: ["Positive", "Negative"] }, 
+                    "HIV (ELISA)": { type: "select", range: "Negative", choices: ["Positive", "Negative"] },
+                    "VDRL / RPR (Syphilis)": { type: "select", range: "Negative", choices: ["Positive", "Negative"] }, 
+                    "ANA": { type: "select", range: "Negative", choices: ["Positive", "Negative"] }, 
+                    "Anti-dsDNA": { type: "select", range: "Negative", choices: ["Positive", "Negative"] },
+                    "IgG": { type: "text", range: "700-1600 mg/dl" }, 
+                    "IgA": { type: "text", range: "70-400 mg/dl" }, 
+                    "IgM": { type: "text", range: "40-230 mg/dl" }, 
+                    "IgE": { type: "text", range: "<100 IU/ml" },
+                    "C3 Complement": { type: "text", range: "90-180 mg/dl" }, 
+                    "C4 Complement": { type: "text", range: "10-40 mg/dl" }
                 }
             },
             { 
@@ -1733,28 +1835,28 @@
                 title: 'General Urine Examination', 
                 icon: 'fas fa-flask', 
                 tests: {
-                    "Color": "Light Yellow to Yellow", 
-                    "Appearance": "Clear", 
-                    "Specific Gravity": "1.005 - 1.030",
-                    "pH": "4.5 - 8.0", 
-                    "Glucose": "Nil", 
-                    "Protein": "Nil", 
-                    "Ketones": "Nil", 
-                    "Blood": "Nil", 
-                    "Bilirubin": "Nil", 
-                    "Urobilinogen": "Normal", 
-                    "Nitrites": "Nil", 
-                    "Leukocytes": "Nil",
-                    "RBCs": "0-2 /HPF", 
-                    "Pus Cells": "0-5 /HPF", 
-                    "Epithelial Cells": "Few", 
-                    "Casts": "Nil",
-                    "Crystals": "Nil", 
-                    "Amorphous Urates": "Nil", 
-                    "Amorphous Phosphates": "Nil", 
-                    "Bacteria": "Nil",
-                    "Yeast": "Nil", 
-                    "Mucus threads": "Few"
+                    "Color": { type: "select", range: "Light Yellow to Yellow", choices: ["Pale Yellow", "Yellow", "Dark Yellow", "Amber", "Orange", "Red/Pink", "Brown", "Blue/Green"] }, 
+                    "Appearance": { type: "select", range: "Clear", choices: ["Clear", "Slightly Cloudy", "Cloudy", "Turbid"] },
+                    "Specific Gravity": { type: "text", range: "1.005 - 1.030" },
+                    "pH": { type: "text", range: "4.5 - 8.0" }, 
+                    "Glucose": { type: "select", range: "Nil", choices: ["Nil", "Trace", "1+", "2+", "3+", "4+"] }, 
+                    "Protein": { type: "select", range: "Nil", choices: ["Nil", "Trace", "1+", "2+", "3+", "4+"] }, 
+                    "Ketones": { type: "select", range: "Nil", choices: ["Nil", "Trace", "1+", "2+", "3+", "4+"] }, 
+                    "Blood": { type: "select", range: "Nil", choices: ["Nil", "Trace", "1+", "2+", "3+", "4+"] }, 
+                    "Bilirubin": { type: "select", range: "Nil", choices: ["Nil", "Positive"] }, 
+                    "Urobilinogen": { type: "select", range: "Normal", choices: ["Normal", "Increased"] }, 
+                    "Nitrites": { type: "select", range: "Nil", choices: ["Nil", "Positive"] }, 
+                    "Leukocytes": { type: "select", range: "Nil", choices: ["Nil", "Trace", "1+", "2+", "3+"] },
+                    "RBCs": { type: "select", range: "0-2 /HPF", choices: ["0-2/HPF", "3-5/HPF", "6-10/HPF", ">10/HPF", "Full Filed"] }, 
+                    "Pus Cells": { type: "select", range: "0-5 /HPF", choices: ["0-5/HPF", "6-10/HPF", "11-20/HPF", ">20/HPF", "Full Filed"] }, 
+                    "Epithelial Cells": { type: "select", range: "Few", choices: ["Few", "Moderate", "Many"] }, 
+                    "Casts": { type: "text", range: "Nil" },
+                    "Crystals": { type: "text", range: "Nil" }, 
+                    "Amorphous Urates": { type: "select", range: "Nil", choices: ["Nil", "Few", "Moderate", "Many"] }, 
+                    "Amorphous Phosphates": { type: "select", range: "Nil", choices: ["Nil", "Few", "Moderate", "Many"] }, 
+                    "Bacteria": { type: "select", range: "Nil", choices: ["Nil", "Few", "Moderate", "Many"] },
+                    "Yeast": { type: "select", range: "Nil", choices: ["Nil", "Positive"] }, 
+                    "Mucus threads": { type: "select", range: "Few", choices: ["Few", "Moderate", "Many"] }
                 }
             },
             { 
@@ -1762,23 +1864,23 @@
                 title: 'SEMİNAL FLUID ANALYSIS', 
                 icon: 'fas fa-seedling', 
                 tests: {
-                    "Volume": "ml (1.5-5.0)", 
-                    "Color": "Whitish gray/Opalecent", 
-                    "Liquefaction": "min (<60)", 
-                    "Viscosity": "Low", 
-                    "pH": "7.2 - 8.0", 
-                    "Sperm Concentration": "M/ml (≥15)", 
-                    "Total Sperm Count": "M (≥39)", 
-                    "Motility (Total)": "% (≥40)", 
-                    "Progressive Motility": "% (≥32)", 
-                    "Non-Progressive Motility": "Normal", 
-                    "Non-Motile": "Normal", 
-                    "Morphology": "% (≥4)",
-                    "Vitality": "% (≥58)", 
-                    "WBC": "/hpf (<1)", 
-                    "RBC": "/hpf (<1)", 
-                    "Agglutination": "Negative", 
-                    "Microscopic Examination": "Normal"
+                    "Volume": { type: "text", range: "ml (1.5-5.0)" }, 
+                    "Color": { type: "select", range: "Whitish gray/Opalecent", choices: ["Whitish gray/Opalecent", "Yellowish", "Reddish/Brown"] }, 
+                    "Liquefaction": { type: "text", range: "min (<60)" }, 
+                    "Viscosity": { type: "select", range: "Low", choices: ["Low", "High"] },
+                    "pH": { type: "text", range: "7.2 - 8.0" }, 
+                    "Sperm Concentration": { type: "text", range: "M/ml (≥15)" }, 
+                    "Total Sperm Count": { type: "text", range: "M (≥39)" }, 
+                    "Motility (Total)": { type: "text", range: "% (≥40)" }, 
+                    "Progressive Motility": { type: "text", range: "% (≥32)" }, 
+                    "Non-Progressive Motility": { type: "text", range: "Normal" }, 
+                    "Non-Motile": { type: "text", range: "Normal" }, 
+                    "Morphology": { type: "text", range: "% (≥4)" },
+                    "Vitality": { type: "text", range: "% (≥58)" }, 
+                    "WBC": { type: "text", range: "/hpf (<1)" }, 
+                    "RBC": { type: "text", range: "/hpf (<1)" }, 
+                    "Agglutination": { type: "select", range: "Negative", choices: ["Negative", "Positive"] }, 
+                    "Microscopic Examination": { type: "text", range: "Normal" }
                 }
             },
             { 
@@ -1786,18 +1888,18 @@
                 title: 'GENERAL STOOL EXAMINATION', 
                 icon: 'fas fa-poo', 
                 tests: {
-                    "Color": "Brown", 
-                    "Consistency": "Formed", 
-                    "Mucus": "Nil", 
-                    "Blood": "Nil", 
-                    "Ova/Parasite": "Nil", 
-                    "WBC": "/hpf (Nil)", 
-                    "RBC": "/hpf (Nil)", 
-                    "Fat Globules": "/hpf (Nil)", 
-                    "Starch Granules": "Nil", 
-                    "Undigested Muscle Fibers": "Nil", 
-                    "Yeast Cells": "Nil", 
-                    "Occult Blood": "Negative"
+                    "Color": { type: "select", range: "Brown", choices: ["Brown", "Green", "Black", "Clay-colored", "Yellowish"] }, 
+                    "Consistency": { type: "select", range: "Formed", choices: ["Formed", "Soft", "Loose", "Watery"] }, 
+                    "Mucus": { type: "select", range: "Nil", choices: ["Nil", "Trace", "Present"] }, 
+                    "Blood": { type: "select", range: "Nil", choices: ["Nil", "Trace", "Present"] }, 
+                    "Ova/Parasite": { type: "text", range: "Nil" }, 
+                    "WBC": { type: "text", range: "/hpf (Nil)" }, 
+                    "RBC": { type: "text", range: "/hpf (Nil)" }, 
+                    "Fat Globules": { type: "text", range: "/hpf (Nil)" }, 
+                    "Starch Granules": { type: "select", range: "Nil", choices: ["Nil", "Present"] }, 
+                    "Undigested Muscle Fibers": { type: "select", range: "Nil", choices: ["Nil", "Present"] }, 
+                    "Yeast Cells": { type: "select", range: "Nil", choices: ["Nil", "Present"] }, 
+                    "Occult Blood": { type: "select", range: "Negative", choices: ["Negative", "Positive"] }
                 }
             },
             { 
@@ -1805,13 +1907,13 @@
                 title: 'Coagulation Test', 
                 icon: 'fas fa-heartbeat', 
                 tests: {
-                    "Prothrombin Time (PT)": "10-14 seconds", 
-                    "INR": "0.8-1.2", 
-                    "APTT": "25-35 seconds",
-                    "Thrombin Time (TT)": "12-18 seconds", 
-                    "Fibrinogen": "200-400 mg/dL", 
-                    "D-Dimer": "<500 ng/mL",
-                    "Platelet Function Assay (PFA)": "Closure Time (varies by instrument)"
+                    "Prothrombin Time (PT)": { type: "text", range: "10-14 seconds" }, 
+                    "INR": { type: "text", range: "0.8-1.2" }, 
+                    "APTT": { type: "text", range: "25-35 seconds" },
+                    "Thrombin Time (TT)": { type: "text", range: "12-18 seconds" }, 
+                    "Fibrinogen": { type: "text", range: "200-400 mg/dL" }, 
+                    "D-Dimer": { type: "text", range: "<500 ng/mL" },
+                    "Platelet Function Assay (PFA)": { type: "text", range: "Closure Time (varies by instrument)" }
                 }
             },
             { 
@@ -1819,21 +1921,21 @@
                 title: 'Viral Studies', 
                 icon: 'fas fa-virus', 
                 tests: {
-                    "Hepatitis A virus (HAV) IgM": "Negative", 
-                    "Hepatitis A virus (HAV) IgG": "Negative", 
-                    "Hepatitis B virus (HBV) DNA": "Undetectable",
-                    "Hepatitis C virus (HCV) RNA": "Undetectable", 
-                    "Epstein-Barr virus (EBV)": "Negative",
-                    "Cytomegalovirus (CMV) IgG": "Negative", 
-                    "Cytomegalovirus (CMV) IgM": "Negative",
-                    "Herpes Simplex Virus 1/2 (HSV-1/2) IgG": "Negative", 
-                    "Herpes Simplex Virus 1/2 (HSV-1/2) IgM": "Negative",
-                    "HIV 1/2 Ab": "Negative", 
-                    "HIV p24 Ag": "Negative", 
-                    "Measles IgG": "Negative", 
-                    "Measles IgM": "Negative",
-                    "Mumps IgG": "Negative", 
-                    "Mumps IgM": "Negative"
+                    "Hepatitis A virus (HAV) IgM": { type: "select", range: "Negative", choices: ["Positive", "Negative"] }, 
+                    "Hepatitis A virus (HAV) IgG": { type: "select", range: "Negative", choices: ["Positive", "Negative"] }, 
+                    "Hepatitis B virus (HBV) DNA": { type: "select", range: "Undetectable", choices: ["Undetectable", "Detectable"] },
+                    "Hepatitis C virus (HCV) RNA": { type: "select", range: "Undetectable", choices: ["Undetectable", "Detectable"] }, 
+                    "Epstein-Barr virus (EBV)": { type: "select", range: "Negative", choices: ["Positive", "Negative"] },
+                    "Cytomegalovirus (CMV) IgG": { type: "select", range: "Negative", choices: ["Positive", "Negative"] }, 
+                    "Cytomegalovirus (CMV) IgM": { type: "select", range: "Negative", choices: ["Positive", "Negative"] },
+                    "Herpes Simplex Virus 1/2 (HSV-1/2) IgG": { type: "select", range: "Negative", choices: ["Positive", "Negative"] }, 
+                    "Herpes Simplex Virus 1/2 (HSV-1/2) IgM": { type: "select", range: "Negative", choices: ["Positive", "Negative"] },
+                    "HIV 1/2 Ab": { type: "select", range: "Negative", choices: ["Positive", "Negative"] }, 
+                    "HIV p24 Ag": { type: "select", range: "Negative", choices: ["Positive", "Negative"] }, 
+                    "Measles IgG": { type: "select", range: "Negative", choices: ["Positive", "Negative"] }, 
+                    "Measles IgM": { type: "select", range: "Negative", choices: ["Positive", "Negative"] },
+                    "Mumps IgG": { type: "select", range: "Negative", choices: ["Positive", "Negative"] }, 
+                    "Mumps IgM": { type: "select", range: "Negative", choices: ["Positive", "Negative"] }
                 }
             },
             { 
@@ -1841,15 +1943,15 @@
                 title: 'Vitamin Tests', 
                 icon: 'fas fa-capsules', 
                 tests: {
-                    "Vitamin A": "30-95 µg/dL", 
-                    "Vitamin B1 (Thiamine)": "2.5-7.5 µg/dL", 
-                    "Vitamin B6": "5-30 ng/mL",
-                    "Vitamin B9 (Folic Acid)": ">5.4 ng/mL", 
-                    "Vitamin B12": "200-900 pg/mL", 
-                    "Vitamin C": "0.4-2.0 mg/dL",
-                    "Vitamin D (25-OH)": "30-100 ng/mL", 
-                    "Vitamin E": "5.5-17.0 mg/L", 
-                    "Vitamin K": "0.2-3.2 ng/mL"
+                    "Vitamin A": { type: "text", range: "30-95 µg/dL" }, 
+                    "Vitamin B1 (Thiamine)": { type: "text", range: "2.5-7.5 µg/dL" }, 
+                    "Vitamin B6": { type: "text", range: "5-30 ng/mL" },
+                    "Vitamin B9 (Folic Acid)": { type: "text", range: ">5.4 ng/mL" }, 
+                    "Vitamin B12": { type: "text", range: "200-900 pg/mL" }, 
+                    "Vitamin C": { type: "text", range: "0.4-2.0 mg/dL" },
+                    "Vitamin D (25-OH)": { type: "text", range: "30-100 ng/mL" }, 
+                    "Vitamin E": { type: "text", range: "5.5-17.0 mg/L" }, 
+                    "Vitamin K": { type: "text", range: "0.2-3.2 ng/mL" }
                 }
             }
         ];
@@ -1879,7 +1981,7 @@
         }
 
         function loadCurrentSettings() {
-            document.getElementById('labNameInput').value = localStorage.getItem('labName') || 'برنامج اوسكار  ';
+            // إزالة تحميل اسم المختبر لأنه ثابت
             document.getElementById('labAddressInput').value = localStorage.getItem('labAddress') || '    للشراء البرنامج تواصل معنا';
             document.getElementById('labPhoneInput').value = localStorage.getItem('labPhone') || '07901821264';
             document.getElementById('biologistNameInput').value = localStorage.getItem('biologistName') || 'شكراً لزيارتكم';
@@ -1899,7 +2001,6 @@
                 document.getElementById('logoPreview').style.display = 'block';
             }
 
-            document.getElementById('titleFontSize').value = localStorage.getItem('titleFontSize') || '28';
             document.getElementById('testNameFontSize').value = localStorage.getItem('testNameFontSize') || '16';
             document.getElementById('resultFontSize').value = localStorage.getItem('resultFontSize') || '16';
             document.getElementById('rangeFontSize').value = localStorage.getItem('rangeFontSize') || '16';
@@ -1908,7 +2009,6 @@
             document.getElementById('tableBorderWidth').value = localStorage.getItem('tableBorderWidth') || '1';
             document.getElementById('doctorBoxBorderRadius').value = localStorage.getItem('doctorBoxBorderRadius') || '4';
 
-            document.getElementById('titleFontColor').value = localStorage.getItem('titleFontColor') || '#2c7da0';
             document.getElementById('testNameFontColor').value = localStorage.getItem('testNameFontColor') || '#333333';
             document.getElementById('resultFontColor').value = localStorage.getItem('resultFontColor') || '#333333';
             document.getElementById('rangeFontColor').value = localStorage.getItem('rangeFontColor') || '#b90f0f';
@@ -1916,7 +2016,6 @@
             document.getElementById('doctorFontColor').value = localStorage.getItem('doctorFontColor') || '#11be65';
 
             document.getElementById('mainFont').value = localStorage.getItem('mainFont') || "'Cairo', sans-serif";
-            document.getElementById('titleFont').value = localStorage.getItem('titleFont') || "'Amiri', serif";
             document.getElementById('subtitleFont').value = localStorage.getItem('subtitleFont') || "'Cairo', sans-serif";
             document.getElementById('testFont').value = localStorage.getItem('testFont') || "'Cairo', sans-serif";
             document.getElementById('resultFont').value = localStorage.getItem('resultFont') || "'Cairo', sans-serif";
@@ -1929,7 +2028,7 @@
         }
 
         function saveSettings() {
-            localStorage.setItem('labName', document.getElementById('labNameInput').value);
+            // إزالة حفظ اسم المختبر لأنه ثابت
             localStorage.setItem('labAddress', document.getElementById('labAddressInput').value);
             localStorage.setItem('labPhone', document.getElementById('labPhoneInput').value);
             localStorage.setItem('biologistName', document.getElementById('biologistNameInput').value);
@@ -1950,7 +2049,6 @@
                 localStorage.removeItem('labLogo');
             }
 
-            localStorage.setItem('titleFontSize', document.getElementById('titleFontSize').value);
             localStorage.setItem('testNameFontSize', document.getElementById('testNameFontSize').value);
             localStorage.setItem('resultFontSize', document.getElementById('resultFontSize').value);
             localStorage.setItem('rangeFontSize', document.getElementById('rangeFontSize').value);
@@ -1959,7 +2057,6 @@
             localStorage.setItem('tableBorderWidth', document.getElementById('tableBorderWidth').value);
             localStorage.setItem('doctorBoxBorderRadius', document.getElementById('doctorBoxBorderRadius').value);
 
-            localStorage.setItem('titleFontColor', document.getElementById('titleFontColor').value);
             localStorage.setItem('testNameFontColor', document.getElementById('testNameFontColor').value);
             localStorage.setItem('resultFontColor', document.getElementById('resultFontColor').value);
             localStorage.setItem('rangeFontColor', document.getElementById('rangeFontColor').value);
@@ -1967,7 +2064,6 @@
             localStorage.setItem('doctorFontColor', document.getElementById('doctorFontColor').value);
 
             localStorage.setItem('mainFont', document.getElementById('mainFont').value);
-            localStorage.setItem('titleFont', document.getElementById('titleFont').value);
             localStorage.setItem('subtitleFont', document.getElementById('subtitleFont').value);
             localStorage.setItem('testFont', document.getElementById('testFont').value);
             localStorage.setItem('resultFont', document.getElementById('resultFont').value);
@@ -1994,16 +2090,14 @@
         }
 
         function applySettings() {
-            const labName = localStorage.getItem('labName') || 'برنامج اوسكار';
             const labAddress = localStorage.getItem('labAddress') || '  للشراء البرنامج تواصل معنا';
             const labPhone = localStorage.getItem('labPhone') || '07901821264';
             const biologistName = localStorage.getItem('biologistName') || 'شكراً لزيارتكم';
             const doctor1Name = localStorage.getItem('doctor1Name') || 'الاول اسم الطبيب او التقني او البايلوجي';
-            const doctor2Name = localStorage.getItem('doctor2Name') || ' الثاني اسم الطبيب او البايلوجي او التقني';
+            const doctor2Name = localStorage.getItem('doctor2Name') || ' الثاني اسم الطبيب او التقني او البايلوجي';
 
-            document.getElementById('watermark').textContent = labName;
-            document.getElementById('labTitle').textContent = labName;
-            document.getElementById('footerLabName').textContent = labName;
+            document.getElementById('watermark').textContent = 'برنامج اوسكار';
+            // العنوان ثابت - لا يتم تغييره
             document.getElementById('biologistName').textContent = biologistName;
             document.getElementById('labAddress').textContent = labAddress;
             document.getElementById('labPhone').textContent = labPhone;
@@ -2011,6 +2105,7 @@
             document.getElementById('doctor2').textContent = doctor2Name;
 
             const savedLogo = localStorage.getItem('labLogo');
+                        const savedLogo = localStorage.getItem('labLogo');
             const logoElement = document.getElementById('labLogo');
             if (savedLogo) {
                 logoElement.innerHTML = `<img src="${savedLogo}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">`;
@@ -2026,14 +2121,12 @@
             document.documentElement.style.setProperty('--table-border-color', localStorage.getItem('tableBorderColor') || '#ddd');
             document.documentElement.style.setProperty('--table-border-width', (localStorage.getItem('tableBorderWidth') || '1') + 'px');
 
-            document.documentElement.style.setProperty('--title-font-size', (localStorage.getItem('titleFontSize') || '28') + 'px');
             document.documentElement.style.setProperty('--test-name-font-size', (localStorage.getItem('testNameFontSize') || '16') + 'px');
             document.documentElement.style.setProperty('--result-font-size', (localStorage.getItem('resultFontSize') || '16') + 'px');
             document.documentElement.style.setProperty('--range-font-size', (localStorage.getItem('rangeFontSize') || '16') + 'px');
             document.documentElement.style.setProperty('--footer-font-size', (localStorage.getItem('footerFontSize') || '14') + 'px');
             document.documentElement.style.setProperty('--doctor-font-size', (localStorage.getItem('doctorFontSize') || '14') + 'px');
 
-            document.documentElement.style.setProperty('--title-font-color', localStorage.getItem('titleFontColor') || '#2c7da0');
             document.documentElement.style.setProperty('--test-name-font-color', localStorage.getItem('testNameFontColor') || '#333333');
             document.documentElement.style.setProperty('--result-font-color', localStorage.getItem('resultFontColor') || '#333333');
             document.documentElement.style.setProperty('--range-font-color', localStorage.getItem('rangeFontColor') || '#b90f0f');
@@ -2041,7 +2134,6 @@
             document.documentElement.style.setProperty('--doctor-font-color', localStorage.getItem('doctorFontColor') || '#11be65');
 
             document.documentElement.style.setProperty('--main-font', localStorage.getItem('mainFont') || "'Cairo', sans-serif");
-            document.documentElement.style.setProperty('--title-font', localStorage.getItem('titleFont') || "'Amiri', serif");
             document.documentElement.style.setProperty('--subtitle-font', localStorage.getItem('subtitleFont') || "'Cairo', sans-serif");
             document.documentElement.style.setProperty('--test-font', localStorage.getItem('testFont') || "'Cairo', sans-serif");
             document.documentElement.style.setProperty('--result-font', localStorage.getItem('resultFont') || "'Cairo', sans-serif");
@@ -2069,6 +2161,37 @@
             panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
             if (panel.style.display === 'block') {
                 loadCurrentSettings();
+            }
+        }
+
+        // دوال إدارة الخيارات المتعددة
+        function toggleChoicesContainer() {
+            const answerType = document.getElementById('answer-type').value;
+            const choicesContainer = document.getElementById('choices-container');
+            
+            if (answerType === 'select' || answerType === 'multiple') {
+                choicesContainer.style.display = 'block';
+            } else {
+                choicesContainer.style.display = 'none';
+            }
+        }
+
+        function addChoice() {
+            const choiceItems = document.getElementById('choice-items');
+            const newChoice = document.createElement('div');
+            newChoice.className = 'choice-item';
+            newChoice.innerHTML = `
+                <input type="text" class="choice-text-input" placeholder="أدخل خيار جديد">
+                <span class="remove-choice" onclick="removeChoice(this)">×</span>
+            `;
+            choiceItems.appendChild(newChoice);
+        }
+
+        function removeChoice(element) {
+            if (document.querySelectorAll('#choice-items .choice-item').length > 1) {
+                element.parentElement.remove();
+            } else {
+                alert('يجب أن يكون هناك خيار واحد على الأقل');
             }
         }
 
@@ -2100,7 +2223,7 @@
                 const customSection = customSections[sectionId];
                 const tests = {};
                 customSection.tests.forEach(test => {
-                    tests[test.name] = test.range;
+                    tests[test.name] = test;
                 });
                 labStructure.push({
                     id: sectionId,
@@ -2115,13 +2238,60 @@
                 const existingSection = labStructure.find(sec => sec.id === sectionId);
                 if (existingSection) {
                     customTests[sectionId].forEach(test => {
-                        existingSection.tests[test.name] = test.range;
+                        existingSection.tests[test.name] = test;
                     });
                 }
             }
 
             renderLabStructure();
             updateSelectMenus();
+        }
+
+        function createResultInput(test) {
+            const testName = Object.keys(test)[0];
+            const testData = test[testName];
+            
+            if (testData.type === 'text') {
+                return `<input type="text" class="result-input" data-test-name="${testName}" placeholder="أدخل النتيجة">`;
+            } else if (testData.type === 'select') {
+                let optionsHTML = '<select class="result-select" data-test-name="${testName}"><option value="">اختر...</option>';
+                if (testData.choices && testData.choices.length > 0) {
+                    testData.choices.forEach(choice => {
+                        optionsHTML += `<option value="${choice}">${choice}</option>`;
+                    });
+                } else {
+                    optionsHTML += '<option value="Positive">Positive</option><option value="Negative">Negative</option>';
+                }
+                optionsHTML += '</select>';
+                return optionsHTML;
+            } else if (testData.type === 'multiple') {
+                let multipleHTML = `<div class="multiple-choice-container" data-test-name="${testName}">`;
+                if (testData.choices && testData.choices.length > 0) {
+                    testData.choices.forEach((choice, index) => {
+                        multipleHTML += `
+                            <div class="choice-option" onclick="selectChoice(this)">
+                                <input type="radio" name="${testName}_choices" class="choice-radio" value="${choice}" id="${testName}_choice_${index}">
+                                <label for="${testName}_choice_${index}" class="choice-text">${choice}</label>
+                            </div>
+                        `;
+                    });
+                } else {
+                    multipleHTML += `
+                        <div class="choice-option" onclick="selectChoice(this)">
+                            <input type="radio" name="${testName}_choices" class="choice-radio" value="Positive" id="${testName}_choice_0">
+                            <label for="${testName}_choice_0" class="choice-text">Positive</label>
+                        </div>
+                        <div class="choice-option" onclick="selectChoice(this)">
+                            <input type="radio" name="${testName}_choices" class="choice-radio" value="Negative" id="${testName}_choice_1">
+                            <label for="${testName}_choice_1" class="choice-text">Negative</label>
+                        </div>
+                    `;
+                }
+                multipleHTML += '</div>';
+                return multipleHTML;
+            }
+            
+            return `<input type="text" class="result-input" data-test-name="${testName}" placeholder="أدخل النتيجة">`;
         }
 
         function renderLabStructure() {
@@ -2162,7 +2332,7 @@
                                             <option value="Blue/Green">Blue/Green</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["Color"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Color"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Appearance</td>
@@ -2175,18 +2345,18 @@
                                             <option value="Turbid">Turbid</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["Appearance"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Appearance"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Specific Gravity</td>
                                     <td><input type="text" class="result-input" placeholder="e.g., 1.020"></td>
-                                    <td class="normal-range">${section.tests["Specific Gravity"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Specific Gravity"].range || ''}</td>
                                 </tr>
                                 <tr><td colspan="3" class="sub-section-title">Chemical Examination (Dipstick)</td></tr>
                                 <tr>
                                     <td class="test-name">pH</td>
                                     <td><input type="text" class="result-input" placeholder="e.g., 6.0"></td>
-                                    <td class="normal-range">${section.tests["pH"] || ''}</td>
+                                    <td class="normal-range">${section.tests["pH"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Glucose</td>
@@ -2201,7 +2371,7 @@
                                             <option value="4+">4+</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["Glucose"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Glucose"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Protein</td>
@@ -2216,7 +2386,7 @@
                                             <option value="4+">4+</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["Protein"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Protein"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Ketones</td>
@@ -2231,7 +2401,7 @@
                                             <option value="4+">4+</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["Ketones"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Ketones"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Blood</td>
@@ -2246,7 +2416,7 @@
                                             <option value="4+">4+</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["Blood"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Blood"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Bilirubin</td>
@@ -2257,7 +2427,7 @@
                                             <option value="Positive">Positive</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["Bilirubin"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Bilirubin"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Urobilinogen</td>
@@ -2268,7 +2438,7 @@
                                             <option value="Increased">Increased</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["Urobilinogen"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Urobilinogen"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Nitrites</td>
@@ -2279,7 +2449,7 @@
                                             <option value="Positive">Positive</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["Nitrites"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Nitrites"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Leukocytes</td>
@@ -2293,7 +2463,7 @@
                                             <option value="3+">3+</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["Leukocytes"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Leukocytes"].range || ''}</td>
                                 </tr>
                                 <tr><td colspan="3" class="sub-section-title">Microscopic Examination</td></tr>
                                 <tr>
@@ -2308,7 +2478,7 @@
                                             <option value="Full Filed">Full Filed</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["RBCs"] || ''}</td>
+                                    <td class="normal-range">${section.tests["RBCs"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Pus Cells</td>
@@ -2322,7 +2492,7 @@
                                             <option value="Full Filed">Full Filed</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["Pus Cells"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Pus Cells"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Epithelial Cells</td>
@@ -2334,17 +2504,17 @@
                                             <option value="Many">Many</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["Epithelial Cells"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Epithelial Cells"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Casts</td>
                                     <td><input type="text" class="result-input" placeholder="e.g., Hyaline Casts"></td>
-                                    <td class="normal-range">${section.tests["Casts"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Casts"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Crystals</td>
                                     <td><input type="text" class="result-input" placeholder="e.g., Calcium Oxalate"></td>
-                                    <td class="normal-range">${section.tests["Crystals"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Crystals"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Amorphous Urates</td>
@@ -2357,7 +2527,7 @@
                                             <option value="Many">Many</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["Amorphous Urates"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Amorphous Urates"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Amorphous Phosphates</td>
@@ -2370,7 +2540,7 @@
                                             <option value="Many">Many</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["Amorphous Phosphates"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Amorphous Phosphates"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Bacteria</td>
@@ -2383,7 +2553,7 @@
                                             <option value="Many">Many</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["Bacteria"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Bacteria"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Yeast</td>
@@ -2394,7 +2564,7 @@
                                             <option value="Positive">Positive</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["Yeast"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Yeast"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Mucus threads</td>
@@ -2406,7 +2576,7 @@
                                             <option value="Many">Many</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["Mucus threads"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Mucus threads"].range || ''}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -2425,7 +2595,7 @@
                                 <tr>
                                     <td class="test-name">Volume</td>
                                     <td><input type="text" class="result-input"></td>
-                                    <td class="normal-range">${section.tests["Volume"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Volume"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Color</td>
@@ -2437,12 +2607,12 @@
                                             <option value="Reddish/Brown">Reddish/Brown</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["Color"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Color"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Liquefaction</td>
                                     <td><input type="text" class="result-input"></td>
-                                    <td class="normal-range">${section.tests["Liquefaction"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Liquefaction"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Viscosity</td>
@@ -2453,63 +2623,63 @@
                                             <option value="High">High</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["Viscosity"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Viscosity"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">pH</td>
                                     <td><input type="text" class="result-input"></td>
-                                    <td class="normal-range">${section.tests["pH"] || ''}</td>
+                                    <td class="normal-range">${section.tests["pH"].range || ''}</td>
                                 </tr>
                                 <tr><td colspan="3" class="sub-section-title">Microscopic Examination</td></tr>
                                 <tr>
                                     <td class="test-name">Sperm Concentration</td>
                                     <td><input type="text" class="result-input"></td>
-                                    <td class="normal-range">${section.tests["Sperm Concentration"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Sperm Concentration"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Total Sperm Count</td>
                                     <td><input type="text" class="result-input"></td>
-                                    <td class="normal-range">${section.tests["Total Sperm Count"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Total Sperm Count"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Motility (Total)</td>
                                     <td><input type="text" class="result-input"></td>
-                                    <td class="normal-range">${section.tests["Motility (Total)"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Motility (Total)"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Progressive Motility</td>
                                     <td><input type="text" class="result-input"></td>
-                                    <td class="normal-range">${section.tests["Progressive Motility"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Progressive Motility"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Non-Progressive Motility</td>
                                     <td><input type="text" class="result-input"></td>
-                                    <td class="normal-range">${section.tests["Non-Progressive Motility"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Non-Progressive Motility"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Non-Motile</td>
                                     <td><input type="text" class="result-input"></td>
-                                    <td class="normal-range">${section.tests["Non-Motile"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Non-Motile"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Morphology</td>
                                     <td><input type="text" class="result-input"></td>
-                                    <td class="normal-range">${section.tests["Morphology"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Morphology"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Vitality</td>
                                     <td><input type="text" class="result-input"></td>
-                                    <td class="normal-range">${section.tests["Vitality"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Vitality"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">WBC</td>
                                     <td><input type="text" class="result-input"></td>
-                                    <td class="normal-range">${section.tests["WBC"] || ''}</td>
+                                    <td class="normal-range">${section.tests["WBC"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">RBC</td>
                                     <td><input type="text" class="result-input"></td>
-                                    <td class="normal-range">${section.tests["RBC"] || ''}</td>
+                                    <td class="normal-range">${section.tests["RBC"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Agglutination</td>
@@ -2520,12 +2690,12 @@
                                             <option value="Positive">Positive</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["Agglutination"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Agglutination"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Microscopic Examination</td>
                                     <td><input type="text" class="result-input"></td>
-                                    <td class="normal-range">${section.tests["Microscopic Examination"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Microscopic Examination"].range || ''}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -2554,7 +2724,7 @@
                                             <option value="Yellowish">Yellowish</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["Color"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Color"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Consistency</td>
@@ -2567,7 +2737,7 @@
                                             <option value="Watery">Watery</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["Consistency"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Consistency"].range || ''}</td>
                                 </tr>
                                 <tr><td colspan="3" class="sub-section-title">Chemical & Microscopic Examination</td></tr>
                                 <tr>
@@ -2580,7 +2750,7 @@
                                             <option value="Present">Present</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["Mucus"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Mucus"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Blood</td>
@@ -2592,27 +2762,27 @@
                                             <option value="Present">Present</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["Blood"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Blood"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Ova/Parasite</td>
                                     <td><input type="text" class="result-input" placeholder="e.g., E. histolytica"></td>
-                                    <td class="normal-range">${section.tests["Ova/Parasite"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Ova/Parasite"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">WBC</td>
                                     <td><input type="text" class="result-input"></td>
-                                    <td class="normal-range">${section.tests["WBC"] || ''}</td>
+                                    <td class="normal-range">${section.tests["WBC"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">RBC</td>
                                     <td><input type="text" class="result-input"></td>
-                                    <td class="normal-range">${section.tests["RBC"] || ''}</td>
+                                    <td class="normal-range">${section.tests["RBC"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Fat Globules</td>
                                     <td><input type="text" class="result-input"></td>
-                                    <td class="normal-range">${section.tests["Fat Globules"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Fat Globules"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Starch Granules</td>
@@ -2623,7 +2793,7 @@
                                             <option value="Present">Present</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["Starch Granules"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Starch Granules"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Undigested Muscle Fibers</td>
@@ -2634,7 +2804,7 @@
                                             <option value="Present">Present</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["Undigested Muscle Fibers"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Undigested Muscle Fibers"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Yeast Cells</td>
@@ -2645,7 +2815,7 @@
                                             <option value="Present">Present</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["Yeast Cells"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Yeast Cells"].range || ''}</td>
                                 </tr>
                                 <tr>
                                     <td class="test-name">Occult Blood</td>
@@ -2656,19 +2826,27 @@
                                             <option value="Positive">Positive</option>
                                         </select>
                                     </td>
-                                    <td class="normal-range">${section.tests["Occult Blood"] || ''}</td>
+                                    <td class="normal-range">${section.tests["Occult Blood"].range || ''}</td>
                                 </tr>
                             </tbody>
                         </table>
                     `;
                 } else if (section.id === 'serologySection' || section.id === 'viralSection') {
-                    tableHTML += `<table><tr><th>Test</th><th>Result</th><th>Normal Range</th></tr>`;
+                    tableHTML += `<table><thead><tr><th>Test</th><th>Result</th><th>Normal Range</th></tr></thead><tbody>`;
                     for (const testName in section.tests) {
-                        let resultInputHTML;
-                        const serologyTests = ['Salmonella typhi', 'Salmonella typhi IgG', 'Salmonella typhi IgM', 'Rose Bengal (Brucella)', 'H.pylori Ab', 'Rheumatoid Factor', 'Toxoplasma IgG', 'Toxoplasma IgM', 'CMV IgG', 'CMV IgM', 'EBV (VCA IgG)', 'EBV (VCA IgM)', 'HBsAg', 'HBsAb', 'Anti-HCV (HCV-Ab)', 'HIV AB', 'HIV (ELISA)', 'VDRL / RPR (Syphilis)', 'ANA', 'Anti-dsDNA', 'Hepatitis A virus (HAV) IgM', 'Hepatitis A virus (HAV) IgG', 'Hepatitis B virus (HBV) DNA', 'Hepatitis C virus (HCV) RNA', 'Epstein-Barr virus (EBV)', 'Herpes Simplex Virus 1/2 (HSV-1/2) IgG', 'Herpes Simplex Virus 1/2 (HSV-1/2) IgM', 'HIV 1/2 Ab', 'HIV p24 Ag', 'Measles IgG', 'Measles IgM', 'Mumps IgG', 'Mumps IgM'];
+                        const testData = section.tests[testName];
+                        let resultInputHTML = '';
                         
-                        if (serologyTests.includes(testName)) {
-                            resultInputHTML = `<td><select class="result-select"><option value="">Select</option><option value="Positive">Positive</option><option value="Negative">Negative</option></select></td>`;
+                        if (testData.type === 'select') {
+                            resultInputHTML = `<td><select class="result-select"><option value="">Select</option>`;
+                            if (testData.choices && testData.choices.length > 0) {
+                                testData.choices.forEach(choice => {
+                                    resultInputHTML += `<option value="${choice}">${choice}</option>`;
+                                });
+                            } else {
+                                resultInputHTML += '<option value="Positive">Positive</option><option value="Negative">Negative</option>';
+                            }
+                            resultInputHTML += '</select></td>';
                         } else {
                             resultInputHTML = `<td><input type="text" class="result-input"></td>`;
                         }
@@ -2677,30 +2855,88 @@
                             <tr>
                                 <td class="test-name">${testName}</td>
                                 ${resultInputHTML}
-                                <td class="normal-range">${section.tests[testName] || ''}</td>
+                                <td class="normal-range">${testData.range || ''}</td>
                             </tr>
                         `;
                     }
-                    tableHTML += `</table>`;
+                    tableHTML += `</tbody></table>`;
                 } else {
-                    tableHTML += `<table><tr><th>Test</th><th>Result</th><th>Normal Range</th></tr>`;
+                    // الأقسام العادية
+                    tableHTML += `<table><thead><tr><th>Test</th><th>Result</th><th>Normal Range</th></tr></thead><tbody>`;
                     for (const testName in section.tests) {
+                        const testData = section.tests[testName];
                         tableHTML += `
                             <tr>
                                 <td class="test-name">${testName}</td>
-                                <td><input type="text" class="result-input"></td>
-                                <td class="normal-range">${section.tests[testName] || ''}</td>
+                                <td>${createResultInput({[testName]: testData})}</td>
+                                <td class="normal-range">${testData.range || ''}</td>
                             </tr>
                         `;
                     }
-                    tableHTML += `</table>`;
+                    tableHTML += `</tbody></table>`;
                 }
                 
                 sectionDiv.innerHTML = tableHTML;
                 resultsContainer.appendChild(sectionDiv);
             });
             
+            // إضافة مستمعين للعناصر الجديدة
+            addEventListenersToResults();
             showSelectedSection();
+        }
+
+        function addEventListenersToResults() {
+            // إضافة مستمعين للـ inputs والـ selects
+            document.querySelectorAll('.result-input, .result-select').forEach(input => {
+                input.removeEventListener('input', updateFilledTests);
+                input.removeEventListener('change', updateFilledTests);
+                input.addEventListener('input', updateFilledTests);
+                input.addEventListener('change', updateFilledTests);
+            });
+
+            // إضافة مستمعين للخيارات المتعددة
+            document.querySelectorAll('.choice-radio').forEach(radio => {
+                radio.removeEventListener('change', updateFilledTests);
+                radio.addEventListener('change', updateFilledTests);
+            });
+
+            // إضافة مستمعين للنقر على الخيارات
+            document.querySelectorAll('.choice-option').forEach(option => {
+                option.removeEventListener('click', handleChoiceClick);
+                option.addEventListener('click', handleChoiceClick);
+            });
+        }
+
+        function handleChoiceClick(element) {
+            const radio = element.querySelector('.choice-radio');
+            if (radio) {
+                radio.checked = true;
+                radio.dispatchEvent(new Event('change'));
+                
+                // تحديث مظهر الخيار
+                document.querySelectorAll('.choice-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                element.classList.add('selected');
+            }
+        }
+
+        function selectChoice(element) {
+            const radio = element.querySelector('.choice-radio');
+            if (radio) {
+                radio.checked = true;
+                radio.dispatchEvent(new Event('change'));
+                
+                // تحديث مظهر الخيار
+                document.querySelectorAll(`[name="${radio.name}"]`).forEach(radioInput => {
+                    const parentOption = radioInput.closest('.choice-option');
+                    if (radioInput.checked) {
+                        parentOption.classList.add('selected');
+                    } else {
+                        parentOption.classList.remove('selected');
+                    }
+                });
+            }
         }
 
         function updateSelectMenus() {
@@ -2761,11 +2997,13 @@
                     <tr>
                         <th>اسم التحليل</th>
                         <th>النطاق الطبيعي</th>
+                        <th>نوع الإجابة</th>
                         <th>إجراءات</th>
                     </tr>
             `;
             
             for (const testName in selectedSection.tests) {
+                const testData = selectedSection.tests[testName];
                 tableHTML += `
                     <tr>
                         <td>${testName}</td>
@@ -2773,7 +3011,14 @@
                             <input type="text" class="normal-range-input" 
                                 data-section="${sectionId}" 
                                 data-test="${testName}" 
-                                value="${selectedSection.tests[testName] || ''}">
+                                value="${testData.range || ''}">
+                        </td>
+                        <td>
+                            <select class="form-input" style="width: 100px;">
+                                <option value="text" ${testData.type === 'text' ? 'selected' : ''}>نص</option>
+                                <option value="select" ${testData.type === 'select' ? 'selected' : ''}>اختيار واحد</option>
+                                <option value="multiple" ${testData.type === 'multiple' ? 'selected' : ''}>اختيار متعدد</option>
+                            </select>
                         </td>
                         <td>
                             <button class="btn btn-clear" onclick="removeTest('${sectionId}', '${testName}')" style="padding: 5px 10px; font-size: 12px;">
@@ -2790,16 +3035,20 @@
 
         function saveRanges() {
             const inputs = document.querySelectorAll('#rangeTableContainer .normal-range-input');
+            const typeSelects = document.querySelectorAll('#rangeTableContainer select');
             const customRanges = JSON.parse(localStorage.getItem('customTests')) || {};
 
-            inputs.forEach(input => {
+            let index = 0;
+            inputs.forEach((input, i) => {
                 const sectionId = input.dataset.section;
                 const testName = input.dataset.test;
                 const rangeValue = input.value.trim();
+                const typeValue = typeSelects[i].value;
 
                 const section = labStructure.find(sec => sec.id === sectionId);
-                if (section) {
-                    section.tests[testName] = rangeValue;
+                if (section && section.tests[testName]) {
+                    section.tests[testName].range = rangeValue;
+                    section.tests[testName].type = typeValue;
                 }
                 
                 if (!customRanges[sectionId]) {
@@ -2808,9 +3057,15 @@
                 const existingTest = customRanges[sectionId].find(test => test.name === testName);
                 if (existingTest) {
                     existingTest.range = rangeValue;
+                    existingTest.type = typeValue;
                 } else {
-                    customRanges[sectionId].push({ name: testName, range: rangeValue });
+                    customRanges[sectionId].push({ 
+                        name: testName, 
+                        range: rangeValue,
+                        type: typeValue
+                    });
                 }
+                index++;
             });
 
             localStorage.setItem('customTests', JSON.stringify(customRanges));
@@ -2861,6 +3116,10 @@
             
             const activeContent = document.getElementById(tabId);
             if (activeContent) activeContent.classList.add('active');
+            
+            if (tabId === 'add-test-tab') {
+                toggleChoicesContainer();
+            }
         }
 
         function addNewTestField() {
@@ -2898,7 +3157,8 @@
                 if (nameInput.value.trim() && rangeInput.value.trim()) {
                     tests.push({
                         name: nameInput.value.trim(),
-                        range: rangeInput.value.trim()
+                        range: rangeInput.value.trim(),
+                        type: 'text'
                     });
                 }
             });
@@ -2949,6 +3209,7 @@
             const sectionId = document.getElementById('existing-sections').value;
             const testName = document.getElementById('new-test-name').value.trim();
             const testRange = document.getElementById('new-test-range').value.trim();
+            const answerType = document.getElementById('answer-type').value;
             
             if (!sectionId || !testName || !testRange) {
                 alert('يرجى إدخال اسم القسم واسم التحليل والنطاق الطبيعي.');
@@ -2960,6 +3221,37 @@
             if (selectedSection && selectedSection.tests[testName]) {
                 alert('هذا التحليل موجود بالفعل في هذا القسم.');
                 return;
+            }
+            
+            let newTest = {
+                name: testName,
+                range: testRange,
+                type: answerType
+            };
+            
+            // إضافة الخيارات إذا كانت اختيار واحد أو متعدد
+            if (answerType === 'select' || answerType === 'multiple') {
+                const choiceInputs = document.querySelectorAll('#choice-items .choice-text-input');
+                const choices = [];
+                let hasEmptyChoice = false;
+                
+                choiceInputs.forEach(input => {
+                    const value = input.value.trim();
+                    if (value) {
+                        choices.push(value);
+                    } else if (!value && choices.length === 0) {
+                        hasEmptyChoice = true;
+                    }
+                });
+                
+                if (hasEmptyChoice && choices.length === 0) {
+                    alert('يرجى إدخل خيار واحد على الأقل للتحليل.');
+                    return;
+                }
+                
+                if (choices.length > 0) {
+                    newTest.choices = choices;
+                }
             }
             
             let customTests = JSON.parse(localStorage.getItem('customTests') || '{}');
@@ -2974,7 +3266,7 @@
                 return;
             }
             
-            customTests[sectionId].push({ name: testName, range: testRange });
+            customTests[sectionId].push(newTest);
             localStorage.setItem('customTests', JSON.stringify(customTests));
             
             loadLabStructure();
@@ -2982,7 +3274,15 @@
             // إعادة تعيين النموذج
             document.getElementById('new-test-name').value = '';
             document.getElementById('new-test-range').value = '';
+            document.getElementById('answer-type').value = 'text';
             document.getElementById('existing-sections').selectedIndex = 0;
+            document.getElementById('choices-container').style.display = 'none';
+            document.getElementById('choice-items').innerHTML = `
+                <div class="choice-item">
+                    <input type="text" class="choice-text-input" placeholder="أدخل الخيار الأول">
+                    <span class="remove-choice" onclick="removeChoice(this)">×</span>
+                </div>
+            `;
             
             alert('تم إضافة التحليل الجديد بنجاح!');
         }
@@ -3009,9 +3309,9 @@
                 patientGender: document.getElementById('patientGender').value,
                 currentDate: document.getElementById('currentDate').value,
                 doctorName: document.getElementById('doctorName').value,
-                examinerName: document.getElementById('examinerName').value,
-                biologistSignature: document.getElementById('biologistSignature').value,
-                issueDate: document.getElementById('issueDate').value,
+                examinerName: document.getElementById('examinerName')?.value || '',
+                biologistSignature: document.getElementById('biologistSignature')?.value || '',
+                issueDate: document.getElementById('issueDate')?.value || '',
                 tests: {}
             };
 
@@ -3020,17 +3320,22 @@
                 const sectionId = section.id;
                 patientData.tests[sectionId] = {};
                 
-                const rows = section.querySelectorAll('tr');
-                rows.forEach(row => {
-                    const testNameElement = row.querySelector('.test-name');
-                    const resultInput = row.querySelector('.result-input, .result-select');
-
-                    if (testNameElement && resultInput) {
-                        const testName = testNameElement.textContent.trim();
-                        const resultValue = resultInput.value.trim();
-                        if (resultValue) {
-                            patientData.tests[sectionId][testName] = resultValue;
-                        }
+                // التعامل مع الـ inputs العادية والـ selects
+                const textInputs = section.querySelectorAll('.result-input, .result-select');
+                textInputs.forEach(input => {
+                    const testName = input.dataset.testName || input.closest('tr')?.querySelector('.test-name')?.textContent?.trim();
+                    if (testName && input.value.trim()) {
+                        patientData.tests[sectionId][testName] = input.value.trim();
+                    }
+                });
+                
+                // التعامل مع الخيارات المتعددة
+                const multipleContainers = section.querySelectorAll('.multiple-choice-container');
+                multipleContainers.forEach(container => {
+                    const testName = container.dataset.testName;
+                    const selectedRadio = container.querySelector('input[type="radio"]:checked');
+                    if (testName && selectedRadio) {
+                        patientData.tests[sectionId][testName] = selectedRadio.value;
                     }
                 });
             });
@@ -3075,13 +3380,25 @@
                     document.getElementById('patientGender').value = patientData.patientGender || '';
                     document.getElementById('currentDate').value = patientData.currentDate || '';
                     document.getElementById('doctorName').value = patientData.doctorName || '';
-                    document.getElementById('examinerName').value = patientData.examinerName || '';
-                    document.getElementById('biologistSignature').value = patientData.biologistSignature || '';
-                    document.getElementById('issueDate').value = patientData.issueDate || '';
+                    if (document.getElementById('examinerName')) {
+                        document.getElementById('examinerName').value = patientData.examinerName || '';
+                    }
+                    if (document.getElementById('biologistSignature')) {
+                        document.getElementById('biologistSignature').value = patientData.biologistSignature || '';
+                    }
+                    if (document.getElementById('issueDate')) {
+                        document.getElementById('issueDate').value = patientData.issueDate || '';
+                    }
 
                     // مسح جميع النتائج أولاً
                     document.querySelectorAll('.result-input, .result-select').forEach(input => {
                         input.value = '';
+                    });
+                    document.querySelectorAll('.choice-radio').forEach(radio => {
+                        radio.checked = false;
+                    });
+                    document.querySelectorAll('.choice-option').forEach(option => {
+                        option.classList.remove('selected');
                     });
                     
                     // استعادة النتائج
@@ -3097,6 +3414,21 @@
                                     }
                                     break;
                                 }
+                            }
+                            
+                            // استعادة الخيارات المتعددة
+                            const multipleContainer = document.querySelector(`#${sectionId} [data-test-name="${testName}"]`);
+                            if (multipleContainer && multipleContainer.classList.contains('multiple-choice-container')) {
+                                const radios = multipleContainer.querySelectorAll('input[type="radio"]');
+                                radios.forEach(radio => {
+                                    if (radio.value === tests[testName]) {
+                                        radio.checked = true;
+                                        const parentOption = radio.closest('.choice-option');
+                                        if (parentOption) {
+                                            parentOption.classList.add('selected');
+                                        }
+                                    }
+                                });
                             }
                         }
                     }
@@ -3134,6 +3466,9 @@
             const year = now.getFullYear();
             const month = String(now.getMonth() + 1).padStart(2, '0');
             const day = String(now.getDate()).padStart(2, '0');
+            if (document.getElementById('issueDate')) {
+                document.getElementById('issueDate').value = `${year}-${month}-${day}`;
+            }
         }
 
         function showSelectedSection() {
@@ -3162,6 +3497,15 @@
                     select.selectedIndex = 0;
                 });
                 
+                const radios = document.querySelectorAll('input[type="radio"]');
+                radios.forEach(radio => {
+                    radio.checked = false;
+                });
+                
+                document.querySelectorAll('.choice-option').forEach(option => {
+                    option.classList.remove('selected');
+                });
+                
                 setCurrentDate();
                 setIssueDate();
                 showSelectedSection();
@@ -3188,6 +3532,18 @@
                 }
             });
             
+            // التعامل مع الخيارات المتعددة في الطباعة
+            const multipleContainers = document.querySelectorAll('.multiple-choice-container');
+            multipleContainers.forEach(container => {
+                const row = container.closest('tr');
+                const hasSelection = container.querySelector('input[type="radio"]:checked');
+                if (!hasSelection && row) {
+                    row.classList.add('no-print-row');
+                } else {
+                    row.classList.remove('no-print-row');
+                }
+            });
+            
             // إخفاء معلومات المريض الفارغة
             const patientInfoInputs = document.querySelectorAll('#patientInfoSection .editable-field');
             patientInfoInputs.forEach(input => {
@@ -3207,6 +3563,15 @@
                 
                 inputsInSection.forEach(input => {
                     if (input.value.trim() !== '' || (input.tagName === 'SELECT' && input.selectedIndex > 0)) {
+                        hasValue = true;
+                    }
+                });
+                
+                // التحقق من الخيارات المتعددة
+                const multipleContainersInSection = section.querySelectorAll('.multiple-choice-container');
+                multipleContainersInSection.forEach(container => {
+                    const selectedRadio = container.querySelector('input[type="radio"]:checked');
+                    if (selectedRadio) {
                         hasValue = true;
                     }
                 });
@@ -3240,9 +3605,10 @@
             const filledList = document.getElementById('filledTests');
             if (!filledList) return;
             
-            const allResultInputs = document.querySelectorAll('.result-input, .result-select');
             let filledTests = [];
 
+            // التحقق من الـ inputs والـ selects العادية
+            const allResultInputs = document.querySelectorAll('.result-input, .result-select');
             allResultInputs.forEach(input => {
                 const hasValue = input.value && input.value.trim() !== '' && 
                                 (input.tagName !== 'SELECT' || input.selectedIndex > 0);
@@ -3257,6 +3623,18 @@
                                 filledTests.push(testName);
                             }
                         }
+                    }
+                }
+            });
+
+            // التحقق من الخيارات المتعددة
+            const multipleContainers = document.querySelectorAll('.multiple-choice-container');
+            multipleContainers.forEach(container => {
+                const selectedRadio = container.querySelector('input[type="radio"]:checked');
+                if (selectedRadio) {
+                    const testName = container.dataset.testName;
+                    if (testName && !filledTests.includes(testName)) {
+                        filledTests.push(testName);
                     }
                 }
             });
@@ -3322,16 +3700,7 @@
             
             // تطبيق الإعدادات
             applySettings();
-            
-            // إضافة مستمعين للنتائج
-            setTimeout(() => {
-                document.querySelectorAll('.result-input, .result-select').forEach(input => {
-                    input.addEventListener('input', updateFilledTests);
-                    input.addEventListener('change', updateFilledTests);
-                });
-            }, 100);
         });
     </script>
 </body>
 </html>
-
